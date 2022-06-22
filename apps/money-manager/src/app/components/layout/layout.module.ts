@@ -5,6 +5,7 @@ import { RouterModule } from '@angular/router';
 import { MainContentComponent } from './main-content/main-content.component';
 import { MainNavbarComponent } from './main-navbar/main-navbar.component';
 import { MainFooterComponent } from './main-footer/main-footer.component';
+import { SharedModule } from '../../shared/shared.module';
 
 @NgModule({
   declarations: [
@@ -12,7 +13,7 @@ import { MainFooterComponent } from './main-footer/main-footer.component';
     MainNavbarComponent,
     MainFooterComponent,
   ],
-  imports: [CommonModule, RouterModule.forChild([])],
+  imports: [CommonModule, SharedModule, RouterModule.forChild([])],
   exports: [MainContentComponent, MainNavbarComponent, MainFooterComponent],
 })
 export class LayoutModule {}
