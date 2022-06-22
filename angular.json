@@ -4,6 +4,7 @@
     "api": "apps/api",
     "api-interfaces": "libs/api-interfaces",
     "money-manager": "apps/money-manager",
-    "money-manager-e2e": "apps/money-manager-e2e"
+    "money-manager-e2e": "apps/money-manager-e2e",
+    "translate-utils": "libs/translate-utils"
   }
 }

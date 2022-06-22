@@ -1,0 +1,15 @@
+{
+  "root": "libs/translate-utils",
+  "sourceRoot": "libs/translate-utils/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/translate-utils/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}

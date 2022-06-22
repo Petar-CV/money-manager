@@ -15,7 +15,8 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
-      "@petar-cv/api-interfaces": ["libs/api-interfaces/src/index.ts"]
+      "@petar-cv/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@petar-cv/translate-utils": ["libs/translate-utils/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

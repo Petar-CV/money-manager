@@ -5,7 +5,7 @@
   "prefix": "petar-cv",
   "targets": {
     "build": {
-      "executor": "@angular-devkit/build-angular:browser",
+      "executor": "@angular-builders/custom-webpack:browser",
       "outputs": ["{options.outputPath}"],
       "options": {
         "outputPath": "dist/apps/money-manager",
@@ -19,7 +19,11 @@
           "apps/money-manager/src/assets"
         ],
         "styles": ["apps/money-manager/src/styles.scss"],
-        "scripts": []
+        "scripts": [],
+        "customWebpackConfig": {
+          "path": "apps/money-manager/webpack.config.js",
+          "replaceDuplicatePlugins": true
+        }
       },
       "configurations": {
         "production": {
@@ -55,7 +59,7 @@
       "defaultConfiguration": "production"
     },
     "serve": {
-      "executor": "@angular-devkit/build-angular:dev-server",
+      "executor": "@angular-builders/custom-webpack:dev-server",
       "configurations": {
         "production": {
           "browserTarget": "money-manager:build:production"
@@ -70,7 +74,7 @@
       }
     },
     "extract-i18n": {
-      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "executor": "@angular-builders/custom-webpack:extract-i18n",
       "options": {
         "browserTarget": "money-manager:build"
       }
@@ -85,7 +89,7 @@
       }
     },
     "test": {
-      "executor": "@nrwl/jest:jest",
+      "executor": "@angular-builders/custom-webpack:karma",
       "outputs": ["coverage/apps/money-manager"],
       "options": {
         "jestConfig": "apps/money-manager/jest.config.js",
