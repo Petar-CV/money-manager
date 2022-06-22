@@ -1,0 +1,28 @@
+{
+  "root": "apps/money-manager-e2e",
+  "sourceRoot": "apps/money-manager-e2e/src",
+  "projectType": "application",
+  "targets": {
+    "e2e": {
+      "executor": "@nrwl/cypress:cypress",
+      "options": {
+        "cypressConfig": "apps/money-manager-e2e/cypress.json",
+        "devServerTarget": "money-manager:serve:development"
+      },
+      "configurations": {
+        "production": {
+          "devServerTarget": "money-manager:serve:production"
+        }
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["apps/money-manager-e2e/**/*.{js,ts}"]
+      }
+    }
+  },
+  "tags": [],
+  "implicitDependencies": ["money-manager"]
+}
