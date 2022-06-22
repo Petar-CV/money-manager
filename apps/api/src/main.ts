@@ -3,6 +3,7 @@ import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
 
 import { AppModule } from './app/app.module';
+import { TransformResponseInterceptor } from './interceptors/transform-response.interceptor';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
@@ -13,7 +14,7 @@ async function bootstrap() {
       preflightContinue: false,
       optionsSuccessStatus: 204,
       allowedHeaders: ['x-lang', 'Authorization'],
-      exposedHeaders: ['x-alert-message', 'x-alert-param'],
+      exposedHeaders: ['x-alert-message', 'x-alert-param', 'x-total-items'],
     },
   });
 
@@ -43,6 +44,8 @@ async function bootstrap() {
       tryItOutEnabled: true,
     },
   });
+
+  app.useGlobalInterceptors(new TransformResponseInterceptor());
 
   await app.listen(port);
   Logger.log(
