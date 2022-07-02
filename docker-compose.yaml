@@ -28,7 +28,7 @@ services:
     ports:
       - 5434:5432
   keycloak:
-    image: jboss/keycloak:latest
+    image: jboss/keycloak:16.1.1
     environment:
       DB_VENDOR: POSTGRES
       DB_ADDR: keycloak-postgres # <<< This is the address, change it to your external db ip/domain
