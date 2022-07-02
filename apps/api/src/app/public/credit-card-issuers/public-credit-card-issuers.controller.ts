@@ -10,7 +10,7 @@ import { PublicCreditCardIssuersService } from './public-credit-card-issuers.ser
 @ApiTags('Public - Credit card issuers')
 @ApiBearerAuth()
 @Roles({ roles: ['admin', 'user'] })
-@Controller('api/public/credit-card-issuers')
+@Controller('public/credit-card-issuers')
 export class PublicCreditCardIssuersController {
   constructor(
     private readonly publicCreditCardIssuersService: PublicCreditCardIssuersService

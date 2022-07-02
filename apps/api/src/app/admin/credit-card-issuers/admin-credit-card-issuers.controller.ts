@@ -21,7 +21,7 @@ import { Roles } from 'nest-keycloak-connect';
 @ApiTags('Admin - Credit card issuers')
 @ApiBearerAuth()
 @Roles({ roles: ['admin'] })
-@Controller('api/admin/credit-card-issuers')
+@Controller('admin/credit-card-issuers')
 export class AdminCreditCardIssuersController {
   constructor(
     private readonly adminCreditCardIssuersService: AdminCreditCardIssuersService
