@@ -19,6 +19,7 @@ model CreditCard {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  deletedAt DateTime?
 
   issuer   CreditCardIssuer @relation(fields: [issuerId], references: [id])
   issuerId String
@@ -35,6 +36,7 @@ model CreditCardIssuer {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  deletedAt DateTime?
 
   creditCards CreditCard[]
 
@@ -52,6 +54,7 @@ model CreditCardItem {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  deletedAt DateTime?
 
   card   CreditCard @relation(fields: [cardId], references: [id])
   cardId String

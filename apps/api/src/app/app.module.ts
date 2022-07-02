@@ -8,8 +8,8 @@ import {
 } from 'nest-keycloak-connect';
 
 import { PrismaModule } from '../prisma/prisma.module';
-import { AppController } from './app.controller';
-import { AppService } from './app.service';
+import { AdminModule } from './admin/admin.module';
+import { PublicModule } from './public/public.module';
 
 @Module({
   imports: [
@@ -20,10 +20,10 @@ import { AppService } from './app.service';
       secret: 'egB3Ds59Ah1sMasVB4DzJJ6FElRLmjak', // TODO: Implement environment variable
     }),
     PrismaModule,
+    PublicModule,
+    AdminModule,
   ],
-  controllers: [AppController],
   providers: [
-    AppService,
     // This adds a global level authentication guard,
     // you can also have it scoped
     // if you like.

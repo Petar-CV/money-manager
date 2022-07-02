@@ -1,0 +1,15 @@
+{
+  "root": "libs/prisma-utils",
+  "sourceRoot": "libs/prisma-utils/src",
+  "projectType": "library",
+  "targets": {
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/prisma-utils/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}
