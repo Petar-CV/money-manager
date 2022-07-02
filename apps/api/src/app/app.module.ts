@@ -7,6 +7,7 @@ import {
   AuthGuard,
 } from 'nest-keycloak-connect';
 
+import { PrismaModule } from '../prisma/prisma.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
 
@@ -18,6 +19,7 @@ import { AppService } from './app.service';
       clientId: 'money-manager-api', // TODO: Implement environment variable
       secret: 'egB3Ds59Ah1sMasVB4DzJJ6FElRLmjak', // TODO: Implement environment variable
     }),
+    PrismaModule,
   ],
   controllers: [AppController],
   providers: [

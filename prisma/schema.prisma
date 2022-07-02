@@ -1,0 +1,60 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model CreditCard {
+  id          String   @id @default(uuid())
+  userId      String
+  name        String   @db.VarChar(255)
+  limit       Decimal  @db.Decimal(10, 2)
+  billingDate DateTime
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  issuer   CreditCardIssuer @relation(fields: [issuerId], references: [id])
+  issuerId String
+
+  items CreditCardItem[]
+
+  @@map("credit_cards")
+}
+
+model CreditCardIssuer {
+  id   String @id @default(uuid())
+  name String @db.VarChar(255)
+  logo String @db.Text() // Base64 string
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  creditCards CreditCard[]
+
+  @@map("credit_card_issuers")
+}
+
+model CreditCardItem {
+  id          String   @id @default(uuid())
+  userId      String
+  name        String   @db.VarChar(255)
+  description String?  @db.Text()
+  boughtAt    DateTime
+  instalments Int
+  amount      Decimal  @db.Decimal(10, 2)
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  card   CreditCard @relation(fields: [cardId], references: [id])
+  cardId String
+
+  @@map("credit_card_items")
+}

@@ -3,29 +3,41 @@ version: '3'
 volumes:
   postgres_data:
     driver: local
+  mm-postgres:
+    driver: local
 
 services:
   keycloak-postgres:
-    image: postgres:latest
+    image: postgres:14.4
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: keycloak
-      POSTGRES_USER: keycloak
-      POSTGRES_PASSWORD: password
+      POSTGRES_USER: keycloak # TODO: Change to enviroment variable
+      POSTGRES_PASSWORD: password # TODO: Change to enviroment variable
     ports:
       - 5433:5432
+  mm-postgres:
+    image: postgres:14.4
+    volumes:
+      - mm-postgres:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: money-manager
+      POSTGRES_USER: money-manager # TODO: Change to enviroment variable
+      POSTGRES_PASSWORD: somepass123 # TODO: Change to enviroment variable
+    ports:
+      - 5434:5432
   keycloak:
     image: jboss/keycloak:latest
     environment:
       DB_VENDOR: POSTGRES
       DB_ADDR: keycloak-postgres # <<< This is the address, change it to your external db ip/domain
       DB_DATABASE: keycloak
-      DB_USER: keycloak
-      DB_SCHEMA: public
-      DB_PASSWORD: password
-      KEYCLOAK_USER: admin
-      KEYCLOAK_PASSWORD: password
+      DB_USER: keycloak # TODO: Change to enviroment variable
+      DB_SCHEMA: public # TODO: Change to enviroment variable
+      DB_PASSWORD: password # TODO: Change to enviroment variable
+      KEYCLOAK_USER: admin # TODO: Change to enviroment variable
+      KEYCLOAK_PASSWORD: password # TODO: Change to enviroment variable
       # KEYCLOAK_LOGLEVEL: DEBUG
       # ROOT_LOGLEVEL: DEBUG
     ports:
