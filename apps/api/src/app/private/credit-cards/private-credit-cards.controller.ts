@@ -9,7 +9,7 @@ import {
   Query,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { CreditCard } from '@prisma/client';
+import { CreditCard, CreditCardItem } from '@prisma/client';
 import { AuthenticatedUser, Roles } from 'nest-keycloak-connect';
 
 import { IApiResponse, PaginatedSortAndSearch } from '@petar-cv/api-interfaces';
@@ -45,6 +45,19 @@ export class PrivateCreditCardsController {
     @AuthenticatedUser() user: IAuthenticatedUser
   ): Promise<IApiResponse<CreditCard>> {
     return this.privateCreditCardsService.findMyCreditCard(creditCardId, user);
+  }
+
+  @Get(':id/items')
+  findAllItemsForMyCreditCard(
+    @Query() paginatedSortAndSearch: PaginatedSortAndSearch,
+    @Param('id') creditCardId: string,
+    @AuthenticatedUser() user: IAuthenticatedUser
+  ): Promise<IApiResponse<CreditCardItem[]>> {
+    return this.privateCreditCardsService.findAllItemsForMyCreditCard(
+      paginatedSortAndSearch,
+      creditCardId,
+      user
+    );
   }
 
   @Post()

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma, CreditCard } from '@prisma/client';
+import { Prisma, CreditCard, CreditCardItem } from '@prisma/client';
 
 import {
   CommonResponses,
@@ -70,6 +70,44 @@ export class AdminCreditCardsService {
 
     return {
       data: creditCard,
+    };
+  }
+
+  async findAllItemsForCreditCard(
+    paginatedSortAndSearch: PaginatedSortAndSearch,
+    id: string
+  ): Promise<IApiResponse<CreditCardItem[]>> {
+    const { page, perPage, search } = paginatedSortAndSearch;
+
+    const filter = createGlobalFilter({
+      model: Prisma.CreditCardScalarFieldEnum,
+      search: search,
+      matchType: 'contains',
+      includedFields: ['name'],
+    });
+
+    // TODO: Implement parallel transactions
+    const count = await this.prisma.creditCardItem.count({
+      where: {
+        OR: filter,
+        deletedAt: null,
+        cardId: id,
+      },
+    });
+
+    const creditCardItems = await this.prisma.creditCardItem.findMany({
+      where: {
+        OR: filter,
+        deletedAt: null,
+        cardId: id,
+      },
+      skip: perPage && page ? perPage * (page - 1) : undefined,
+      take: perPage && page ? perPage : undefined,
+    });
+
+    return {
+      data: creditCardItems,
+      totalItems: count,
     };
   }
 
