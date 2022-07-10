@@ -10,12 +10,12 @@ import { createGlobalFilter } from '@petar-cv/prisma-utils';
 
 import { PrismaService } from '../../../prisma/prisma.service';
 import { IAuthenticatedUser } from '../../../models/keycloak/authenticated-user.model';
-import { PublicCreditCardsResponses } from './responses/public-credit-cards-responses';
-import { UpdatePublicCreditCardDto } from './dto/update-public-credit-card.dto';
-import { CreatePublicCreditCardDto } from './dto/create-public-credit-card.dto';
+import { PrivateCreditCardsResponses } from './responses/private-credit-cards-responses';
+import { UpdatePrivateCreditCardDto } from './dto/update-private-credit-card.dto';
+import { CreatePrivateCreditCardDto } from './dto/create-private-credit-card.dto';
 
 @Injectable()
-export class PublicCreditCardsService {
+export class PrivateCreditCardsService {
   constructor(private readonly prisma: PrismaService) {}
 
   async findMyCreditCards(
@@ -76,7 +76,7 @@ export class PublicCreditCardsService {
   }
 
   async create(
-    createCreditCardDto: CreatePublicCreditCardDto,
+    createCreditCardDto: CreatePrivateCreditCardDto,
     user: IAuthenticatedUser
   ): Promise<IApiResponse<CreditCard>> {
     try {
@@ -96,7 +96,7 @@ export class PublicCreditCardsService {
 
       return {
         data: creditCard,
-        message: PublicCreditCardsResponses.CREATED,
+        message: PrivateCreditCardsResponses.CREATED,
         param: creditCard.id,
       };
     } catch (e) {
@@ -110,7 +110,7 @@ export class PublicCreditCardsService {
 
   async update(
     id: string,
-    updateCreditCardDto: UpdatePublicCreditCardDto,
+    updateCreditCardDto: UpdatePrivateCreditCardDto,
     user: IAuthenticatedUser
   ): Promise<IApiResponse<CreditCard>> {
     try {
@@ -134,7 +134,7 @@ export class PublicCreditCardsService {
 
       return {
         data: creditCard,
-        message: PublicCreditCardsResponses.UPDATED,
+        message: PrivateCreditCardsResponses.UPDATED,
         param: creditCard.id,
       };
     } catch (e) {
@@ -159,7 +159,7 @@ export class PublicCreditCardsService {
       });
 
       return {
-        message: PublicCreditCardsResponses.DELETED,
+        message: PrivateCreditCardsResponses.DELETED,
         param: id,
       };
     } catch (e) {

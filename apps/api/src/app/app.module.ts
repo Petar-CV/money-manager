@@ -9,7 +9,7 @@ import {
 
 import { PrismaModule } from '../prisma/prisma.module';
 import { AdminModule } from './admin/admin.module';
-import { PublicModule } from './public/public.module';
+import { PrivateModule } from './private/private.module';
 
 @Module({
   imports: [
@@ -20,7 +20,7 @@ import { PublicModule } from './public/public.module';
       secret: 'egB3Ds59Ah1sMasVB4DzJJ6FElRLmjak', // TODO: Implement environment variable
     }),
     PrismaModule,
-    PublicModule,
+    PrivateModule,
     AdminModule,
   ],
   providers: [

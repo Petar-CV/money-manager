@@ -10,12 +10,12 @@ import { createGlobalFilter } from '@petar-cv/prisma-utils';
 
 import { PrismaService } from '../../../prisma/prisma.service';
 import { IAuthenticatedUser } from '../../../models/keycloak/authenticated-user.model';
-import { PublicCreditCardItemsResponses } from './responses/public-credit-card-items-responses';
-import { UpdatePublicCreditCardItemDto } from './dto/update-public-credit-card-item.dto';
-import { CreatePublicCreditCardItemDto } from './dto/create-public-credit-card-item.dto';
+import { PrivateCreditCardItemsResponses } from './responses/private-credit-card-items-responses';
+import { UpdatePrivateCreditCardItemDto } from './dto/update-private-credit-card-item.dto';
+import { CreatePrivateCreditCardItemDto } from './dto/create-private-credit-card-item.dto';
 
 @Injectable()
-export class PublicCreditCardItemsService {
+export class PrivateCreditCardItemsService {
   constructor(private readonly prisma: PrismaService) {}
 
   async findMyCreditCardItems(
@@ -76,7 +76,7 @@ export class PublicCreditCardItemsService {
   }
 
   async create(
-    createCreditCardDto: CreatePublicCreditCardItemDto,
+    createCreditCardDto: CreatePrivateCreditCardItemDto,
     user: IAuthenticatedUser
   ): Promise<IApiResponse<CreditCardItem>> {
     try {
@@ -98,7 +98,7 @@ export class PublicCreditCardItemsService {
 
       return {
         data: creditCardItem,
-        message: PublicCreditCardItemsResponses.CREATED,
+        message: PrivateCreditCardItemsResponses.CREATED,
         param: creditCardItem.id,
       };
     } catch (e) {
@@ -112,7 +112,7 @@ export class PublicCreditCardItemsService {
 
   async update(
     id: string,
-    updateCreditCardDto: UpdatePublicCreditCardItemDto,
+    updateCreditCardDto: UpdatePrivateCreditCardItemDto,
     user: IAuthenticatedUser
   ): Promise<IApiResponse<CreditCardItem>> {
     try {
@@ -137,7 +137,7 @@ export class PublicCreditCardItemsService {
 
       return {
         data: creditCardItem,
-        message: PublicCreditCardItemsResponses.UPDATED,
+        message: PrivateCreditCardItemsResponses.UPDATED,
         param: creditCardItem.id,
       };
     } catch (e) {
@@ -162,7 +162,7 @@ export class PublicCreditCardItemsService {
       });
 
       return {
-        message: PublicCreditCardItemsResponses.DELETED,
+        message: PrivateCreditCardItemsResponses.DELETED,
         param: id,
       };
     } catch (e) {

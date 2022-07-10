@@ -14,18 +14,18 @@ import { AuthenticatedUser, Roles } from 'nest-keycloak-connect';
 
 import { IApiResponse, PaginatedSortAndSearch } from '@petar-cv/api-interfaces';
 
-import { PublicCreditCardItemsService } from './public-credit-card-items.service';
+import { PrivateCreditCardItemsService } from './private-credit-card-items.service';
 import { IAuthenticatedUser } from '../../../models/keycloak/authenticated-user.model';
-import { CreatePublicCreditCardItemDto } from './dto/create-public-credit-card-item.dto';
-import { UpdatePublicCreditCardItemDto } from './dto/update-public-credit-card-item.dto';
+import { CreatePrivateCreditCardItemDto } from './dto/create-private-credit-card-item.dto';
+import { UpdatePrivateCreditCardItemDto } from './dto/update-private-credit-card-item.dto';
 
-@ApiTags('Public - Credit card items')
+@ApiTags('Private - Credit card items')
 @ApiBearerAuth()
 @Roles({ roles: ['admin', 'user'] })
-@Controller('public/credit-card-items')
-export class PublicCreditCardItemsController {
+@Controller('private/credit-card-items')
+export class PrivateCreditCardItemsController {
   constructor(
-    private readonly publicCreditCardItemsService: PublicCreditCardItemsService
+    private readonly privateCreditCardItemsService: PrivateCreditCardItemsService
   ) {}
 
   @Get('')
@@ -33,7 +33,7 @@ export class PublicCreditCardItemsController {
     @Query() paginatedSortAndSearch: PaginatedSortAndSearch,
     @AuthenticatedUser() user: IAuthenticatedUser
   ): Promise<IApiResponse<CreditCardItem[]>> {
-    return this.publicCreditCardItemsService.findMyCreditCardItems(
+    return this.privateCreditCardItemsService.findMyCreditCardItems(
       paginatedSortAndSearch,
       user
     );
@@ -44,7 +44,7 @@ export class PublicCreditCardItemsController {
     @Param('id') creditCardId: string,
     @AuthenticatedUser() user: IAuthenticatedUser
   ): Promise<IApiResponse<CreditCardItem>> {
-    return this.publicCreditCardItemsService.findMyCreditCard(
+    return this.privateCreditCardItemsService.findMyCreditCard(
       creditCardId,
       user
     );
@@ -52,10 +52,10 @@ export class PublicCreditCardItemsController {
 
   @Post()
   create(
-    @Body() createCreditCardItemDto: CreatePublicCreditCardItemDto,
+    @Body() createCreditCardItemDto: CreatePrivateCreditCardItemDto,
     @AuthenticatedUser() user: IAuthenticatedUser
   ): Promise<IApiResponse<CreditCardItem>> {
-    return this.publicCreditCardItemsService.create(
+    return this.privateCreditCardItemsService.create(
       createCreditCardItemDto,
       user
     );
@@ -64,12 +64,12 @@ export class PublicCreditCardItemsController {
   @Put(':id')
   update(
     @Param('id') id: string,
-    @Body() updatePublicCreditCardItemDto: UpdatePublicCreditCardItemDto,
+    @Body() updatePrivateCreditCardItemDto: UpdatePrivateCreditCardItemDto,
     @AuthenticatedUser() user: IAuthenticatedUser
   ): Promise<IApiResponse<CreditCardItem>> {
-    return this.publicCreditCardItemsService.update(
+    return this.privateCreditCardItemsService.update(
       id,
-      updatePublicCreditCardItemDto,
+      updatePrivateCreditCardItemDto,
       user
     );
   }
@@ -79,6 +79,6 @@ export class PublicCreditCardItemsController {
     @Param('id') creditCardItemId: string,
     @AuthenticatedUser() user: IAuthenticatedUser
   ): Promise<IApiResponse> {
-    return this.publicCreditCardItemsService.remove(creditCardItemId, user);
+    return this.privateCreditCardItemsService.remove(creditCardItemId, user);
   }
 }

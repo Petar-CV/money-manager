@@ -11,7 +11,7 @@ import { createGlobalFilter } from '@petar-cv/prisma-utils';
 import { PrismaService } from '../../../prisma/prisma.service';
 
 @Injectable()
-export class PublicCreditCardIssuersService {
+export class PrivateCreditCardIssuersService {
   constructor(private readonly prisma: PrismaService) {}
 
   async findAll(

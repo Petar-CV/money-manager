@@ -5,26 +5,26 @@ import { Roles } from 'nest-keycloak-connect';
 
 import { IApiResponse, PaginatedSortAndSearch } from '@petar-cv/api-interfaces';
 
-import { PublicCreditCardIssuersService } from './public-credit-card-issuers.service';
+import { PrivateCreditCardIssuersService } from './private-credit-card-issuers.service';
 
-@ApiTags('Public - Credit card issuers')
+@ApiTags('Private - Credit card issuers')
 @ApiBearerAuth()
 @Roles({ roles: ['admin', 'user'] })
-@Controller('public/credit-card-issuers')
-export class PublicCreditCardIssuersController {
+@Controller('private/credit-card-issuers')
+export class PrivateCreditCardIssuersController {
   constructor(
-    private readonly publicCreditCardIssuersService: PublicCreditCardIssuersService
+    private readonly privateCreditCardIssuersService: PrivateCreditCardIssuersService
   ) {}
 
   @Get()
   findAll(
     @Query() paginatedSortAndSearch: PaginatedSortAndSearch
   ): Promise<IApiResponse<CreditCardIssuer[]>> {
-    return this.publicCreditCardIssuersService.findAll(paginatedSortAndSearch);
+    return this.privateCreditCardIssuersService.findAll(paginatedSortAndSearch);
   }
 
   @Get(':id')
   findOne(@Param('id') id: string): Promise<IApiResponse<CreditCardIssuer>> {
-    return this.publicCreditCardIssuersService.findOne(id);
+    return this.privateCreditCardIssuersService.findOne(id);
   }
 }
