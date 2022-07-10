@@ -30,22 +30,22 @@ export class AdminCreditCardIssuersService {
         includedFields: ['name'],
       });
 
-      // TODO: Implement parallel transactions
-      const count = await this.prisma.creditCardIssuer.count({
-        where: {
-          OR: filter,
-          deletedAt: null,
-        },
-      });
-
-      const creditCardIssuers = await this.prisma.creditCardIssuer.findMany({
-        where: {
-          OR: filter,
-          deletedAt: null,
-        },
-        skip: perPage && page ? perPage * (page - 1) : undefined,
-        take: perPage && page ? perPage : undefined,
-      });
+      const [creditCardIssuers, count] = await this.prisma.$transaction([
+        this.prisma.creditCardIssuer.findMany({
+          where: {
+            OR: filter,
+            deletedAt: null,
+          },
+          skip: perPage && page ? perPage * (page - 1) : undefined,
+          take: perPage && page ? perPage : undefined,
+        }),
+        this.prisma.creditCardIssuer.count({
+          where: {
+            OR: filter,
+            deletedAt: null,
+          },
+        }),
+      ]);
 
       return {
         data: creditCardIssuers,

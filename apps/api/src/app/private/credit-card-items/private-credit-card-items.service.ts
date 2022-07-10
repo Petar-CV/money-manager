@@ -31,26 +31,26 @@ export class PrivateCreditCardItemsService {
       includedFields: ['name', 'description'],
     });
 
-    // TODO: Implement parallel transactions
-    const count = await this.prisma.creditCardItem.count({
-      where: {
-        OR: filter,
-        deletedAt: null,
-        userId: user.user_id,
-      },
-      skip: perPage && page ? perPage * (page - 1) : undefined,
-      take: perPage && page ? perPage : undefined,
-    });
-
-    const creditCardItems = await this.prisma.creditCardItem.findMany({
-      where: {
-        OR: filter,
-        deletedAt: null,
-        userId: user.user_id,
-      },
-      skip: perPage && page ? perPage * (page - 1) : undefined,
-      take: perPage && page ? perPage : undefined,
-    });
+    const [creditCardItems, count] = await this.prisma.$transaction([
+      this.prisma.creditCardItem.findMany({
+        where: {
+          OR: filter,
+          deletedAt: null,
+          userId: user.user_id,
+        },
+        skip: perPage && page ? perPage * (page - 1) : undefined,
+        take: perPage && page ? perPage : undefined,
+      }),
+      this.prisma.creditCardItem.count({
+        where: {
+          OR: filter,
+          deletedAt: null,
+          userId: user.user_id,
+        },
+        skip: perPage && page ? perPage * (page - 1) : undefined,
+        take: perPage && page ? perPage : undefined,
+      }),
+    ]);
 
     return {
       data: creditCardItems,
