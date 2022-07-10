@@ -14,8 +14,8 @@ import { Roles } from 'nest-keycloak-connect';
 
 import { IApiResponse, PaginatedSortAndSearch } from '@petar-cv/api-interfaces';
 
-import { CreateCreditCardIssuerDto } from './dto/create-credit-card-issuer.dto';
-import { UpdateCreditCardIssuerDto } from './dto/update-credit-card-issuer.dto';
+import { CreateAdminCreditCardIssuerDto } from './dto/create-admin-credit-card-issuer.dto';
+import { UpdateAdminCreditCardIssuerDto } from './dto/update-admin-credit-card-issuer.dto';
 import { AdminCreditCardIssuersService } from './admin-credit-card-issuers.service';
 
 @ApiTags('Admin - Credit card issuers')
@@ -43,19 +43,21 @@ export class AdminCreditCardIssuersController {
 
   @Post()
   create(
-    @Body() createCreditCardIssuerDto: CreateCreditCardIssuerDto
+    @Body() createAdminCreditCardIssuerDto: CreateAdminCreditCardIssuerDto
   ): Promise<IApiResponse<CreditCardIssuer>> {
-    return this.adminCreditCardIssuersService.create(createCreditCardIssuerDto);
+    return this.adminCreditCardIssuersService.create(
+      createAdminCreditCardIssuerDto
+    );
   }
 
   @Put(':id')
   update(
     @Param('id') creditCardIssuerId: string,
-    @Body() updateCreditCardIssuerDto: UpdateCreditCardIssuerDto
+    @Body() updateAdminCreditCardIssuerDto: UpdateAdminCreditCardIssuerDto
   ): Promise<IApiResponse<CreditCardIssuer>> {
     return this.adminCreditCardIssuersService.update(
       creditCardIssuerId,
-      updateCreditCardIssuerDto
+      updateAdminCreditCardIssuerDto
     );
   }
 

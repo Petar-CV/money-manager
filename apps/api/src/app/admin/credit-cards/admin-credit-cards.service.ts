@@ -8,8 +8,8 @@ import {
 } from '@petar-cv/api-interfaces';
 import { createGlobalFilter } from '@petar-cv/prisma-utils';
 
-import { CreateCreditCardDto } from './dto/create-credit-card.dto';
-import { UpdateCreditCardDto } from './dto/update-credit-card.dto';
+import { CreateAdminCreditCardDto } from './dto/create-admin-credit-card.dto';
+import { UpdateAdminCreditCardDto } from './dto/update-admin-credit-card.dto';
 import { PrismaService } from '../../../prisma/prisma.service';
 import { AdminCreditCardsResponses } from './responses/admin-credit-cards-responses';
 
@@ -74,18 +74,18 @@ export class AdminCreditCardsService {
   }
 
   async create(
-    createCreditCardDto: CreateCreditCardDto
+    createAdminCreditCardDto: CreateAdminCreditCardDto
   ): Promise<IApiResponse<CreditCard>> {
     try {
       const creditCard = await this.prisma.creditCard.create({
         data: {
-          name: createCreditCardDto.name,
-          billingDate: createCreditCardDto.billingDate,
-          limit: createCreditCardDto.limit,
-          userId: createCreditCardDto.userId,
+          name: createAdminCreditCardDto.name,
+          billingDate: createAdminCreditCardDto.billingDate,
+          limit: createAdminCreditCardDto.limit,
+          userId: createAdminCreditCardDto.userId,
           issuer: {
             connect: {
-              id: createCreditCardDto.issuerId,
+              id: createAdminCreditCardDto.issuerId,
             },
           },
         },
@@ -107,7 +107,7 @@ export class AdminCreditCardsService {
 
   async update(
     id: string,
-    updateCreditCardDto: UpdateCreditCardDto
+    updateAdminCreditCardDto: UpdateAdminCreditCardDto
   ): Promise<IApiResponse<CreditCard>> {
     try {
       const creditCard = await this.prisma.creditCard.update({
@@ -115,14 +115,14 @@ export class AdminCreditCardsService {
           id: id,
         },
         data: {
-          name: updateCreditCardDto.name,
-          billingDate: updateCreditCardDto.billingDate,
-          limit: updateCreditCardDto.limit,
-          userId: updateCreditCardDto.userId,
+          name: updateAdminCreditCardDto.name,
+          billingDate: updateAdminCreditCardDto.billingDate,
+          limit: updateAdminCreditCardDto.limit,
+          userId: updateAdminCreditCardDto.userId,
           updatedAt: new Date(),
           issuer: {
             connect: {
-              id: updateCreditCardDto.issuerId,
+              id: updateAdminCreditCardDto.issuerId,
             },
           },
         },

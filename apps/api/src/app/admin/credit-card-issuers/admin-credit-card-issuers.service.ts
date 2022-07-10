@@ -8,8 +8,8 @@ import {
 } from '@petar-cv/api-interfaces';
 import { createGlobalFilter } from '@petar-cv/prisma-utils';
 
-import { CreateCreditCardIssuerDto } from './dto/create-credit-card-issuer.dto';
-import { UpdateCreditCardIssuerDto } from './dto/update-credit-card-issuer.dto';
+import { CreateAdminCreditCardIssuerDto } from './dto/create-admin-credit-card-issuer.dto';
+import { UpdateAdminCreditCardIssuerDto } from './dto/update-admin-credit-card-issuer.dto';
 import { PrismaService } from '../../../prisma/prisma.service';
 import { AdminCreditCardIssuersResponses } from './responses/admin-credit-card-issuers-responses';
 
@@ -74,13 +74,13 @@ export class AdminCreditCardIssuersService {
   }
 
   async create(
-    createCreditCardIssuerDto: CreateCreditCardIssuerDto
+    createAdminCreditCardIssuerDto: CreateAdminCreditCardIssuerDto
   ): Promise<IApiResponse<CreditCardIssuer>> {
     try {
       const creditCardIssuer = await this.prisma.creditCardIssuer.create({
         data: {
-          name: createCreditCardIssuerDto.name,
-          logo: createCreditCardIssuerDto.logo,
+          name: createAdminCreditCardIssuerDto.name,
+          logo: createAdminCreditCardIssuerDto.logo,
         },
       });
 
@@ -100,7 +100,7 @@ export class AdminCreditCardIssuersService {
 
   async update(
     id: string,
-    updateCreditCardIssuerDto: UpdateCreditCardIssuerDto
+    updateAdminCreditCardIssuerDto: UpdateAdminCreditCardIssuerDto
   ): Promise<IApiResponse<CreditCardIssuer>> {
     try {
       const creditCardIssuer = await this.prisma.creditCardIssuer.update({
@@ -108,8 +108,8 @@ export class AdminCreditCardIssuersService {
           id: id,
         },
         data: {
-          name: updateCreditCardIssuerDto.name,
-          logo: updateCreditCardIssuerDto.logo,
+          name: updateAdminCreditCardIssuerDto.name,
+          logo: updateAdminCreditCardIssuerDto.logo,
           updatedAt: new Date(),
         },
       });

@@ -1,7 +1,7 @@
 import { ApiProperty } from '@nestjs/swagger';
 import { IsDate, IsNumber, IsString } from 'class-validator';
 
-export class CreateCreditCardDto {
+export class CreateAdminCreditCardDto {
   @ApiProperty({ description: 'ID of the user the card belongs to.' })
   @IsString()
   readonly userId: string;
