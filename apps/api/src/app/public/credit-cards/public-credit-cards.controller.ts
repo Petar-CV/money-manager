@@ -57,11 +57,15 @@ export class PublicCreditCardsController {
 
   @Put(':id')
   update(
-    @Param('id') id: string,
-    @Body() updateEmployeeJobDto: UpdatePublicCreditCardDto,
+    @Param('id') creditCardId: string,
+    @Body() updatePublicCreditCardDto: UpdatePublicCreditCardDto,
     @AuthenticatedUser() user: IAuthenticatedUser
   ): Promise<IApiResponse<CreditCard>> {
-    return this.publicCreditCardsService.update(id, updateEmployeeJobDto, user);
+    return this.publicCreditCardsService.update(
+      creditCardId,
+      updatePublicCreditCardDto,
+      user
+    );
   }
 
   @Delete(':id')

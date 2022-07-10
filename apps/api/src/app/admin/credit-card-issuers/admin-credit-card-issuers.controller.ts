@@ -35,8 +35,10 @@ export class AdminCreditCardIssuersController {
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string): Promise<IApiResponse<CreditCardIssuer>> {
-    return this.adminCreditCardIssuersService.findOne(id);
+  findOne(
+    @Param('id') creditCardIssuerId: string
+  ): Promise<IApiResponse<CreditCardIssuer>> {
+    return this.adminCreditCardIssuersService.findOne(creditCardIssuerId);
   }
 
   @Post()
@@ -48,14 +50,17 @@ export class AdminCreditCardIssuersController {
 
   @Put(':id')
   update(
-    @Param('id') id: string,
-    @Body() updateEmployeeJobDto: UpdateCreditCardIssuerDto
+    @Param('id') creditCardIssuerId: string,
+    @Body() updateCreditCardIssuerDto: UpdateCreditCardIssuerDto
   ): Promise<IApiResponse<CreditCardIssuer>> {
-    return this.adminCreditCardIssuersService.update(id, updateEmployeeJobDto);
+    return this.adminCreditCardIssuersService.update(
+      creditCardIssuerId,
+      updateCreditCardIssuerDto
+    );
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string): Promise<IApiResponse> {
-    return this.adminCreditCardIssuersService.remove(id);
+  remove(@Param('id') creditCardIssuerId: string): Promise<IApiResponse> {
+    return this.adminCreditCardIssuersService.remove(creditCardIssuerId);
   }
 }
