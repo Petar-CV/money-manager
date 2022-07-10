@@ -58,9 +58,10 @@ export class PublicCreditCardIssuersService {
   }
 
   async findOne(id: string): Promise<IApiResponse<CreditCardIssuer>> {
-    const creditCardIssuer = await this.prisma.creditCardIssuer.findUnique({
+    const creditCardIssuer = await this.prisma.creditCardIssuer.findFirst({
       where: {
         id: id,
+        deletedAt: null,
       },
     });
 

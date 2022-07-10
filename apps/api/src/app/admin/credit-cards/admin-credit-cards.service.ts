@@ -61,9 +61,10 @@ export class AdminCreditCardsService {
   }
 
   async findOne(id: string): Promise<IApiResponse<CreditCard>> {
-    const creditCard = await this.prisma.creditCard.findUnique({
+    const creditCard = await this.prisma.creditCard.findFirst({
       where: {
         id: id,
+        deletedAt: null,
       },
     });
 

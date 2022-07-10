@@ -65,6 +65,7 @@ export class PublicCreditCardsService {
     const creditCard = await this.prisma.creditCard.findFirst({
       where: {
         id: id,
+        deletedAt: null,
         userId: user.user_id,
       },
     });
