@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { Prisma, CreditCardIssuer } from '@prisma/client';
+import { Prisma, CreditCard } from '@prisma/client';
 
 import {
   CommonResponses,
@@ -8,37 +8,37 @@ import {
 } from '@petar-cv/api-interfaces';
 import { createGlobalFilter } from '@petar-cv/prisma-utils';
 
-import { CreateCreditCardIssuerDto } from './dto/create-credit-card-issuer.dto';
-import { UpdateCreditCardIssuerDto } from './dto/update-credit-card-issuer.dto';
+import { CreateCreditCardDto } from './dto/create-credit-card.dto';
+import { UpdateCreditCardDto } from './dto/update-credit-card.dto';
 import { PrismaService } from '../../../prisma/prisma.service';
-import { AdminCreditCardIssuersResponses } from './responses/admin-credit-card-issuers-responses';
+import { AdminCreditCardsResponses } from './responses/admin-credit-cards-responses';
 
 @Injectable()
-export class AdminCreditCardIssuersService {
+export class AdminCreditCardsService {
   constructor(private readonly prisma: PrismaService) {}
 
   async findAll(
     paginatedSortAndSearch: PaginatedSortAndSearch
-  ): Promise<IApiResponse<CreditCardIssuer[]>> {
+  ): Promise<IApiResponse<CreditCard[]>> {
     try {
       const { page, perPage, search } = paginatedSortAndSearch;
 
       const filter = createGlobalFilter({
-        model: Prisma.CreditCardIssuerScalarFieldEnum,
+        model: Prisma.CreditCardScalarFieldEnum,
         search: search,
         matchType: 'contains',
         includedFields: ['name'],
       });
 
       // TODO: Implement parallel transactions
-      const count = await this.prisma.creditCardIssuer.count({
+      const count = await this.prisma.creditCard.count({
         where: {
           OR: filter,
           deletedAt: null,
         },
       });
 
-      const creditCardIssuers = await this.prisma.creditCardIssuer.findMany({
+      const creditCards = await this.prisma.creditCard.findMany({
         where: {
           OR: filter,
           deletedAt: null,
@@ -48,7 +48,7 @@ export class AdminCreditCardIssuersService {
       });
 
       return {
-        data: creditCardIssuers,
+        data: creditCards,
         totalItems: count,
       };
     } catch (e) {
@@ -60,33 +60,40 @@ export class AdminCreditCardIssuersService {
     }
   }
 
-  async findOne(id: string): Promise<IApiResponse<CreditCardIssuer>> {
-    const creditCardIssuer = await this.prisma.creditCardIssuer.findUnique({
+  async findOne(id: string): Promise<IApiResponse<CreditCard>> {
+    const creditCard = await this.prisma.creditCard.findUnique({
       where: {
         id: id,
       },
     });
 
     return {
-      data: creditCardIssuer,
+      data: creditCard,
     };
   }
 
   async create(
-    createCreditCardIssuerDto: CreateCreditCardIssuerDto
-  ): Promise<IApiResponse<CreditCardIssuer>> {
+    createCreditCardDto: CreateCreditCardDto
+  ): Promise<IApiResponse<CreditCard>> {
     try {
-      const creditCardIssuer = await this.prisma.creditCardIssuer.create({
+      const creditCard = await this.prisma.creditCard.create({
         data: {
-          name: createCreditCardIssuerDto.name,
-          logo: createCreditCardIssuerDto.logo,
+          name: createCreditCardDto.name,
+          billingDate: createCreditCardDto.billingDate,
+          limit: createCreditCardDto.limit,
+          userId: createCreditCardDto.userId,
+          issuer: {
+            connect: {
+              id: createCreditCardDto.issuerId,
+            },
+          },
         },
       });
 
       return {
-        data: creditCardIssuer,
-        message: AdminCreditCardIssuersResponses.CREATED,
-        param: creditCardIssuer.id,
+        data: creditCard,
+        message: AdminCreditCardsResponses.CREATED,
+        param: creditCard.id,
       };
     } catch (e) {
       // TODO: Turn this into error response
@@ -99,24 +106,31 @@ export class AdminCreditCardIssuersService {
 
   async update(
     id: string,
-    updateCreditCardIssuerDto: UpdateCreditCardIssuerDto
-  ): Promise<IApiResponse<CreditCardIssuer>> {
+    updateCreditCardDto: UpdateCreditCardDto
+  ): Promise<IApiResponse<CreditCard>> {
     try {
-      const creditCardIssuer = await this.prisma.creditCardIssuer.update({
+      const creditCard = await this.prisma.creditCard.update({
         where: {
           id: id,
         },
         data: {
-          name: updateCreditCardIssuerDto.name,
-          logo: updateCreditCardIssuerDto.logo,
+          name: updateCreditCardDto.name,
+          billingDate: updateCreditCardDto.billingDate,
+          limit: updateCreditCardDto.limit,
+          userId: updateCreditCardDto.userId,
           updatedAt: new Date(),
+          issuer: {
+            connect: {
+              id: updateCreditCardDto.issuerId,
+            },
+          },
         },
       });
 
       return {
-        data: creditCardIssuer,
-        message: AdminCreditCardIssuersResponses.UPDATED,
-        param: creditCardIssuer.id,
+        data: creditCard,
+        message: AdminCreditCardsResponses.UPDATED,
+        param: creditCard.id,
       };
     } catch (e) {
       // TODO: Turn this into error response
@@ -129,7 +143,7 @@ export class AdminCreditCardIssuersService {
 
   async remove(id: string): Promise<IApiResponse> {
     try {
-      await this.prisma.creditCardIssuer.update({
+      await this.prisma.creditCard.update({
         where: {
           id: id,
         },
@@ -139,7 +153,7 @@ export class AdminCreditCardIssuersService {
       });
 
       return {
-        message: AdminCreditCardIssuersResponses.DELETED,
+        message: AdminCreditCardsResponses.DELETED,
         param: id,
       };
     } catch (e) {

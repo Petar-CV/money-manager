@@ -10,13 +10,13 @@ import {
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CreditCardIssuer } from '@prisma/client';
+import { Roles } from 'nest-keycloak-connect';
 
 import { IApiResponse, PaginatedSortAndSearch } from '@petar-cv/api-interfaces';
 
 import { CreateCreditCardIssuerDto } from './dto/create-credit-card-issuer.dto';
 import { UpdateCreditCardIssuerDto } from './dto/update-credit-card-issuer.dto';
 import { AdminCreditCardIssuersService } from './admin-credit-card-issuers.service';
-import { Roles } from 'nest-keycloak-connect';
 
 @ApiTags('Admin - Credit card issuers')
 @ApiBearerAuth()
@@ -41,9 +41,9 @@ export class AdminCreditCardIssuersController {
 
   @Post()
   create(
-    @Body() createAdminEmployeeJobDto: CreateCreditCardIssuerDto
+    @Body() createCreditCardIssuerDto: CreateCreditCardIssuerDto
   ): Promise<IApiResponse<CreditCardIssuer>> {
-    return this.adminCreditCardIssuersService.create(createAdminEmployeeJobDto);
+    return this.adminCreditCardIssuersService.create(createCreditCardIssuerDto);
   }
 
   @Put(':id')

@@ -27,6 +27,7 @@ export class PublicCreditCardIssuersService {
         includedFields: ['name'],
       });
 
+      // TODO: Implement parallel transactions
       const count = await this.prisma.creditCardIssuer.count({
         where: {
           OR: filter,
