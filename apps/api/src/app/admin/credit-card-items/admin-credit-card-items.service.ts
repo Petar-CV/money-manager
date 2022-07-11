@@ -22,11 +22,15 @@ export class AdminCreditCardItemsService {
   ): Promise<IApiResponse<CreditCardItem[]>> {
     const { page, perPage, search } = paginatedSortAndSearch;
 
-    const filter = createGlobalFilter({
-      model: Prisma.CreditCardItemScalarFieldEnum,
+    const filter = createGlobalFilter<
+      typeof Prisma.CreditCardItemScalarFieldEnum
+    >({
       search: search,
       matchType: 'contains',
-      includedFields: ['name', 'description'],
+      includedFields: {
+        name: true,
+        description: true,
+      },
     });
 
     const [creditCardItems, count] = await this.prisma.$transaction([

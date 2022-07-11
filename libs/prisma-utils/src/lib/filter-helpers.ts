@@ -6,7 +6,7 @@
 export function createGlobalFilter<T>(
   options: FilterOptions<T>
 ): unknown[] | undefined {
-  const { matchType, search, model, includedFields = [] } = options;
+  const { matchType, search, includedFields, mode } = options;
 
   if (!search) {
     // Prisma won't apply filtering if undefined is set as filter
@@ -15,22 +15,25 @@ export function createGlobalFilter<T>(
 
   const filters = [];
 
-  for (const [key] of Object.entries(model)) {
+  Object.keys(includedFields).forEach((field) => {
     const filter = {
-      [key]: {
+      [field]: {
         [matchType]: search,
+        mode: mode ?? 'insensitive',
       },
     };
 
-    if (includedFields.includes(key as IncludedKey<T>)) {
-      filters.push(filter);
-    }
-  }
+    filters.push(filter);
+  });
 
   return filters;
 }
 
-export type MatchType =
+type IncludedKeys<T> = {
+  [key in keyof T]?: boolean;
+};
+
+type MatchType =
   | 'equals'
   | 'not'
   | 'in'
@@ -43,11 +46,11 @@ export type MatchType =
   | 'startsWith'
   | 'endsWith';
 
-export type IncludedKey<T> = keyof T;
-
-export interface FilterOptions<T> {
-  model: T;
+interface FilterOptions<T> {
   matchType: MatchType;
   search: string;
-  includedFields?: IncludedKey<T>[];
+  includedFields?: IncludedKeys<T>;
+  mode?: QueryMode;
 }
+
+type QueryMode = 'default' | 'insensitive';

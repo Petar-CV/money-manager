@@ -20,11 +20,14 @@ export class PrivateCreditCardIssuersService {
     try {
       const { page, perPage, search } = paginatedSortAndSearch;
 
-      const filter = createGlobalFilter({
-        model: Prisma.CreditCardIssuerScalarFieldEnum,
+      const filter = createGlobalFilter<
+        typeof Prisma.CreditCardIssuerScalarFieldEnum
+      >({
         search: search,
         matchType: 'contains',
-        includedFields: ['name'],
+        includedFields: {
+          name: true,
+        },
       });
 
       const [creditCardIssuers, count] = await this.prisma.$transaction([

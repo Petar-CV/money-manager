@@ -24,11 +24,12 @@ export class PrivateCreditCardsService {
   ): Promise<IApiResponse<CreditCard[]>> {
     const { page, perPage, search } = paginatedSortAndSearch;
 
-    const filter = createGlobalFilter({
-      model: Prisma.CreditCardScalarFieldEnum,
+    const filter = createGlobalFilter<typeof Prisma.CreditCardScalarFieldEnum>({
       search: search,
       matchType: 'contains',
-      includedFields: ['name'],
+      includedFields: {
+        name: true,
+      },
     });
 
     const [creditCards, count] = await this.prisma.$transaction([
@@ -80,11 +81,12 @@ export class PrivateCreditCardsService {
   ): Promise<IApiResponse<CreditCardItem[]>> {
     const { page, perPage, search } = paginatedSortAndSearch;
 
-    const filter = createGlobalFilter({
-      model: Prisma.CreditCardScalarFieldEnum,
+    const filter = createGlobalFilter<typeof Prisma.CreditCardScalarFieldEnum>({
       search: search,
       matchType: 'contains',
-      includedFields: ['name'],
+      includedFields: {
+        name: true,
+      },
     });
 
     const [creditCardItems, count] = await this.prisma.$transaction([
