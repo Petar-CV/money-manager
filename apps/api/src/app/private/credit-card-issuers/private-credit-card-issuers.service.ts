@@ -62,15 +62,24 @@ export class PrivateCreditCardIssuersService {
   }
 
   async findOne(id: string): Promise<IApiResponse<CreditCardIssuer>> {
-    const creditCardIssuer = await this.prisma.creditCardIssuer.findFirst({
-      where: {
-        id: id,
-        deletedAt: null,
-      },
-    });
+    try {
+      const creditCardIssuer = await this.prisma.creditCardIssuer.findFirst({
+        where: {
+          id: id,
+          deletedAt: null,
+        },
+      });
 
-    return {
-      data: creditCardIssuer,
-    };
+      return {
+        data: creditCardIssuer,
+      };
+    } catch (e) {
+      // TODO: Turn this into error response
+      // TODO: Save into exception log table
+      console.log(e);
+      return {
+        message: CommonResponses.SERVER_ERROR,
+      };
+    }
   }
 }

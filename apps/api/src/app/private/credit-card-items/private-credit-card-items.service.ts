@@ -22,59 +22,77 @@ export class PrivateCreditCardItemsService {
     paginatedSortAndSearch: PaginatedSortAndSearch,
     user: IAuthenticatedUser
   ): Promise<IApiResponse<CreditCardItem[]>> {
-    const { page, perPage, search } = paginatedSortAndSearch;
+    try {
+      const { page, perPage, search } = paginatedSortAndSearch;
 
-    const filter = createGlobalFilter<
-      typeof Prisma.CreditCardItemScalarFieldEnum
-    >({
-      search: search,
-      matchType: 'contains',
-      includedFields: {
-        name: true,
-        description: true,
-      },
-    });
-
-    const [creditCardItems, count] = await this.prisma.$transaction([
-      this.prisma.creditCardItem.findMany({
-        where: {
-          OR: filter,
-          deletedAt: null,
-          userId: user.user_id,
+      const filter = createGlobalFilter<
+        typeof Prisma.CreditCardItemScalarFieldEnum
+      >({
+        search: search,
+        matchType: 'contains',
+        includedFields: {
+          name: true,
+          description: true,
         },
-        skip: perPage && page ? perPage * (page - 1) : undefined,
-        take: perPage && page ? perPage : undefined,
-      }),
-      this.prisma.creditCardItem.count({
-        where: {
-          OR: filter,
-          deletedAt: null,
-          userId: user.user_id,
-        },
-      }),
-    ]);
+      });
 
-    return {
-      data: creditCardItems,
-      totalItems: count,
-    };
+      const [creditCardItems, count] = await this.prisma.$transaction([
+        this.prisma.creditCardItem.findMany({
+          where: {
+            OR: filter,
+            deletedAt: null,
+            userId: user.user_id,
+          },
+          skip: perPage && page ? perPage * (page - 1) : undefined,
+          take: perPage && page ? perPage : undefined,
+        }),
+        this.prisma.creditCardItem.count({
+          where: {
+            OR: filter,
+            deletedAt: null,
+            userId: user.user_id,
+          },
+        }),
+      ]);
+
+      return {
+        data: creditCardItems,
+        totalItems: count,
+      };
+    } catch (e) {
+      // TODO: Turn this into error response
+      // TODO: Save into exception log table
+      console.log(e);
+      return {
+        message: CommonResponses.SERVER_ERROR,
+      };
+    }
   }
 
   async findMyCreditCard(
     id: string,
     user: IAuthenticatedUser
   ): Promise<IApiResponse<CreditCardItem>> {
-    const creditCardItem = await this.prisma.creditCardItem.findFirst({
-      where: {
-        id: id,
-        deletedAt: null,
-        userId: user.user_id,
-      },
-    });
+    try {
+      const creditCardItem = await this.prisma.creditCardItem.findFirst({
+        where: {
+          id: id,
+          deletedAt: null,
+          userId: user.user_id,
+        },
+      });
 
-    return {
-      data: creditCardItem,
-    };
+      return {
+        data: creditCardItem,
+      };
+    } catch (e) {
+      // TODO: Turn this into error response
+      // TODO: Save into exception log table
+      console.log(e);
+      return {
+        message: CommonResponses.SERVER_ERROR,
+      };
+    }
   }
 
   async create(
