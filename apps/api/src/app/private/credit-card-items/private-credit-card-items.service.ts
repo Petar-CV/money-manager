@@ -47,8 +47,6 @@ export class PrivateCreditCardItemsService {
           deletedAt: null,
           userId: user.user_id,
         },
-        skip: perPage && page ? perPage * (page - 1) : undefined,
-        take: perPage && page ? perPage : undefined,
       }),
     ]);
 

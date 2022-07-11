@@ -43,8 +43,6 @@ export class AdminCreditCardItemsService {
           OR: filter,
           deletedAt: null,
         },
-        skip: perPage && page ? perPage * (page - 1) : undefined,
-        take: perPage && page ? perPage : undefined,
       }),
     ]);
 
