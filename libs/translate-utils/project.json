@@ -1,5 +1,5 @@
 {
-  "root": "libs/translate-utils",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
   "sourceRoot": "libs/translate-utils/src",
   "projectType": "library",
   "targets": {
