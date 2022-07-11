@@ -142,6 +142,7 @@ export class PrivateCreditCardsService {
       };
     } catch (e) {
       // TODO: Turn this into error response
+      // TODO: Save into exception log table
       console.log(e);
       return {
         message: CommonResponses.SERVER_ERROR,
@@ -180,6 +181,7 @@ export class PrivateCreditCardsService {
       };
     } catch (e) {
       // TODO: Turn this into error response
+      // TODO: Save into exception log table
       console.log(e);
       return {
         message: CommonResponses.SERVER_ERROR,
@@ -205,6 +207,7 @@ export class PrivateCreditCardsService {
       };
     } catch (e) {
       // TODO: Turn this into error response
+      // TODO: Save into exception log table
       console.log(e);
       return {
         message: CommonResponses.SERVER_ERROR,
