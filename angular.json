@@ -5,6 +5,7 @@
     "api-interfaces": "libs/api-interfaces",
     "money-manager": "apps/money-manager",
     "money-manager-e2e": "apps/money-manager-e2e",
+    "money-manager-models": "libs/money-manager-models",
     "prisma-utils": "libs/prisma-utils",
     "translate-utils": "libs/translate-utils"
   }

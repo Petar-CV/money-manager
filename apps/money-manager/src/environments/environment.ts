@@ -4,6 +4,8 @@
 
 export const environment = {
   production: false,
+  private_api: 'http://localhost:3333/api/private',
+  admin_api: 'http://localhost:3333/api/admin',
 };
 
 /*

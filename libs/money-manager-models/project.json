@@ -1,0 +1,25 @@
+{
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "sourceRoot": "libs/money-manager-models/src",
+  "projectType": "library",
+  "targets": {
+    "build": {
+      "executor": "@nrwl/js:tsc",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/libs/money-manager-models",
+        "main": "libs/money-manager-models/src/index.ts",
+        "tsConfig": "libs/money-manager-models/tsconfig.lib.json",
+        "assets": ["libs/money-manager-models/*.md"]
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "outputs": ["{options.outputFile}"],
+      "options": {
+        "lintFilePatterns": ["libs/money-manager-models/**/*.ts"]
+      }
+    }
+  },
+  "tags": []
+}

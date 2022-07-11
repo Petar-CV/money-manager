@@ -16,6 +16,9 @@
     "baseUrl": ".",
     "paths": {
       "@petar-cv/api-interfaces": ["libs/api-interfaces/src/index.ts"],
+      "@petar-cv/money-manager-models": [
+        "libs/money-manager-models/src/index.ts"
+      ],
       "@petar-cv/prisma-utils": ["libs/prisma-utils/src/index.ts"],
       "@petar-cv/translate-utils": ["libs/translate-utils/src/index.ts"]
     }
