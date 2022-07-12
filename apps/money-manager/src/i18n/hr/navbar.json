@@ -1,0 +1,11 @@
+{
+  "navbar": {
+    "home": "Početna",
+    "creditCards": "Kreditne kartice",
+    "creditCardItems": "Stavke kreditnih kartica",
+    "account": "Račun",
+    "settings": "Postavke",
+    "logout": "Odjava",
+    "login": "Prijava"
+  }
+}

@@ -1,0 +1,11 @@
+{
+  "navbar": {
+    "home": "Home",
+    "creditCards": "Credit cards",
+    "creditCardItems": "Credit card items",
+    "account": "Account",
+    "settings": "Settings",
+    "logout": "Logout",
+    "login": "Login"
+  }
+}
