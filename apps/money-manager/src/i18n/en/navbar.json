@@ -6,6 +6,7 @@
     "account": "Account",
     "settings": "Settings",
     "logout": "Logout",
-    "login": "Login"
+    "login": "Login",
+    "admin": "Administration"
   }
 }

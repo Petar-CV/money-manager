@@ -1,0 +1,10 @@
+{
+  "adminNavbar": {
+    "entities": {
+      "title": "Entiteti",
+      "creditCards": "Kreditne kartice",
+      "creditCardItems": "Stavke kartica",
+      "creditCardIssuers": "Izdavači kartica"
+    }
+  }
+}

@@ -11,6 +11,8 @@ import { KeycloakProfile } from 'keycloak-js';
 import { MenuItem } from 'primeng/api';
 import { Subscription } from 'rxjs';
 
+import { includesRole } from '../../../shared/utils/has-role.util';
+
 @Component({
   selector: 'petar-cv-main-navbar',
   templateUrl: './main-navbar.component.html',
@@ -22,6 +24,7 @@ export class MainNavbarComponent implements OnInit, OnDestroy {
   public navbarItems: MenuItem[] = [];
   public isLoggedIn = false;
   public userProfile?: KeycloakProfile;
+  public userRoles: string[] = [];
 
   constructor(
     private readonly cdr: ChangeDetectorRef,
@@ -45,6 +48,7 @@ export class MainNavbarComponent implements OnInit, OnDestroy {
 
     if (this.isLoggedIn) {
       this.userProfile = await this.keycloak.loadUserProfile();
+      this.userRoles = await this.keycloak.getUserRoles();
     }
 
     this.loadNavbar();
@@ -56,6 +60,7 @@ export class MainNavbarComponent implements OnInit, OnDestroy {
         label: this.translateService.instant('navbar.home'),
         icon: 'pi pi-fw pi-home',
         routerLink: ['/'],
+        routerLinkActiveOptions: { exact: true },
       },
       {
         label: this.translateService.instant('navbar.creditCards'),
@@ -96,6 +101,12 @@ export class MainNavbarComponent implements OnInit, OnDestroy {
             icon: 'pi pi-fw pi-sign-in',
           },
         ],
+      },
+      {
+        visible: includesRole(this.userRoles, 'admin'),
+        label: this.translateService.instant('navbar.admin'),
+        icon: 'pi pi-fw pi-shield',
+        routerLink: ['/admin'],
       },
     ];
 

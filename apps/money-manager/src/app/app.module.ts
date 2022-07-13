@@ -42,6 +42,7 @@ function initializeKeycloak(keycloak: KeycloakService) {
 import { AppComponent } from './app.component';
 import { LayoutModule } from './components/layout/layout.module';
 import { AppRoutingModule } from './app-routing.module';
+import { AuthGuard } from './shared/guards/admin-guard/auth.guard';
 
 @NgModule({
   declarations: [AppComponent],
@@ -68,6 +69,7 @@ import { AppRoutingModule } from './app-routing.module';
       multi: true,
       deps: [KeycloakService],
     },
+    AuthGuard,
   ],
   bootstrap: [AppComponent],
 })

@@ -1,0 +1,10 @@
+{
+  "adminNavbar": {
+    "entities": {
+      "title": "Entities",
+      "creditCards": "Credit cards",
+      "creditCardItems": "Credit card items",
+      "creditCardIssuers": "Credit card issuers"
+    }
+  }
+}
