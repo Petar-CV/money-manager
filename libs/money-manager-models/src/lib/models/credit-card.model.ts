@@ -7,7 +7,7 @@ export interface ICreditCard {
 
   createdAt: Date;
   updatedAt: Date;
-  deletedAt: Date;
+  deletedAt?: Date;
 
   issuerId: string;
 }
@@ -21,7 +21,7 @@ export class CreditCard implements ICreditCard {
 
   createdAt: Date;
   updatedAt: Date;
-  deletedAt: Date;
+  deletedAt?: Date;
 
   issuerId: string;
 

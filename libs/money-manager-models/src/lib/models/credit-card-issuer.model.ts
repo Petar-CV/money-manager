@@ -5,7 +5,7 @@ export interface ICreditCardIssuer {
 
   createdAt: Date;
   updatedAt: Date;
-  deletedAt: Date;
+  deletedAt?: Date;
 }
 
 export class CreditCardIssuer implements ICreditCardIssuer {
@@ -15,7 +15,7 @@ export class CreditCardIssuer implements ICreditCardIssuer {
 
   createdAt: Date;
   updatedAt: Date;
-  deletedAt: Date;
+  deletedAt?: Date;
 
   constructor(data: ICreditCardIssuer) {
     this.id = data.id;

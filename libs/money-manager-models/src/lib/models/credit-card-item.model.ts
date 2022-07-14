@@ -9,7 +9,7 @@ export interface ICreditCardItem {
 
   createdAt: Date;
   updatedAt: Date;
-  deletedAt: Date;
+  deletedAt?: Date;
 
   cardId: string;
 }
@@ -25,7 +25,7 @@ export class CreditCardItem implements ICreditCardItem {
 
   createdAt: Date;
   updatedAt: Date;
-  deletedAt: Date;
+  deletedAt?: Date;
 
   cardId: string;
 
