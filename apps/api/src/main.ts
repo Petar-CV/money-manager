@@ -1,6 +1,7 @@
 import { Logger, ValidationPipe } from '@nestjs/common';
 import { NestFactory } from '@nestjs/core';
 import { DocumentBuilder, SwaggerModule } from '@nestjs/swagger';
+import * as bodyParser from 'body-parser';
 
 import { AppModule } from './app/app.module';
 import { TransformResponseInterceptor } from './interceptors/transform-response.interceptor';
@@ -13,10 +14,13 @@ async function bootstrap() {
       methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
       preflightContinue: false,
       optionsSuccessStatus: 204,
-      allowedHeaders: ['x-lang', 'Authorization'],
+      allowedHeaders: ['x-lang', 'content-type', 'Authorization'],
       exposedHeaders: ['x-alert-message', 'x-alert-param', 'x-total-items'],
     },
   });
+
+  app.use(bodyParser.json({ limit: '5mb' }));
+  app.use(bodyParser.urlencoded({ limit: '5mb', extended: true }));
 
   app.useGlobalPipes(
     new ValidationPipe({

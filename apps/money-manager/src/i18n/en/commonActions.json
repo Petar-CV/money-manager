@@ -2,7 +2,11 @@
   "commonActions": {
     "title": "Actions",
     "edit": "Edit",
+    "goBack": "Return",
     "globalSearch": "Search",
-    "noResults": "No results"
+    "noResults": "No results",
+    "submit": "Submit",
+    "update": "Update",
+    "submitAndAddNew": "Submit and add new"
   }
 }

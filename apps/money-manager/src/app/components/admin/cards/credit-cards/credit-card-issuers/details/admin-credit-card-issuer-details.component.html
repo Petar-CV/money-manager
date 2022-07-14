@@ -1,0 +1,76 @@
+<div class="admin-form-wrapper">
+  <petar-cv-base-admin-back-button></petar-cv-base-admin-back-button>
+
+  <form
+    [formGroup]="creditCardIssuerForm"
+    (submit)="onFormSubmit()"
+    class="shadow-lg p-4 flex flex-col"
+  >
+    <!-- Fields -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-6">
+      <div>
+        <label for="name" class="block">
+          {{ 'commonFields.name' | translate }} *
+        </label>
+        <input
+          class="w-full"
+          id="name"
+          pInputText
+          formControlName="name"
+          aria-describedby="name-help"
+        />
+        <small
+          id="name-help"
+          class="block"
+          [class.p-error]="
+            creditCardIssuerForm.get('name')?.hasError('required') &&
+            creditCardIssuerForm.get('name')?.touched
+          "
+          class="block"
+        >
+          {{ 'commonFields.validators.required' | translate }}
+        </small>
+      </div>
+    </div>
+
+    <div class="mb-6">
+      <label for="logo" class="block"
+        >{{ 'commonFields.logo' | translate }} *
+      </label>
+      <p-fileUpload
+        name="logo"
+        id="logo"
+        [showUploadButton]="false"
+        (onSelect)="onFileSelect($event)"
+        (onRemove)="onFileRemove()"
+        (onClear)="onFileRemove()"
+        [multiple]="false"
+        accept="image/*"
+        aria-describedby="logo-help"
+      >
+      </p-fileUpload>
+      <small
+        id="logo-help"
+        class="block"
+        [class.p-error]="
+          creditCardIssuerForm.get('logo')?.hasError('required') &&
+          creditCardIssuerForm.get('logo')?.touched
+        "
+        class="block"
+      >
+        {{ 'commonFields.validators.required' | translate }}
+      </small>
+    </div>
+
+    <!-- Buttons -->
+    <div class="space-x-2">
+      <p-button
+        [label]="'commonActions.update' | translate"
+        type="submit"
+        [disabled]="
+          creditCardIssuerForm.invalid || creditCardIssuerForm.pristine
+        "
+      ></p-button>
+    </div>
+  </form>
+</div>

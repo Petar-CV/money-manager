@@ -44,6 +44,7 @@ import { LayoutModule } from './components/layout/layout.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './shared/guards/admin-guard/auth.guard';
 import { httpInterceptorProviders } from './shared/interceptors';
+import { MessageService } from 'primeng/api';
 
 @NgModule({
   declarations: [AppComponent],
@@ -72,6 +73,7 @@ import { httpInterceptorProviders } from './shared/interceptors';
     },
     httpInterceptorProviders,
     AuthGuard,
+    MessageService,
   ],
   bootstrap: [AppComponent],
 })

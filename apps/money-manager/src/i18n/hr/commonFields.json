@@ -1,6 +1,10 @@
 {
   "commonFields": {
     "id": "ID",
-    "name": "Naziv"
+    "name": "Naziv",
+    "logo": "Logo",
+    "validators": {
+      "required": "Ovo polje je obavezno"
+    }
   }
 }

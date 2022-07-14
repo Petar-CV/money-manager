@@ -78,7 +78,7 @@
             pRipple
             type="button"
             [icon]="row.action.icon"
-            [routerLink]="row.action.route + element.id"
+            [routerLink]="row.action.route + '/' + element.id"
             [pTooltip]="
               row.action.tooltip ? (row.action.tooltip | translate) : ''
             "

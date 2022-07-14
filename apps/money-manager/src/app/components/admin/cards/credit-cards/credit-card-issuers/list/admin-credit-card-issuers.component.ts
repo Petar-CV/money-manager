@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
 import { finalize, map, Observable, tap } from 'rxjs';
 
@@ -13,6 +13,7 @@ import { AdminCreditCardIssuersService } from '../../../../../../shared/services
 @Component({
   selector: 'petar-cv-admin-credit-card-issuers',
   templateUrl: './admin-credit-card-issuers.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminCreditCardIssuersComponent extends BasePaginationComponent {
   creditCardIssuers$?: Observable<ICreditCardIssuer[]>;

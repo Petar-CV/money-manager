@@ -2,7 +2,11 @@
   "commonActions": {
     "title": "Akcije",
     "edit": "Uredi",
+    "goBack": "Povratak",
     "globalSearch": "Pretraga",
-    "noResults": "Nema rezultata"
+    "noResults": "Nema rezultata",
+    "submit": "Spremi",
+    "update": "Ažuriraj",
+    "submitAndAddNew": "Spremi i dodaj novi"
   }
 }

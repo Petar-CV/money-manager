@@ -1,6 +1,10 @@
 {
   "commonFields": {
     "id": "ID",
-    "name": "Name"
+    "name": "Name",
+    "logo": "Logo",
+    "validators": {
+      "required": "This field is required"
+    }
   }
 }

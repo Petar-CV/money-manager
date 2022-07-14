@@ -4,24 +4,23 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { SharedModule } from '../../../../../shared/shared.module';
 import { AdminCreditCardIssuersOutletComponent } from './admin-credit-card-issuers-outlet.component';
+import { AdminCreditCardIssuerCreateComponent } from './create/admin-credit-card-issuer-create.component';
+import { AdminCreditCardIssuerDetailsComponent } from './details/admin-credit-card-issuer-details.component';
 import { AdminCreditCardIssuersComponent } from './list/admin-credit-card-issuers.component';
-// import { AdminCreditCardIssuerCreateComponent } from './create/admin-about-us-image-create.component';
-// import { AdminCreditCardIssuerDetailsComponent } from './details/admin-about-us-image-details.component';
-// import { AdminCreditCardIssuersComponent } from './list/admin-about-us-image.component';
 
 const adminCreditCardIssuersRoutes: Routes = [
   {
     path: '',
     component: AdminCreditCardIssuersOutletComponent,
     children: [
-      // {
-      //   path: 'create',
-      //   component: AdminCreditCardIssuerCreateComponent,
-      // },
-      // {
-      //   path: ':aboutUsImageID',
-      //   component: AdminCreditCardIssuerDetailsComponent,
-      // },
+      {
+        path: 'create',
+        component: AdminCreditCardIssuerCreateComponent,
+      },
+      {
+        path: ':id',
+        component: AdminCreditCardIssuerDetailsComponent,
+      },
       {
         path: '',
         pathMatch: 'full',
@@ -35,8 +34,8 @@ const adminCreditCardIssuersRoutes: Routes = [
   declarations: [
     AdminCreditCardIssuersOutletComponent,
     AdminCreditCardIssuersComponent,
-    // AdminCreditCardIssuerDetailsComponent,
-    // AdminCreditCardIssuerCreateComponent,
+    AdminCreditCardIssuerDetailsComponent,
+    AdminCreditCardIssuerCreateComponent,
   ],
   imports: [
     SharedModule,

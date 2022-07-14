@@ -2,5 +2,6 @@ button,
 [type='button'],
 [type='reset'],
 [type='submit'] {
+  // TODO: Improve this (border radius issues)
   background-color: var(--primary-color); // This variable comes from PrimeNG
 }
