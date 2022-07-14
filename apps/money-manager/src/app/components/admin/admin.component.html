@@ -1,18 +1,9 @@
 <p-menubar [model]="adminMenuBarItems">
   <ng-template pTemplate="end">
-    <!-- <div *ngIf="authService.user$ | async as user" class="flex justify-center items-center">
-      <span class="mr-2 hidden sm:block">{{ user?.name }}</span>
-      <img [src]="user.picture" height="40" width="40" class="mr-2" />
-      <button
-        pButton
-        pRipple
-        (click)="logout()"
-        type="button"
-        icon="pi pi-sign-out"
-        [pTooltip]="'admin.navbar.logout' | translate"
-        tooltipPosition="bottom"
-        class="p-button-rounded p-button-text p-button-plain mr-2"></button>
-    </div> -->
+    <!-- TODO: Add length checking -->
+    <span *ngIf="userProfile">
+      {{ userProfile.firstName }} {{ userProfile.lastName }}
+    </span>
   </ng-template>
 </p-menubar>
 

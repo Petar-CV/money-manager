@@ -2,5 +2,10 @@
   <ng-template pTemplate="start">
     <img src="assets/showcase/images/primeng.svg" height="40" class="mr-2" />
   </ng-template>
-  <ng-template pTemplate="end"> </ng-template>
+  <ng-template pTemplate="end">
+    <!-- TODO: Add length checking -->
+    <span *ngIf="userProfile">
+      {{ userProfile.firstName }} {{ userProfile.lastName }}
+    </span>
+  </ng-template>
 </p-menubar>

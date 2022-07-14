@@ -5,6 +5,8 @@ import {
   OnInit,
 } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import { KeycloakService } from 'keycloak-angular';
+import { KeycloakProfile } from 'keycloak-js';
 import { MenuItem } from 'primeng/api';
 import { Subscription } from 'rxjs';
 
@@ -17,11 +19,17 @@ export class AdminComponent implements OnInit, OnDestroy {
   private subscriptions: Subscription[] = [];
 
   public adminMenuBarItems: MenuItem[] = [];
+  public userProfile?: KeycloakProfile;
 
-  constructor(private readonly translateService: TranslateService) {}
+  constructor(
+    private readonly translateService: TranslateService,
+    private readonly keycloakService: KeycloakService
+  ) {}
 
-  ngOnInit() {
+  async ngOnInit(): Promise<void> {
     this.loadAdminMenuBar();
+
+    this.userProfile = await this.keycloakService.loadUserProfile();
 
     this.subscriptions.push(
       this.translateService.onLangChange.subscribe(() => {
