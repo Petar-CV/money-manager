@@ -84,24 +84,32 @@ export class AdminComponent implements OnInit, OnDestroy {
         items: [
           {
             label: this.translateService.instant(
-              'adminNavbar.entities.creditCardIssuers'
-            ),
-            icon: 'pi pi-fw pi-building',
-            routerLink: ['/credit-cards-issuers'],
-          },
-          {
-            label: this.translateService.instant(
               'adminNavbar.entities.creditCards'
             ),
             icon: 'pi pi-fw pi-credit-card',
-            routerLink: ['/credit-cards'],
-          },
-          {
-            label: this.translateService.instant(
-              'adminNavbar.entities.creditCardItems'
-            ),
-            icon: 'pi pi-fw pi-money-bill',
-            routerLink: ['/credit-card-items'],
+            items: [
+              {
+                label: this.translateService.instant(
+                  'adminNavbar.entities.creditCardIssuers'
+                ),
+                icon: 'pi pi-fw pi-building',
+                routerLink: ['cards/credit/issuers'],
+              },
+              {
+                label: this.translateService.instant(
+                  'adminNavbar.entities.creditCards'
+                ),
+                icon: 'pi pi-fw pi-credit-card',
+                routerLink: ['cards/credit/cards'],
+              },
+              {
+                label: this.translateService.instant(
+                  'adminNavbar.entities.creditCardItems'
+                ),
+                icon: 'pi pi-fw pi-money-bill',
+                routerLink: ['cards/credit/items'],
+              },
+            ],
           },
         ],
       },

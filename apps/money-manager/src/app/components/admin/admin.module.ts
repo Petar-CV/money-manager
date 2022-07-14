@@ -11,11 +11,11 @@ const adminRoutes: Routes = [
     path: '',
     component: AdminComponent,
     children: [
-      // {
-      //   path: 'products',
-      //   loadChildren: () =>
-      //     import('./admin-products/admin-products.module').then((m) => m.AdminProductsModule),
-      // },
+      {
+        path: 'cards',
+        loadChildren: () =>
+          import('./cards/admin-cards.module').then((m) => m.AdminCardsModule),
+      },
       {
         path: '',
         pathMatch: 'full',
