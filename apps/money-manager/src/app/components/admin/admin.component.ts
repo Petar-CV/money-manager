@@ -1,5 +1,6 @@
 import {
   ChangeDetectionStrategy,
+  ChangeDetectorRef,
   Component,
   OnDestroy,
   OnInit,
@@ -23,13 +24,14 @@ export class AdminComponent implements OnInit, OnDestroy {
 
   constructor(
     private readonly translateService: TranslateService,
-    private readonly keycloakService: KeycloakService
+    private readonly keycloakService: KeycloakService,
+    private readonly cdr: ChangeDetectorRef
   ) {}
 
   async ngOnInit(): Promise<void> {
-    this.loadAdminMenuBar();
-
     this.userProfile = await this.keycloakService.loadUserProfile();
+
+    this.loadAdminMenuBar();
 
     this.subscriptions.push(
       this.translateService.onLangChange.subscribe(() => {
@@ -51,6 +53,30 @@ export class AdminComponent implements OnInit, OnDestroy {
         icon: 'pi pi-fw pi-shield',
         routerLink: ['/admin'],
         routerLinkActiveOptions: { exact: true },
+      },
+      {
+        label: this.translateService.instant('navbar.account'),
+        icon: 'pi pi-fw pi-user',
+        items: [
+          {
+            visible: !!this.userProfile,
+            label: this.translateService.instant('navbar.settings'),
+            icon: 'pi pi-fw pi-cog',
+            disabled: true,
+          },
+          {
+            visible: !!this.userProfile,
+            label: this.translateService.instant('navbar.logout'),
+            command: () => this.keycloakService.logout(),
+            icon: 'pi pi-fw pi-sign-out',
+          },
+          {
+            visible: !this.userProfile,
+            label: this.translateService.instant('navbar.login'),
+            command: () => this.keycloakService.login(),
+            icon: 'pi pi-fw pi-sign-in',
+          },
+        ],
       },
       {
         label: this.translateService.instant('adminNavbar.entities.title'),
@@ -80,6 +106,8 @@ export class AdminComponent implements OnInit, OnDestroy {
         ],
       },
     ];
+
+    this.cdr.markForCheck();
   }
 
   ngOnDestroy(): void {
