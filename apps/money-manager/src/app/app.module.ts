@@ -43,6 +43,7 @@ import { AppComponent } from './app.component';
 import { LayoutModule } from './components/layout/layout.module';
 import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './shared/guards/admin-guard/auth.guard';
+import { httpInterceptorProviders } from './shared/interceptors';
 
 @NgModule({
   declarations: [AppComponent],
@@ -69,6 +70,7 @@ import { AuthGuard } from './shared/guards/admin-guard/auth.guard';
       multi: true,
       deps: [KeycloakService],
     },
+    httpInterceptorProviders,
     AuthGuard,
   ],
   bootstrap: [AppComponent],

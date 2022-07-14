@@ -5,7 +5,7 @@ import { IModifiedApiResponse } from '@petar-cv/api-interfaces';
 import { ICreditCardIssuer } from '@petar-cv/money-manager-models';
 import { Observable } from 'rxjs';
 
-import { BaseEntityService } from '../../base/base-entity.service';
+import { BaseEntityService } from '../../../base/base-entity.service';
 
 @Injectable({
   providedIn: 'root',

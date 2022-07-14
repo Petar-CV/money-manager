@@ -4,6 +4,7 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { SharedModule } from '../../../../../shared/shared.module';
 import { AdminCreditCardIssuersOutletComponent } from './admin-credit-card-issuers-outlet.component';
+import { AdminCreditCardIssuersComponent } from './list/admin-credit-card-issuers.component';
 // import { AdminCreditCardIssuerCreateComponent } from './create/admin-about-us-image-create.component';
 // import { AdminCreditCardIssuerDetailsComponent } from './details/admin-about-us-image-details.component';
 // import { AdminCreditCardIssuersComponent } from './list/admin-about-us-image.component';
@@ -21,11 +22,11 @@ const adminCreditCardIssuersRoutes: Routes = [
       //   path: ':aboutUsImageID',
       //   component: AdminCreditCardIssuerDetailsComponent,
       // },
-      // {
-      //   path: '',
-      //   pathMatch: 'exact',
-      //   component: AdminCreditCardIssuersComponent,
-      // },
+      {
+        path: '',
+        pathMatch: 'full',
+        component: AdminCreditCardIssuersComponent,
+      },
     ],
   },
 ];
@@ -33,7 +34,7 @@ const adminCreditCardIssuersRoutes: Routes = [
 @NgModule({
   declarations: [
     AdminCreditCardIssuersOutletComponent,
-    // AdminCreditCardIssuersComponent,
+    AdminCreditCardIssuersComponent,
     // AdminCreditCardIssuerDetailsComponent,
     // AdminCreditCardIssuerCreateComponent,
   ],

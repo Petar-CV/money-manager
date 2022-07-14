@@ -1,0 +1,8 @@
+{
+  "commonActions": {
+    "title": "Actions",
+    "edit": "Edit",
+    "globalSearch": "Search",
+    "noResults": "No results"
+  }
+}

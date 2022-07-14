@@ -63,7 +63,7 @@ export class BaseTableComponent {
   showCurrentPageReport = true;
 
   @Input()
-  emptymessage = 'global.noResults';
+  emptymessage = 'commonActions.noResults';
 
   @Input()
   rowsPerPageOptions: number[] = [10, 25, 50];
