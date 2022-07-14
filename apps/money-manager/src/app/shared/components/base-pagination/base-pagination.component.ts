@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { LazyLoadEvent } from 'primeng/api';
 
 import { SortType } from '../../types/sorting.type';
@@ -6,6 +6,7 @@ import { SortType } from '../../types/sorting.type';
 @Component({
   selector: 'petar-cv-base-pagination',
   template: '',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BasePaginationComponent {
   loading = false;

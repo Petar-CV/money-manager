@@ -1,4 +1,5 @@
 import {
+  ChangeDetectionStrategy,
   Component,
   EventEmitter,
   Input,
@@ -17,6 +18,7 @@ import { IBaseTableColumn } from './models/header/base-table-column.model';
   selector:
     'petar-cv-base-table[value][rows][totalRecords][onLazyLoad][tableHeaders][tableRows]',
   templateUrl: './base-table.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class BaseTableComponent {
   @ViewChild('dt')
