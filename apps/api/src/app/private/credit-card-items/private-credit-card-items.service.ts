@@ -31,6 +31,7 @@ export class PrivateCreditCardItemsService {
         search: search,
         matchType: 'contains',
         includedFields: {
+          id: true,
           name: true,
           description: true,
         },

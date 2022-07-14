@@ -26,6 +26,7 @@ export class PrivateCreditCardIssuersService {
         search: search,
         matchType: 'contains',
         includedFields: {
+          id: true,
           name: true,
         },
       });

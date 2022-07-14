@@ -31,6 +31,7 @@ export class PrivateCreditCardsService {
         search: search,
         matchType: 'contains',
         includedFields: {
+          id: true,
           name: true,
         },
       });
@@ -108,6 +109,7 @@ export class PrivateCreditCardsService {
         search: search,
         matchType: 'contains',
         includedFields: {
+          id: true,
           name: true,
         },
       });

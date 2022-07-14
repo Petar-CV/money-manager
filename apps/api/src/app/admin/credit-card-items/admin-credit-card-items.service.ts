@@ -29,6 +29,7 @@ export class AdminCreditCardItemsService {
         search: search,
         matchType: 'contains',
         includedFields: {
+          id: true,
           name: true,
           description: true,
         },
