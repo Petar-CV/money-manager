@@ -1,0 +1,100 @@
+<p-table
+  #dt
+  [value]="(value | async) ?? []"
+  [rows]="rows"
+  [totalRecords]="totalRecords"
+  [selectionMode]="selectionMode"
+  [dataKey]="dataKey"
+  [rowHover]="rowHover"
+  [showCurrentPageReport]="showCurrentPageReport"
+  [rowsPerPageOptions]="rowsPerPageOptions"
+  [responsiveLayout]="responsiveLayout"
+  [paginator]="paginator"
+  [lazyLoadOnInit]="lazyLoadOnInit"
+  [lazy]="lazy"
+  (onLazyLoad)="onLazyLoadEvent($event)"
+  [currentPageReportTemplate]="currentPageReportTemplate"
+  [loading]="loading">
+  [filterDelay]="filterDelay"
+
+  <!-- SEARCH TEMPLATE -->
+  <ng-template pTemplate="caption" *ngIf="globalSearch">
+    <div class="flex">
+      <span class="p-input-icon-left mr-auto -ml-4">
+        <i class="pi pi-search"></i>
+        <input
+          pInputText
+          type="text"
+          (input)="applyFilterGlobal($event, 'contains')"
+          [placeholder]="'global.globalSearch' | translate" />
+      </span>
+    </div>
+  </ng-template>
+
+  <!-- HEADER TEMPLATE -->
+  <ng-template pTemplate="header">
+    <tr>
+      <th *ngFor="let header of tableHeaders">
+        <ng-container *ngIf="header.translate">
+          {{ header.text | translate }}
+        </ng-container>
+        <ng-container *ngIf="!header.translate">
+          {{ header.text }}
+        </ng-container>
+      </th>
+    </tr>
+  </ng-template>
+
+  <!-- BODY TEMPLATE -->
+  <ng-template pTemplate="body" let-element>
+    <tr>
+      <td *ngFor="let row of tableRows">
+        <!-- ROW PREFIX -->
+        <ng-container *ngIf="row.prefix">
+          {{ row.prefix }}
+        </ng-container>
+
+        <!-- ROW FIELD -->
+        <ng-container *ngIf="row.field">
+          <ng-container *ngIf="!row.nestedIn">
+            {{ element[row.field] | baseTablePipe: row?.pipes ?? [] }}
+          </ng-container>
+
+          <ng-container *ngIf="row.nestedIn">
+            {{ element | nestedValue: row.nestedIn | baseTablePipe: row?.pipes ?? [] }}
+          </ng-container>
+        </ng-container>
+
+        <ng-container *ngIf="!row.field && row.action">
+          <button
+            *ngIf="row.action.type === 'navigate'"
+            pButton
+            pRipple
+            type="button"
+            [icon]="row.action.icon"
+            [routerLink]="row.action.route + element.id"
+            [pTooltip]="row.action.tooltip ? (row.action.tooltip | translate) : ''"
+            tooltipPosition="bottom"
+            class="p-button-text p-button-rounded p-button-plain"></button>
+        </ng-container>
+
+        <!-- ROW SUFFIX -->
+        <ng-container *ngIf="row.suffix">
+          {{ row.suffix }}
+        </ng-container>
+      </td>
+    </tr>
+  </ng-template>
+
+  <!-- EMPTY MESSAGE TEMPLATE -->
+  <ng-template pTemplate="emptymessage">
+    <ng-container *ngTemplateOutlet="emptyMessage"></ng-container>
+  </ng-template>
+</p-table>
+
+<!-- Empty message -->
+<ng-template #emptyMessage>
+  <tr>
+    <td colspan="8">{{ emptymessage | translate }}</td>
+  </tr>
+</ng-template>
