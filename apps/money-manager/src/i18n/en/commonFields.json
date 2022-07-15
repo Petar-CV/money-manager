@@ -6,6 +6,7 @@
     "createdAt": "Created at",
     "updatedAt": "Updated at",
     "deletedAt": "Deleted at",
+    "description": "Description",
     "validators": {
       "required": "This field is required"
     }

@@ -1,0 +1,216 @@
+<div class="admin-form-wrapper">
+  <petar-cv-base-admin-back-button></petar-cv-base-admin-back-button>
+
+  <form
+    *ngIf="creditCardItemForm"
+    [formGroup]="creditCardItemForm"
+    (submit)="onFormSubmit()"
+    class="shadow-lg p-4 flex flex-col"
+  >
+    <!-- Fields -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-6">
+      <div>
+        <label for="userId" class="block">
+          {{ 'adminCreditCardItems.fields.userId' | translate }} *
+        </label>
+        <input
+          class="w-full"
+          id="userId"
+          pInputText
+          formControlName="userId"
+          aria-describedby="userId-help"
+          [placeholder]="'adminCreditCardItems.fields.userId' | translate"
+        />
+        <small
+          id="userId-help"
+          class="block"
+          [class.p-error]="
+            creditCardItemForm.controls.userId?.hasError('required') &&
+            creditCardItemForm.controls.userId?.touched
+          "
+          class="block"
+        >
+          {{ 'commonFields.validators.required' | translate }}
+        </small>
+      </div>
+
+      <div>
+        <label for="cardId" class="block">
+          {{ 'adminCreditCardItems.fields.cardId' | translate }} *
+        </label>
+        <input
+          class="w-full"
+          id="cardId"
+          pInputText
+          formControlName="cardId"
+          aria-describedby="cardId-help"
+        />
+        <small
+          id="cardId-help"
+          class="block"
+          [class.p-error]="
+            creditCardItemForm.controls.cardId.hasError('required') &&
+            creditCardItemForm.controls.cardId.touched
+          "
+          class="block"
+        >
+          {{ 'commonFields.validators.required' | translate }}
+        </small>
+      </div>
+
+      <div>
+        <label for="name" class="block">
+          {{ 'commonFields.name' | translate }} *
+        </label>
+        <input
+          class="w-full"
+          id="name"
+          pInputText
+          formControlName="name"
+          aria-describedby="name-help"
+        />
+        <small
+          id="name-help"
+          class="block"
+          [class.p-error]="
+            creditCardItemForm.controls.name.hasError('required') &&
+            creditCardItemForm.controls.name.touched
+          "
+          class="block"
+        >
+          {{ 'commonFields.validators.required' | translate }}
+        </small>
+      </div>
+
+      <div>
+        <label for="description" class="block">
+          {{ 'commonFields.description' | translate }}
+        </label>
+        <textarea
+          class="w-full"
+          id="description"
+          rows="1"
+          pInputTextarea
+          [autoResize]="true"
+          formControlName="description"
+        ></textarea>
+      </div>
+
+      <div>
+        <label for="amount" class="block">
+          {{ 'adminCreditCardItems.fields.amount' | translate }} *
+        </label>
+        <input
+          class="w-full"
+          id="amount"
+          pInputText
+          formControlName="amount"
+          aria-describedby="amount-help"
+        />
+        <small
+          id="amount-help"
+          class="block"
+          [class.p-error]="
+            creditCardItemForm.controls.amount.hasError('required') &&
+            creditCardItemForm.controls.amount.touched
+          "
+          class="block"
+        >
+          {{ 'commonFields.validators.required' | translate }}
+        </small>
+      </div>
+
+      <div>
+        <label for="instalments" class="block">
+          {{ 'adminCreditCardItems.fields.instalments' | translate }} *
+        </label>
+        <input
+          class="w-full"
+          id="instalments"
+          pInputText
+          formControlName="instalments"
+          aria-describedby="instalments-help"
+        />
+        <small
+          id="instalments-help"
+          class="block"
+          [class.p-error]="
+            creditCardItemForm.controls.instalments.hasError('required') &&
+            creditCardItemForm.controls.instalments.touched
+          "
+          class="block"
+        >
+          {{ 'commonFields.validators.required' | translate }}
+        </small>
+      </div>
+
+      <div>
+        <label for="boughtAt" class="block">
+          {{ 'adminCreditCardItems.fields.boughtAt' | translate }} *
+        </label>
+        <p-calendar
+          id="boughtAt"
+          styleClass="w-full"
+          formControlName="boughtAt"
+          aria-describedby="boughtAt-help"
+        ></p-calendar>
+        <small
+          id="boughtAt-help"
+          class="block"
+          [class.p-error]="
+            creditCardItemForm.controls.boughtAt.hasError('required') &&
+            creditCardItemForm.controls.boughtAt.touched
+          "
+          class="block"
+        >
+          {{ 'commonFields.validators.required' | translate }}
+        </small>
+      </div>
+
+      <div>
+        <label for="createdAt" class="block">
+          {{ 'commonFields.createdAt' | translate }}
+        </label>
+        <p-calendar
+          id="createdAt"
+          styleClass="w-full"
+          formControlName="createdAt"
+          aria-describedby="createdAt-help"
+        ></p-calendar>
+      </div>
+
+      <div>
+        <label for="updatedAt" class="block">
+          {{ 'commonFields.updatedAt' | translate }}
+        </label>
+        <p-calendar
+          id="updatedAt"
+          styleClass="w-full"
+          formControlName="updatedAt"
+          aria-describedby="updatedAt-help"
+        ></p-calendar>
+      </div>
+
+      <div>
+        <label for="deletedAt" class="block">
+          {{ 'commonFields.deletedAt' | translate }}
+        </label>
+        <p-calendar
+          id="deletedAt"
+          styleClass="w-full"
+          formControlName="deletedAt"
+          aria-describedby="deletedAt-help"
+        ></p-calendar>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="space-x-2">
+      <p-button
+        type="submit"
+        [label]="'commonActions.update' | translate"
+        [disabled]="creditCardItemForm.invalid || creditCardItemForm.pristine"
+      ></p-button>
+    </div>
+  </form>
+</div>

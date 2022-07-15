@@ -1,0 +1,12 @@
+{
+  "adminCreditCardItems": {
+    "create": "Kreirajte stavku kreditne kartice",
+    "fields": {
+      "instalments": "Broj rata",
+      "boughtAt": "Kupljeno",
+      "amount": "Iznos",
+      "cardId": "ID kartice",
+      "userId": "ID korisnika kartice"
+    }
+  }
+}

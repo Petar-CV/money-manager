@@ -1,6 +1,6 @@
 export interface ICreditCardItem {
   id?: string;
-  userId?: string;
+  userId: string;
   name: string;
   description?: string;
   boughtAt: Date;
@@ -16,7 +16,7 @@ export interface ICreditCardItem {
 
 export class CreditCardItem implements ICreditCardItem {
   id?: string;
-  userId?: string;
+  userId: string;
   name: string;
   description?: string;
   boughtAt: Date;

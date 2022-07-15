@@ -1,0 +1,12 @@
+{
+  "adminCreditCardItems": {
+    "create": "Create credit card item",
+    "fields": {
+      "instalments": "Number of instalments",
+      "boughtAt": "Bought at",
+      "amount": "Amount",
+      "cardId": "Card ID",
+      "userId": "Card user ID"
+    }
+  }
+}

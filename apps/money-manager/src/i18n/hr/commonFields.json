@@ -6,6 +6,7 @@
     "createdAt": "Kreirano",
     "updatedAt": "Ažurirano",
     "deletedAt": "Obrisano",
+    "description": "Opis",
     "validators": {
       "required": "Ovo polje je obavezno"
     }
