@@ -7,8 +7,8 @@ export interface ICreditCardItem {
   instalments: number;
   amount: number;
 
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
   deletedAt?: Date;
 
   cardId: string;
@@ -23,8 +23,8 @@ export class CreditCardItem implements ICreditCardItem {
   instalments: number;
   amount: number;
 
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
   deletedAt?: Date;
 
   cardId: string;

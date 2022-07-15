@@ -1,0 +1,11 @@
+{
+  "adminCreditCards": {
+    "create": "Create credit card",
+    "fields": {
+      "limit": "Limit",
+      "billingDate": "Billing date",
+      "issuer": "Card issuer",
+      "user": "Card user ID"
+    }
+  }
+}

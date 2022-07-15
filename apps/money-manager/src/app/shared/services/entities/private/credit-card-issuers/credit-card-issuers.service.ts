@@ -29,4 +29,8 @@ export class CreditCardIssuersService extends BaseEntityService<ICreditCardIssue
     // This method doesn't exist in the API, so we need to override it
     throw new Error('Method not implemented for this entity.');
   }
+
+  override findAllLov(): Observable<Partial<ICreditCardIssuer>[]> {
+    throw new Error('Method not implemented for this entity.');
+  }
 }

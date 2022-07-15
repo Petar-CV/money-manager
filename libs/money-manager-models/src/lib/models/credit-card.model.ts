@@ -1,12 +1,12 @@
 export interface ICreditCard {
   id?: string;
-  userId?: string;
+  userId: string;
   name: string;
   limit: number;
   billingDate: Date;
 
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
   deletedAt?: Date;
 
   issuerId: string;
@@ -14,13 +14,13 @@ export interface ICreditCard {
 
 export class CreditCard implements ICreditCard {
   id?: string;
-  userId?: string;
+  userId: string;
   name: string;
   limit: number;
   billingDate: Date;
 
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
   deletedAt?: Date;
 
   issuerId: string;

@@ -34,6 +34,11 @@ export class AdminCreditCardIssuersController {
     return this.adminCreditCardIssuersService.findAll(paginatedSortAndSearch);
   }
 
+  @Get('lov')
+  findAllLov(): Promise<IApiResponse<Partial<CreditCardIssuer>[]>> {
+    return this.adminCreditCardIssuersService.findAllLov();
+  }
+
   @Get(':id')
   findOne(
     @Param('id') creditCardIssuerId: string

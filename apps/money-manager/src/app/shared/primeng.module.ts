@@ -4,6 +4,8 @@ import { InputTextModule } from 'primeng/inputtext';
 import { MenubarModule } from 'primeng/menubar';
 import { TableModule } from 'primeng/table';
 import { FileUploadModule } from 'primeng/fileupload';
+import { CalendarModule } from 'primeng/calendar';
+import { DropdownModule } from 'primeng/dropdown';
 
 const modulesToExport = [
   ButtonModule,
@@ -11,6 +13,8 @@ const modulesToExport = [
   MenubarModule,
   TableModule,
   FileUploadModule,
+  CalendarModule,
+  DropdownModule,
 ];
 
 @NgModule({

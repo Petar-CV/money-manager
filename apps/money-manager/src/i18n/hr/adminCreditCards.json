@@ -1,0 +1,11 @@
+{
+  "adminCreditCards": {
+    "create": "Kreirajte kreditnu karticu",
+    "fields": {
+      "limit": "Limit",
+      "billingDate": "Datum računa",
+      "issuer": "Izdavatelj kartice",
+      "user": "ID korisnika kartice"
+    }
+  }
+}

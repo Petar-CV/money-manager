@@ -3,8 +3,8 @@ export interface ICreditCardIssuer {
   name: string;
   logo: string;
 
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
   deletedAt?: Date;
 }
 
@@ -13,8 +13,8 @@ export class CreditCardIssuer implements ICreditCardIssuer {
   name: string;
   logo: string;
 
-  createdAt: Date;
-  updatedAt: Date;
+  createdAt?: Date;
+  updatedAt?: Date;
   deletedAt?: Date;
 
   constructor(data: ICreditCardIssuer) {

@@ -3,6 +3,9 @@
     "id": "ID",
     "name": "Naziv",
     "logo": "Logo",
+    "createdAt": "Kreirano",
+    "updatedAt": "Ažurirano",
+    "deletedAt": "Obrisano",
     "validators": {
       "required": "Ovo polje je obavezno"
     }

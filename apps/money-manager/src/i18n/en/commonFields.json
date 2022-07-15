@@ -3,6 +3,9 @@
     "id": "ID",
     "name": "Name",
     "logo": "Logo",
+    "createdAt": "Created at",
+    "updatedAt": "Updated at",
+    "deletedAt": "Deleted at",
     "validators": {
       "required": "This field is required"
     }

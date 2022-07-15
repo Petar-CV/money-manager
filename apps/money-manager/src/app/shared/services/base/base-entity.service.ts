@@ -68,6 +68,16 @@ export abstract class BaseEntityService<T> {
   }
 
   /**
+   * It returns an observable of an array of partial objects of type T
+   * @returns An observable of an array of partial objects of type T.
+   */
+  findAllLov(): Observable<Partial<T>[]> {
+    return this.http
+      .get<IModifiedApiResponse<Partial<T>[]>>(`${this.baseURL}/lov`)
+      .pipe(map((res) => res.data ?? null));
+  }
+
+  /**
    * It takes an entity of type T, sends it to the server, and returns an observable of type T or null
    * @param {T} entity - T - The entity to create
    * @returns Observable<T | null>

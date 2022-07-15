@@ -81,9 +81,7 @@ export class AdminCreditCardIssuerDetailsComponent implements OnInit {
     if (this.currentId) {
       this.adminCreditCardIssuersService
         .update(entityData, this.currentId)
-        .subscribe(() => {
-          this.router.navigate(['/admin/cards/credit/issuers']);
-        });
+        .subscribe();
     }
   }
 
