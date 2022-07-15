@@ -26,6 +26,7 @@
           pInputText
           formControlName="name"
           aria-describedby="name-help"
+          [placeholder]="'commonFields.name' | translate"
         />
         <small
           id="name-help"
@@ -126,6 +127,7 @@
           aria-describedby="limit-help"
           [min]="0"
           [maxFractionDigits]="2"
+          [placeholder]="'adminCreditCards.fields.limit' | translate"
         ></p-inputNumber>
         <small
           id="limit-help"
