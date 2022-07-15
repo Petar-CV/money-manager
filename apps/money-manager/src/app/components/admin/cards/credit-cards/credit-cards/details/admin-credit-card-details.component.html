@@ -118,13 +118,15 @@
         <label for="limit" class="block">
           {{ 'adminCreditCards.fields.limit' | translate }} *
         </label>
-        <input
+        <p-inputNumber
           class="w-full"
+          styleClass="w-full"
           id="limit"
-          pInputText
           formControlName="limit"
           aria-describedby="limit-help"
-        />
+          [min]="0"
+          [maxFractionDigits]="2"
+        ></p-inputNumber>
         <small
           id="limit-help"
           class="block"

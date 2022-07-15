@@ -99,13 +99,15 @@
         <label for="amount" class="block">
           {{ 'adminCreditCardItems.fields.amount' | translate }} *
         </label>
-        <input
+        <p-inputNumber
           class="w-full"
+          styleClass="w-full"
           id="amount"
-          pInputText
           formControlName="amount"
           aria-describedby="amount-help"
-        />
+          [min]="0"
+          [maxFractionDigits]="2"
+        ></p-inputNumber>
         <small
           id="amount-help"
           class="block"
@@ -123,13 +125,16 @@
         <label for="instalments" class="block">
           {{ 'adminCreditCardItems.fields.instalments' | translate }} *
         </label>
-        <input
+        <p-inputNumber
           class="w-full"
+          styleClass="w-full"
           id="instalments"
-          pInputText
           formControlName="instalments"
           aria-describedby="instalments-help"
-        />
+          [showButtons]="true"
+          [step]="1"
+          [min]="1"
+        ></p-inputNumber>
         <small
           id="instalments-help"
           class="block"

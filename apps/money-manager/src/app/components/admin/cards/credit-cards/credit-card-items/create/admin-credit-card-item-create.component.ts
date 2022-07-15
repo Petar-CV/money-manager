@@ -17,7 +17,7 @@ export class AdminCreditCardItemCreateComponent {
   creditCardItemForm = this.formBuilder.nonNullable.group({
     name: ['', Validators.required],
     description: [''],
-    instalments: [0, Validators.required],
+    instalments: [1, Validators.required],
     amount: [0, Validators.required],
     boughtAt: [new Date(), Validators.required],
     userId: ['', Validators.required],
