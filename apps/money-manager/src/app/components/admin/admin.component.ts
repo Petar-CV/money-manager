@@ -11,6 +11,14 @@ import { KeycloakProfile } from 'keycloak-js';
 import { MenuItem } from 'primeng/api';
 import { Subscription } from 'rxjs';
 
+import {
+  AdminCreditCardIssuersRoutes,
+  AdminCreditCardItemsRoutes,
+  AdminCreditCardsRoutes,
+  AdminRoutes,
+  ProfileSettingsRoutes,
+} from '../../shared/constants/routing';
+
 @Component({
   selector: 'petar-cv-admin',
   templateUrl: './admin.component.html',
@@ -51,7 +59,7 @@ export class AdminComponent implements OnInit, OnDestroy {
       {
         label: this.translateService.instant('navbar.admin'),
         icon: 'pi pi-fw pi-shield',
-        routerLink: ['/admin'],
+        routerLink: [AdminRoutes.ADMIN],
         routerLinkActiveOptions: { exact: true },
       },
       {
@@ -62,7 +70,7 @@ export class AdminComponent implements OnInit, OnDestroy {
             visible: !!this.userProfile,
             label: this.translateService.instant('navbar.settings'),
             icon: 'pi pi-fw pi-cog',
-            disabled: true,
+            routerLink: [ProfileSettingsRoutes.PRIVATE_PROFILE_SETTINGS],
           },
           {
             visible: !!this.userProfile,
@@ -93,21 +101,25 @@ export class AdminComponent implements OnInit, OnDestroy {
                   'adminNavbar.entities.creditCardIssuers'
                 ),
                 icon: 'pi pi-fw pi-building',
-                routerLink: ['cards/credit/issuers'],
+                routerLink: [
+                  AdminCreditCardIssuersRoutes.ADMIN_CREDIT_CARD_ISSUERS,
+                ],
               },
               {
                 label: this.translateService.instant(
                   'adminNavbar.entities.creditCards'
                 ),
                 icon: 'pi pi-fw pi-credit-card',
-                routerLink: ['cards/credit/cards'],
+                routerLink: [AdminCreditCardsRoutes.ADMIN_CREDIT_CARDS],
               },
               {
                 label: this.translateService.instant(
                   'adminNavbar.entities.creditCardItems'
                 ),
                 icon: 'pi pi-fw pi-money-bill',
-                routerLink: ['cards/credit/items'],
+                routerLink: [
+                  AdminCreditCardItemsRoutes.ADMIN_CREDIT_CARD_ITEMS,
+                ],
               },
             ],
           },

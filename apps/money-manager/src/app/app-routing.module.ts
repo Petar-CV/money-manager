@@ -10,12 +10,13 @@ const routes: Routes = [
     path: '',
     component: MainContentComponent,
     children: [
-      // {
-      //   path: 'exclusive',
-      //   data: { pageTitle: 'admin.exclusive', roles: ['user'] as UserRole[] },
-      //   loadChildren: () =>
-      //     import('./components/public/exclusive/exclusive.module').then((m) => m.ExclusiveModule),
-      // },
+      {
+        path: 'private',
+        loadChildren: () =>
+          import('./components/private/private.module').then(
+            (m) => m.PrivateModule
+          ),
+      },
     ],
   },
   {
@@ -25,7 +26,7 @@ const routes: Routes = [
     loadChildren: () =>
       import('./components/admin/admin.module').then((m) => m.AdminModule),
   },
-  { path: '**', redirectTo: '', pathMatch: 'full' },
+  // { path: '**', redirectTo: '', pathMatch: 'full' }, // TODO: Implement better 404 page
 ];
 
 @NgModule({

@@ -11,6 +11,12 @@ import { KeycloakProfile } from 'keycloak-js';
 import { MenuItem } from 'primeng/api';
 import { Subscription } from 'rxjs';
 
+import {
+  AdminRoutes,
+  PrivateCreditCardItemsRoutes,
+  PrivateCreditCardsRoutes,
+  ProfileSettingsRoutes,
+} from '../../../shared/constants/routing';
 import { includesRole } from '../../../shared/utils/has-role.util';
 
 @Component({
@@ -69,12 +75,14 @@ export class MainNavbarComponent implements OnInit, OnDestroy {
           {
             label: this.translateService.instant('navbar.creditCards'),
             icon: 'pi pi-fw pi-credit-card',
-            routerLink: ['/credit-cards'],
+            routerLink: [PrivateCreditCardsRoutes.PRIVATE_CREDIT_CARDS],
           },
           {
             label: this.translateService.instant('navbar.creditCardItems'),
             icon: 'pi pi-fw pi-money-bill',
-            routerLink: ['/credit-card-items'],
+            routerLink: [
+              PrivateCreditCardItemsRoutes.PRIVATE_CREDIT_CARD_ITEMS,
+            ],
           },
         ],
       },
@@ -86,7 +94,7 @@ export class MainNavbarComponent implements OnInit, OnDestroy {
             visible: this.isLoggedIn,
             label: this.translateService.instant('navbar.settings'),
             icon: 'pi pi-fw pi-cog',
-            disabled: true,
+            routerLink: [ProfileSettingsRoutes.PRIVATE_PROFILE_SETTINGS],
           },
           {
             visible: this.isLoggedIn,
@@ -106,7 +114,7 @@ export class MainNavbarComponent implements OnInit, OnDestroy {
         visible: includesRole(this.userRoles, 'admin'),
         label: this.translateService.instant('navbar.admin'),
         icon: 'pi pi-fw pi-shield',
-        routerLink: ['/admin'],
+        routerLink: [AdminRoutes.ADMIN],
       },
     ];
 
