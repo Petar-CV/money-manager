@@ -1,0 +1,22 @@
+<p-card
+  [header]="'privateCreditCards.addCreditCardCard.title' | translate"
+  class="max-w-xs"
+  styleClass="p-card-shadow text-center hover:shadow-2xl hover:bg-gray-50 transition-all duration-300 h-full"
+>
+  <ng-template pTemplate="header">
+    <img alt="Card" src="assets/showcase/images/usercard.png" />
+    <!-- TODO: Add default empty card image -->
+  </ng-template>
+  <div>
+    <p>
+      {{ 'privateCreditCards.addCreditCardCard.cardText' | translate }}
+    </p>
+    <button
+      pButton
+      pRipple
+      type="button"
+      icon="pi pi-plus"
+      class="p-button-rounded p-button-text p-button-lg my-4"
+    ></button>
+  </div>
+</p-card>

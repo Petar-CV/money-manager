@@ -1,0 +1,16 @@
+{
+  "privateCreditCards": {
+    "addCreditCardCard": {
+      "title": "Dodajte kreditnu karticu",
+      "cardText": "Da biste započeli praćenje troškova vaše kreditne kartice, dodajte kreditnu karticu pritiskom na gumb ispod"
+    },
+    "list": {
+      "title": "Moje kreditne kartice"
+    },
+    "fields": {
+      "limit": "Limit",
+      "billingDate": "Datum računa",
+      "issuer": "Izdavatelj kartice"
+    }
+  }
+}

@@ -43,6 +43,9 @@ export class PrivateCreditCardsService {
             deletedAt: null,
             userId: user.user_id,
           },
+          include: {
+            issuer: true,
+          },
           skip: perPage && page ? perPage * (page - 1) : undefined,
           take: perPage && page ? perPage : undefined,
         }),
@@ -79,6 +82,9 @@ export class PrivateCreditCardsService {
           id: id,
           deletedAt: null,
           userId: user.user_id,
+        },
+        include: {
+          issuer: true,
         },
       });
 

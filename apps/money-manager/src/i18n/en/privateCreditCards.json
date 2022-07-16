@@ -1,0 +1,16 @@
+{
+  "privateCreditCards": {
+    "addCreditCardCard": {
+      "title": "Add credit card",
+      "cardText": "To start tracking your credit card usage, add a credit card by pressing the button below"
+    },
+    "list": {
+      "title": "My credit cards"
+    },
+    "fields": {
+      "limit": "Limit",
+      "billingDate": "Billing date",
+      "issuer": "Card issuer"
+    }
+  }
+}

@@ -1,0 +1,18 @@
+<div class="w-11/12 md:w-4/5 m-auto max-w-7xl mt-4">
+  <petar-cv-base-private-entity-title
+    text="privateCreditCards.list.title"
+  ></petar-cv-base-private-entity-title>
+
+  <div
+    class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 mb-6"
+    *ngIf="creditCards$ | async as creditCards"
+  >
+    <petar-cv-add-credit-card-card></petar-cv-add-credit-card-card>
+    <ng-container *ngIf="creditCards.length !== 0">
+      <petar-cv-credit-card-card
+        *ngFor="let creditCard of creditCards"
+        [creditCard]="creditCard"
+      ></petar-cv-credit-card-card>
+    </ng-container>
+  </div>
+</div>

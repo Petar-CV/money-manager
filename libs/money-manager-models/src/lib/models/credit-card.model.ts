@@ -1,3 +1,5 @@
+import { ICreditCardIssuer } from './credit-card-issuer.model';
+
 export interface ICreditCard {
   id?: string;
   userId: string;
@@ -9,6 +11,7 @@ export interface ICreditCard {
   updatedAt?: Date;
   deletedAt?: Date;
 
+  issuer?: Partial<ICreditCardIssuer>;
   issuerId: string;
 }
 
@@ -24,6 +27,7 @@ export class CreditCard implements ICreditCard {
   deletedAt?: Date;
 
   issuerId: string;
+  issuer?: Partial<ICreditCardIssuer>;
 
   constructor(data: ICreditCard) {
     this.id = data.id;
@@ -37,5 +41,6 @@ export class CreditCard implements ICreditCard {
     this.deletedAt = data.deletedAt;
 
     this.issuerId = data.issuerId;
+    this.issuer = data.issuer;
   }
 }
