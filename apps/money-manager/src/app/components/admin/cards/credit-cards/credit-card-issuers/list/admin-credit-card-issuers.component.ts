@@ -9,6 +9,7 @@ import { IPaginationSearchQuery } from '../../../../../../shared/models/paginati
 import { IBaseTableColumn } from '../../../../../../shared/components/base-table/models/header/base-table-column.model';
 import { IBaseTableData } from '../../../../../../shared/components/base-table/models/data/base-table-data.model';
 import { AdminCreditCardIssuersService } from '../../../../../../shared/services/entities/admin/credit-card-issuers/admin-credit-card-issuers.service';
+import { AdminCreditCardIssuersRoutes } from 'apps/money-manager/src/app/shared/constants/routing';
 
 @Component({
   selector: 'petar-cv-admin-credit-card-issuers',
@@ -43,8 +44,7 @@ export class AdminCreditCardIssuersComponent extends BasePaginationComponent {
     {
       action: {
         icon: 'pi pi-pencil',
-        // TODO: Implement routing enums!
-        route: '/admin/cards/credit/issuers',
+        route: AdminCreditCardIssuersRoutes.ADMIN_CREDIT_CARD_ISSUERS,
         type: 'navigate',
         tooltip: 'commonActions.edit',
       },

@@ -11,6 +11,7 @@ import { ICreditCardIssuer } from '@petar-cv/money-manager-models';
 
 import { AdminCreditCardIssuersService } from 'apps/money-manager/src/app/shared/services/entities/admin/credit-card-issuers/admin-credit-card-issuers.service';
 import { AdminCreditCardsService } from '../../../../../../shared/services/entities/admin/credit-cards/admin-credit-cards.service';
+import { AdminCreditCardsRoutes } from 'apps/money-manager/src/app/shared/constants/routing';
 
 @Component({
   selector: 'petar-cv-admin-credit-card-create',
@@ -49,7 +50,10 @@ export class AdminCreditCardCreateComponent {
           return;
         }
 
-        this.router.navigate(['/admin/cards/credit/cards', newCreditCard?.id]);
+        this.router.navigate([
+          AdminCreditCardsRoutes.ADMIN_CREDIT_CARDS,
+          newCreditCard?.id,
+        ]);
       });
   }
 

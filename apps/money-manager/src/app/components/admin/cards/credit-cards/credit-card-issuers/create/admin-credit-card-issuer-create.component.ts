@@ -5,6 +5,7 @@ import {
 } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { Router } from '@angular/router';
+import { AdminCreditCardIssuersRoutes } from 'apps/money-manager/src/app/shared/constants/routing';
 
 import { AdminCreditCardIssuersService } from '../../../../../../shared/services/entities/admin/credit-card-issuers/admin-credit-card-issuers.service';
 
@@ -38,7 +39,7 @@ export class AdminCreditCardIssuerCreateComponent {
         }
 
         this.router.navigate([
-          '/admin/cards/credit/issuers',
+          AdminCreditCardIssuersRoutes.ADMIN_CREDIT_CARD_ISSUERS,
           newCreditCardIssuer?.id,
         ]);
       });

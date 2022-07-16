@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import { Validators, FormBuilder } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { AdminCreditCardIssuersRoutes } from 'apps/money-manager/src/app/shared/constants/routing';
 
 import { AdminCreditCardIssuersService } from '../../../../../../shared/services/entities/admin/credit-card-issuers/admin-credit-card-issuers.service';
 
@@ -53,7 +54,9 @@ export class AdminCreditCardIssuerDetailsComponent implements OnInit {
 
             this.cdr.markForCheck();
           } else {
-            this.router.navigate(['/admin/cards/credit/issuers']);
+            this.router.navigate([
+              AdminCreditCardIssuersRoutes.ADMIN_CREDIT_CARD_ISSUERS,
+            ]);
           }
         });
     }
