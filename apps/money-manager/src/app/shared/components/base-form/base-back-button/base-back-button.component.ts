@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 @Component({
-  selector: 'petar-cv-base-admin-back-button',
+  selector: 'petar-cv-base-back-button',
   template: `
     <div class="my-4">
       <p-button
@@ -13,7 +13,7 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   `,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class BaseAdminBackButtonComponent {
+export class BaseBackButtonComponent {
   @Input()
   label = 'commonActions.goBack';
 

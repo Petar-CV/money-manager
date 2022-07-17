@@ -4,14 +4,14 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { SharedPipesModule } from '../pipes/shared-pipes.module';
 import { PrimengModule } from '../primeng.module';
-import { BaseAdminBackButtonComponent } from './base-admin-form/base-admin-back-button/base-admin-back-button.component';
+import { BaseBackButtonComponent } from './base-form/base-back-button/base-back-button.component';
 import { BasePaginationComponent } from './base-pagination/base-pagination.component';
 import { BasePrivateEntityTitleComponent } from './base-private-entity/base-private-entity-title/base-private-entity-title.component';
 import { BaseTableModule } from './base-table/base-table.module';
 
 const baseComponents = [
   BasePaginationComponent,
-  BaseAdminBackButtonComponent,
+  BaseBackButtonComponent,
   BasePrivateEntityTitleComponent,
 ];
 
