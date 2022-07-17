@@ -18,7 +18,7 @@ import { CreatePrivateCreditCardDto } from './dto/create-private-credit-card.dto
 export class PrivateCreditCardsService {
   constructor(private readonly prisma: PrismaService) {}
 
-  async findMyCreditCards(
+  async findAll(
     paginatedSortAndSearch: PaginatedSortAndSearch,
     user: IAuthenticatedUser
   ): Promise<IApiResponse<CreditCard[]>> {
@@ -72,7 +72,7 @@ export class PrivateCreditCardsService {
     }
   }
 
-  async findMyCreditCard(
+  async findOne(
     id: string,
     user: IAuthenticatedUser
   ): Promise<IApiResponse<CreditCard>> {
@@ -85,6 +85,7 @@ export class PrivateCreditCardsService {
         },
         include: {
           issuer: true,
+          items: true,
         },
       });
 

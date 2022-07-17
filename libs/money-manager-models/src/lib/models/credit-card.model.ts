@@ -1,4 +1,5 @@
 import { ICreditCardIssuer } from './credit-card-issuer.model';
+import { CreditCardItem } from './credit-card-item.model';
 
 export interface ICreditCard {
   id?: string;
@@ -13,6 +14,8 @@ export interface ICreditCard {
 
   issuer?: Partial<ICreditCardIssuer>;
   issuerId: string;
+
+  items?: CreditCardItem[];
 }
 
 export class CreditCard implements ICreditCard {
@@ -29,6 +32,8 @@ export class CreditCard implements ICreditCard {
   issuerId: string;
   issuer?: Partial<ICreditCardIssuer>;
 
+  items?: CreditCardItem[];
+
   constructor(data: ICreditCard) {
     this.id = data.id;
     this.userId = data.userId;
@@ -42,5 +47,7 @@ export class CreditCard implements ICreditCard {
 
     this.issuerId = data.issuerId;
     this.issuer = data.issuer;
+
+    this.items = data.items;
   }
 }

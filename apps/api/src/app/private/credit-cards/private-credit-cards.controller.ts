@@ -29,22 +29,19 @@ export class PrivateCreditCardsController {
   ) {}
 
   @Get('')
-  findMyCreditCards(
+  findAll(
     @Query() paginatedSortAndSearch: PaginatedSortAndSearch,
     @AuthenticatedUser() user: IAuthenticatedUser
   ): Promise<IApiResponse<CreditCard[]>> {
-    return this.privateCreditCardsService.findMyCreditCards(
-      paginatedSortAndSearch,
-      user
-    );
+    return this.privateCreditCardsService.findAll(paginatedSortAndSearch, user);
   }
 
   @Get(':id')
-  findMyCreditCard(
+  findOne(
     @Param('id') creditCardId: string,
     @AuthenticatedUser() user: IAuthenticatedUser
   ): Promise<IApiResponse<CreditCard>> {
-    return this.privateCreditCardsService.findMyCreditCard(creditCardId, user);
+    return this.privateCreditCardsService.findOne(creditCardId, user);
   }
 
   @Get(':id/items')
