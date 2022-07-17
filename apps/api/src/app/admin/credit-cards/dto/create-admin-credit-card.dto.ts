@@ -1,5 +1,5 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsDate, IsNotEmpty, IsNumber, IsString } from 'class-validator';
+import { IsNotEmpty, IsNumber, IsString, Max, Min } from 'class-validator';
 
 export class CreateAdminCreditCardDto {
   @ApiProperty({ description: 'ID of the user the card belongs to.' })
@@ -17,9 +17,13 @@ export class CreateAdminCreditCardDto {
   @IsNotEmpty()
   readonly limit: number;
 
-  @ApiProperty({ description: "Credit card's billing date." })
-  @IsDate()
-  readonly billingDate: Date;
+  @ApiProperty({
+    description: "Credit card's billing date (day of the month).",
+  })
+  @IsNumber()
+  @Min(1)
+  @Max(31)
+  readonly billingDate: number;
 
   @ApiProperty({ description: 'ID of the credit card issuer.' })
   @IsString()

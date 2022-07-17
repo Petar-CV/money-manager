@@ -9,7 +9,7 @@
     },
     "fields": {
       "limit": "Limit",
-      "billingDate": "Billing date",
+      "billingDate": "Billing day of month",
       "issuer": "Card issuer"
     }
   }

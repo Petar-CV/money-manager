@@ -61,12 +61,18 @@
         <label for="billingDate" class="block">
           {{ 'adminCreditCards.fields.billingDate' | translate }} *
         </label>
-        <p-calendar
-          id="billingDate"
+        <p-inputNumber
+          class="w-full"
           styleClass="w-full"
+          id="billingDate"
           formControlName="billingDate"
           aria-describedby="billingDate-help"
-        ></p-calendar>
+          [showButtons]="true"
+          [step]="1"
+          [min]="1"
+          [max]="31"
+          [placeholder]="'adminCreditCards.fields.billingDate' | translate"
+        ></p-inputNumber>
         <small
           id="billingDate-help"
           class="block"

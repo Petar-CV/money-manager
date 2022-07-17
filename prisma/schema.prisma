@@ -11,14 +11,14 @@ datasource db {
 }
 
 model CreditCard {
-  id          String   @id @default(uuid())
+  id          String  @id @default(uuid())
   userId      String
-  name        String   @db.VarChar(255)
-  limit       Decimal  @db.Decimal(10, 2)
-  billingDate DateTime
+  name        String  @db.VarChar(255)
+  limit       Decimal @db.Decimal(10, 2)
+  billingDate Int
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   issuer   CreditCardIssuer @relation(fields: [issuerId], references: [id])
@@ -34,8 +34,8 @@ model CreditCardIssuer {
   name String @db.VarChar(255)
   logo String @db.Text() // Base64 string
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   creditCards CreditCard[]
@@ -52,8 +52,8 @@ model CreditCardItem {
   instalments Int
   amount      Decimal  @db.Decimal(10, 2)
 
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt DateTime  @default(now())
+  updatedAt DateTime  @updatedAt
   deletedAt DateTime?
 
   card   CreditCard @relation(fields: [cardId], references: [id])

@@ -23,7 +23,7 @@ export class PrivateCreditCardCreateComponent {
   creditCardForm = this.formBuilder.nonNullable.group({
     name: ['', Validators.required],
     limit: [0, Validators.required],
-    billingDate: [new Date(), Validators.required],
+    billingDate: [1, Validators.required],
     issuerId: ['', Validators.required],
   });
 

@@ -28,7 +28,7 @@ export class AdminCreditCardDetailsComponent implements OnInit {
     name: ['', Validators.required],
     issuerId: ['', Validators.required],
     limit: [0, Validators.required],
-    billingDate: [new Date(), Validators.required],
+    billingDate: [1, Validators.required],
     createdAt: new Date(),
     updatedAt: new Date(),
     deletedAt: new Date(),
@@ -70,7 +70,6 @@ export class AdminCreditCardDetailsComponent implements OnInit {
             this.creditCardForm.patchValue({
               ...creditCard,
               issuerId: creditCard.issuerId,
-              billingDate: new Date(creditCard.billingDate),
               updatedAt: creditCard.updatedAt
                 ? new Date(creditCard.updatedAt)
                 : undefined,

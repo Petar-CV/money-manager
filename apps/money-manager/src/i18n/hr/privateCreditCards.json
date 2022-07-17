@@ -9,7 +9,7 @@
     },
     "fields": {
       "limit": "Limit",
-      "billingDate": "Datum računa",
+      "billingDate": "Dan računa u mjesecu",
       "issuer": "Izdavatelj kartice"
     }
   }

@@ -5,7 +5,7 @@ export interface ICreditCard {
   userId: string;
   name: string;
   limit: number;
-  billingDate: Date;
+  billingDate: number;
 
   createdAt?: Date;
   updatedAt?: Date;
@@ -20,7 +20,7 @@ export class CreditCard implements ICreditCard {
   userId: string;
   name: string;
   limit: number;
-  billingDate: Date;
+  billingDate: number;
 
   createdAt?: Date;
   updatedAt?: Date;

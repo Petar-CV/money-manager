@@ -3,7 +3,7 @@
     "create": "Kreirajte kreditnu karticu",
     "fields": {
       "limit": "Limit",
-      "billingDate": "Datum računa",
+      "billingDate": "Dan računa u mjesecu",
       "issuer": "Izdavatelj kartice",
       "user": "ID korisnika kartice"
     }
