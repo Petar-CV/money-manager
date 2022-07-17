@@ -16,8 +16,7 @@ type BaseEntityServiceType = 'admin' | 'private';
 
 @Injectable()
 export abstract class BaseEntityService<T> {
-  private baseURL: string;
-
+  protected baseURL: string;
   protected abstract http: HttpClient;
 
   /**

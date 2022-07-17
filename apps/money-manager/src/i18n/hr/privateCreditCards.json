@@ -10,7 +10,8 @@
     "fields": {
       "limit": "Limit",
       "billingDate": "Dan računa u mjesecu",
-      "issuer": "Izdavatelj kartice"
+      "issuer": "Izdavatelj kartice",
+      "items": "Stavke kreditne kartice"
     }
   }
 }

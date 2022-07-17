@@ -1,0 +1,27 @@
+<div>
+  <petar-cv-base-private-entity-title
+    [text]="'privateCreditCards.fields.items'"
+  ></petar-cv-base-private-entity-title>
+
+  <div class="my-4">
+    <p-button
+      [routerLink]="itemsCreateRouterLink"
+      [label]="'adminCreditCardItems.create' | translate"
+      styleClass="p-button-sm"
+      icon="pi pi-plus"
+    ></p-button>
+  </div>
+
+  <petar-cv-base-table
+    [value]="creditCardItems$"
+    [rows]="perPage"
+    [totalRecords]="totalItems"
+    (onLazyLoad)="onLazyLoad($event)"
+    [loading]="loading"
+    [tableHeaders]="tableHeaders"
+    [tableRows]="tableRows"
+    [globalSearch]="true"
+    [filterDelay]="400"
+  >
+  </petar-cv-base-table>
+</div>

@@ -10,7 +10,8 @@
     "fields": {
       "limit": "Limit",
       "billingDate": "Billing day of month",
-      "issuer": "Card issuer"
+      "issuer": "Card issuer",
+      "items": "Credit card items"
     }
   }
 }

@@ -10,6 +10,7 @@ import { AddCreditCardCardComponent } from './list/add-card/add-credit-card-card
 import { PrivateCreditCardCreateComponent } from './create/private-credit-card-create.component';
 import { PrivateCreditCardDetailsComponent } from './details/private-credit-card-details.component';
 import { PrivateCreditCardDetailsEditComponent } from './details-edit/private-credit-card-details-edit.component';
+import { PrivateCreditCardItemsTableComponent } from './details/items-table/private-credit-card-items-table.component';
 
 const adminCreditCardsRoutes: Routes = [
   {
@@ -46,6 +47,7 @@ const adminCreditCardsRoutes: Routes = [
     PrivateCreditCardCreateComponent,
     PrivateCreditCardDetailsComponent,
     PrivateCreditCardDetailsEditComponent,
+    PrivateCreditCardItemsTableComponent,
   ],
   imports: [
     SharedModule,
