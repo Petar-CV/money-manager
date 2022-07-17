@@ -7,6 +7,7 @@ import {
   Post,
   Put,
   Query,
+  Request,
 } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
 import { CreditCard, CreditCardItem } from '@prisma/client';
@@ -18,6 +19,7 @@ import { PrivateCreditCardsService } from './private-credit-cards.service';
 import { IAuthenticatedUser } from '../../../models/keycloak/authenticated-user.model';
 import { CreatePrivateCreditCardDto } from './dto/create-private-credit-card.dto';
 import { UpdatePrivateCreditCardDto } from './dto/update-private-credit-card.dto';
+import { IRequestForLogging } from 'apps/api/src/models/errors/request-for-logging.model';
 
 @ApiTags('Private - Credit cards')
 @ApiBearerAuth()
@@ -30,27 +32,35 @@ export class PrivateCreditCardsController {
 
   @Get('')
   findAll(
+    @Request() req: IRequestForLogging,
     @Query() paginatedSortAndSearch: PaginatedSortAndSearch,
     @AuthenticatedUser() user: IAuthenticatedUser
   ): Promise<IApiResponse<CreditCard[]>> {
-    return this.privateCreditCardsService.findAll(paginatedSortAndSearch, user);
+    return this.privateCreditCardsService.findAll(
+      req,
+      paginatedSortAndSearch,
+      user
+    );
   }
 
   @Get(':id')
   findOne(
+    @Request() req: IRequestForLogging,
     @Param('id') creditCardId: string,
     @AuthenticatedUser() user: IAuthenticatedUser
   ): Promise<IApiResponse<CreditCard>> {
-    return this.privateCreditCardsService.findOne(creditCardId, user);
+    return this.privateCreditCardsService.findOne(req, creditCardId, user);
   }
 
   @Get(':id/items')
   findAllItemsForMyCreditCard(
+    @Request() req: IRequestForLogging,
     @Query() paginatedSortAndSearch: PaginatedSortAndSearch,
     @Param('id') creditCardId: string,
     @AuthenticatedUser() user: IAuthenticatedUser
   ): Promise<IApiResponse<CreditCardItem[]>> {
     return this.privateCreditCardsService.findAllItemsForMyCreditCard(
+      req,
       paginatedSortAndSearch,
       creditCardId,
       user
@@ -59,19 +69,26 @@ export class PrivateCreditCardsController {
 
   @Post()
   create(
+    @Request() req: IRequestForLogging,
     @Body() createCreditCardDto: CreatePrivateCreditCardDto,
     @AuthenticatedUser() user: IAuthenticatedUser
   ): Promise<IApiResponse<CreditCard>> {
-    return this.privateCreditCardsService.create(createCreditCardDto, user);
+    return this.privateCreditCardsService.create(
+      req,
+      createCreditCardDto,
+      user
+    );
   }
 
   @Put(':id')
   update(
+    @Request() req: IRequestForLogging,
     @Param('id') creditCardId: string,
     @Body() updatePrivateCreditCardDto: UpdatePrivateCreditCardDto,
     @AuthenticatedUser() user: IAuthenticatedUser
   ): Promise<IApiResponse<CreditCard>> {
     return this.privateCreditCardsService.update(
+      req,
       creditCardId,
       updatePrivateCreditCardDto,
       user
@@ -80,9 +97,10 @@ export class PrivateCreditCardsController {
 
   @Delete(':id')
   remove(
+    @Request() req: IRequestForLogging,
     @Param('id') creditCardId: string,
     @AuthenticatedUser() user: IAuthenticatedUser
   ): Promise<IApiResponse> {
-    return this.privateCreditCardsService.remove(creditCardId, user);
+    return this.privateCreditCardsService.remove(req, creditCardId, user);
   }
 }

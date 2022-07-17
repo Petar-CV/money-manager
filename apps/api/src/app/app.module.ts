@@ -10,6 +10,8 @@ import {
 import { PrismaModule } from '../prisma/prisma.module';
 import { AdminModule } from './admin/admin.module';
 import { PrivateModule } from './private/private.module';
+import { KafkaModule } from './shared/modules/kafka/kafka.module';
+import { ExceptionLoggerService } from './shared/services/exception-logger/exception-logger.service';
 
 @Module({
   imports: [
@@ -20,6 +22,7 @@ import { PrivateModule } from './private/private.module';
       secret: 'egB3Ds59Ah1sMasVB4DzJJ6FElRLmjak', // TODO: Implement environment variable
     }),
     PrismaModule,
+    KafkaModule,
     PrivateModule,
     AdminModule,
   ],
@@ -51,6 +54,7 @@ import { PrivateModule } from './private/private.module';
       provide: APP_GUARD,
       useClass: RoleGuard,
     },
+    ExceptionLoggerService,
   ],
 })
 export class AppModule {}

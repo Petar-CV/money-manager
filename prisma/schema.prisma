@@ -62,3 +62,16 @@ model CreditCardItem {
 
   @@map("credit_card_items")
 }
+
+model Exception {
+  id       String  @id @default(uuid())
+  userId   String
+  endpoint String  @db.Text()
+  message  String? @db.Text()
+  params   String? @db.Text()
+  query    String? @db.Text()
+
+  createdAt DateTime @default(now())
+
+  @@map("exceptions")
+}
