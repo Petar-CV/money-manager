@@ -12,12 +12,20 @@ import { CreateAdminCreditCardIssuerDto } from './dto/create-admin-credit-card-i
 import { UpdateAdminCreditCardIssuerDto } from './dto/update-admin-credit-card-issuer.dto';
 import { PrismaService } from '../../../prisma/prisma.service';
 import { AdminCreditCardIssuersResponses } from './responses/admin-credit-card-issuers-responses';
+import { KafkaProducerService } from '../../shared/modules/kafka/kafka-producer.service';
+import { IRequestForLogging } from 'apps/api/src/models/errors/request-for-logging.model';
+import { KafkaTopics } from '../../shared/constants/kafka-topics.constants';
+import { createExceptionFromRequest } from '../../shared/utils/exception-from-request.util';
 
 @Injectable()
 export class AdminCreditCardIssuersService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly kafkaProducerService: KafkaProducerService
+  ) {}
 
   async findAll(
+    req: IRequestForLogging,
     paginatedSortAndSearch: PaginatedSortAndSearch
   ): Promise<IApiResponse<CreditCardIssuer[]>> {
     try {
@@ -55,17 +63,27 @@ export class AdminCreditCardIssuersService {
         data: creditCardIssuers,
         totalItems: count,
       };
-    } catch (e) {
-      // TODO: Turn this into error response
-      // TODO: Save into exception log table
-      console.log(e);
+    } catch (exception) {
+      const exceptionLog = createExceptionFromRequest(req, exception);
+
+      this.kafkaProducerService.produce({
+        topic: KafkaTopics.EXCEPTION_LOGGER,
+        messages: [
+          {
+            value: JSON.stringify(exceptionLog),
+          },
+        ],
+      });
+
       return {
         message: CommonResponses.SERVER_ERROR,
       };
     }
   }
 
-  async findAllLov(): Promise<IApiResponse<Partial<CreditCardIssuer>[]>> {
+  async findAllLov(
+    req: IRequestForLogging
+  ): Promise<IApiResponse<Partial<CreditCardIssuer>[]>> {
     try {
       const creditCardIssuers = await this.prisma.creditCardIssuer.findMany({
         select: {
@@ -80,17 +98,28 @@ export class AdminCreditCardIssuersService {
       return {
         data: creditCardIssuers,
       };
-    } catch (e) {
-      // TODO: Turn this into error response
-      // TODO: Save into exception log table
-      console.log(e);
+    } catch (exception) {
+      const exceptionLog = createExceptionFromRequest(req, exception);
+
+      this.kafkaProducerService.produce({
+        topic: KafkaTopics.EXCEPTION_LOGGER,
+        messages: [
+          {
+            value: JSON.stringify(exceptionLog),
+          },
+        ],
+      });
+
       return {
         message: CommonResponses.SERVER_ERROR,
       };
     }
   }
 
-  async findOne(id: string): Promise<IApiResponse<CreditCardIssuer>> {
+  async findOne(
+    req: IRequestForLogging,
+    id: string
+  ): Promise<IApiResponse<CreditCardIssuer>> {
     try {
       const creditCardIssuer = await this.prisma.creditCardIssuer.findFirst({
         where: {
@@ -102,10 +131,18 @@ export class AdminCreditCardIssuersService {
       return {
         data: creditCardIssuer,
       };
-    } catch (e) {
-      // TODO: Turn this into error response
-      // TODO: Save into exception log table
-      console.log(e);
+    } catch (exception) {
+      const exceptionLog = createExceptionFromRequest(req, exception);
+
+      this.kafkaProducerService.produce({
+        topic: KafkaTopics.EXCEPTION_LOGGER,
+        messages: [
+          {
+            value: JSON.stringify(exceptionLog),
+          },
+        ],
+      });
+
       return {
         message: CommonResponses.SERVER_ERROR,
       };
@@ -113,6 +150,7 @@ export class AdminCreditCardIssuersService {
   }
 
   async create(
+    req: IRequestForLogging,
     createAdminCreditCardIssuerDto: CreateAdminCreditCardIssuerDto
   ): Promise<IApiResponse<CreditCardIssuer>> {
     try {
@@ -128,10 +166,18 @@ export class AdminCreditCardIssuersService {
         message: AdminCreditCardIssuersResponses.CREATED,
         param: creditCardIssuer.id,
       };
-    } catch (e) {
-      // TODO: Turn this into error response
-      // TODO: Save into exception log table
-      console.log(e);
+    } catch (exception) {
+      const exceptionLog = createExceptionFromRequest(req, exception);
+
+      this.kafkaProducerService.produce({
+        topic: KafkaTopics.EXCEPTION_LOGGER,
+        messages: [
+          {
+            value: JSON.stringify(exceptionLog),
+          },
+        ],
+      });
+
       return {
         message: CommonResponses.SERVER_ERROR,
       };
@@ -139,6 +185,7 @@ export class AdminCreditCardIssuersService {
   }
 
   async update(
+    req: IRequestForLogging,
     id: string,
     updateAdminCreditCardIssuerDto: UpdateAdminCreditCardIssuerDto
   ): Promise<IApiResponse<CreditCardIssuer>> {
@@ -159,17 +206,25 @@ export class AdminCreditCardIssuersService {
         message: AdminCreditCardIssuersResponses.UPDATED,
         param: creditCardIssuer.id,
       };
-    } catch (e) {
-      // TODO: Turn this into error response
-      // TODO: Save into exception log table
-      console.log(e);
+    } catch (exception) {
+      const exceptionLog = createExceptionFromRequest(req, exception);
+
+      this.kafkaProducerService.produce({
+        topic: KafkaTopics.EXCEPTION_LOGGER,
+        messages: [
+          {
+            value: JSON.stringify(exceptionLog),
+          },
+        ],
+      });
+
       return {
         message: CommonResponses.SERVER_ERROR,
       };
     }
   }
 
-  async remove(id: string): Promise<IApiResponse> {
+  async remove(req: IRequestForLogging, id: string): Promise<IApiResponse> {
     try {
       await this.prisma.creditCardIssuer.update({
         where: {
@@ -184,10 +239,18 @@ export class AdminCreditCardIssuersService {
         message: AdminCreditCardIssuersResponses.DELETED,
         param: id,
       };
-    } catch (e) {
-      // TODO: Turn this into error response
-      // TODO: Save into exception log table
-      console.log(e);
+    } catch (exception) {
+      const exceptionLog = createExceptionFromRequest(req, exception);
+
+      this.kafkaProducerService.produce({
+        topic: KafkaTopics.EXCEPTION_LOGGER,
+        messages: [
+          {
+            value: JSON.stringify(exceptionLog),
+          },
+        ],
+      });
+
       return {
         message: CommonResponses.SERVER_ERROR,
       };

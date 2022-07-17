@@ -12,12 +12,20 @@ import { CreateAdminCreditCardDto } from './dto/create-admin-credit-card.dto';
 import { UpdateAdminCreditCardDto } from './dto/update-admin-credit-card.dto';
 import { PrismaService } from '../../../prisma/prisma.service';
 import { AdminCreditCardsResponses } from './responses/admin-credit-cards-responses';
+import { KafkaTopics } from '../../shared/constants/kafka-topics.constants';
+import { createExceptionFromRequest } from '../../shared/utils/exception-from-request.util';
+import { KafkaProducerService } from '../../shared/modules/kafka/kafka-producer.service';
+import { IRequestForLogging } from 'apps/api/src/models/errors/request-for-logging.model';
 
 @Injectable()
 export class AdminCreditCardsService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly kafkaProducerService: KafkaProducerService
+  ) {}
 
   async findAll(
+    req: IRequestForLogging,
     paginatedSortAndSearch: PaginatedSortAndSearch
   ): Promise<IApiResponse<CreditCard[]>> {
     try {
@@ -55,17 +63,28 @@ export class AdminCreditCardsService {
         data: creditCards,
         totalItems: count,
       };
-    } catch (e) {
-      // TODO: Turn this into error response
-      // TODO: Save into exception log table
-      console.log(e);
+    } catch (exception) {
+      const exceptionLog = createExceptionFromRequest(req, exception);
+
+      this.kafkaProducerService.produce({
+        topic: KafkaTopics.EXCEPTION_LOGGER,
+        messages: [
+          {
+            value: JSON.stringify(exceptionLog),
+          },
+        ],
+      });
+
       return {
         message: CommonResponses.SERVER_ERROR,
       };
     }
   }
 
-  async findOne(id: string): Promise<IApiResponse<CreditCard>> {
+  async findOne(
+    req: IRequestForLogging,
+    id: string
+  ): Promise<IApiResponse<CreditCard>> {
     try {
       const creditCard = await this.prisma.creditCard.findFirst({
         where: {
@@ -77,10 +96,18 @@ export class AdminCreditCardsService {
       return {
         data: creditCard,
       };
-    } catch (e) {
-      // TODO: Turn this into error response
-      // TODO: Save into exception log table
-      console.log(e);
+    } catch (exception) {
+      const exceptionLog = createExceptionFromRequest(req, exception);
+
+      this.kafkaProducerService.produce({
+        topic: KafkaTopics.EXCEPTION_LOGGER,
+        messages: [
+          {
+            value: JSON.stringify(exceptionLog),
+          },
+        ],
+      });
+
       return {
         message: CommonResponses.SERVER_ERROR,
       };
@@ -88,6 +115,7 @@ export class AdminCreditCardsService {
   }
 
   async findAllItemsForCreditCard(
+    req: IRequestForLogging,
     paginatedSortAndSearch: PaginatedSortAndSearch,
     id: string
   ): Promise<IApiResponse<CreditCardItem[]>> {
@@ -128,10 +156,18 @@ export class AdminCreditCardsService {
         data: creditCardItems,
         totalItems: count,
       };
-    } catch (e) {
-      // TODO: Turn this into error response
-      // TODO: Save into exception log table
-      console.log(e);
+    } catch (exception) {
+      const exceptionLog = createExceptionFromRequest(req, exception);
+
+      this.kafkaProducerService.produce({
+        topic: KafkaTopics.EXCEPTION_LOGGER,
+        messages: [
+          {
+            value: JSON.stringify(exceptionLog),
+          },
+        ],
+      });
+
       return {
         message: CommonResponses.SERVER_ERROR,
       };
@@ -139,6 +175,7 @@ export class AdminCreditCardsService {
   }
 
   async create(
+    req: IRequestForLogging,
     createAdminCreditCardDto: CreateAdminCreditCardDto
   ): Promise<IApiResponse<CreditCard>> {
     try {
@@ -161,10 +198,18 @@ export class AdminCreditCardsService {
         message: AdminCreditCardsResponses.CREATED,
         param: creditCard.id,
       };
-    } catch (e) {
-      // TODO: Turn this into error response
-      // TODO: Save into exception log table
-      console.log(e);
+    } catch (exception) {
+      const exceptionLog = createExceptionFromRequest(req, exception);
+
+      this.kafkaProducerService.produce({
+        topic: KafkaTopics.EXCEPTION_LOGGER,
+        messages: [
+          {
+            value: JSON.stringify(exceptionLog),
+          },
+        ],
+      });
+
       return {
         message: CommonResponses.SERVER_ERROR,
       };
@@ -172,6 +217,7 @@ export class AdminCreditCardsService {
   }
 
   async update(
+    req: IRequestForLogging,
     id: string,
     updateAdminCreditCardDto: UpdateAdminCreditCardDto
   ): Promise<IApiResponse<CreditCard>> {
@@ -199,17 +245,25 @@ export class AdminCreditCardsService {
         message: AdminCreditCardsResponses.UPDATED,
         param: creditCard.id,
       };
-    } catch (e) {
-      // TODO: Turn this into error response
-      // TODO: Save into exception log table
-      console.log(e);
+    } catch (exception) {
+      const exceptionLog = createExceptionFromRequest(req, exception);
+
+      this.kafkaProducerService.produce({
+        topic: KafkaTopics.EXCEPTION_LOGGER,
+        messages: [
+          {
+            value: JSON.stringify(exceptionLog),
+          },
+        ],
+      });
+
       return {
         message: CommonResponses.SERVER_ERROR,
       };
     }
   }
 
-  async remove(id: string): Promise<IApiResponse> {
+  async remove(req: IRequestForLogging, id: string): Promise<IApiResponse> {
     try {
       await this.prisma.creditCard.update({
         where: {
@@ -224,10 +278,18 @@ export class AdminCreditCardsService {
         message: AdminCreditCardsResponses.DELETED,
         param: id,
       };
-    } catch (e) {
-      // TODO: Turn this into error response
-      // TODO: Save into exception log table
-      console.log(e);
+    } catch (exception) {
+      const exceptionLog = createExceptionFromRequest(req, exception);
+
+      this.kafkaProducerService.produce({
+        topic: KafkaTopics.EXCEPTION_LOGGER,
+        messages: [
+          {
+            value: JSON.stringify(exceptionLog),
+          },
+        ],
+      });
+
       return {
         message: CommonResponses.SERVER_ERROR,
       };

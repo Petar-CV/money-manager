@@ -9,12 +9,20 @@ import {
 import { createGlobalFilter } from '@petar-cv/prisma-utils';
 
 import { PrismaService } from '../../../prisma/prisma.service';
+import { KafkaTopics } from '../../shared/constants/kafka-topics.constants';
+import { createExceptionFromRequest } from '../../shared/utils/exception-from-request.util';
+import { IRequestForLogging } from 'apps/api/src/models/errors/request-for-logging.model';
+import { KafkaProducerService } from '../../shared/modules/kafka/kafka-producer.service';
 
 @Injectable()
 export class PrivateCreditCardIssuersService {
-  constructor(private readonly prisma: PrismaService) {}
+  constructor(
+    private readonly prisma: PrismaService,
+    private readonly kafkaProducerService: KafkaProducerService
+  ) {}
 
   async findAll(
+    req: IRequestForLogging,
     paginatedSortAndSearch: PaginatedSortAndSearch
   ): Promise<IApiResponse<CreditCardIssuer[]>> {
     try {
@@ -52,17 +60,27 @@ export class PrivateCreditCardIssuersService {
         data: creditCardIssuers,
         totalItems: count,
       };
-    } catch (e) {
-      // TODO: Turn this into error response
-      // TODO: Save into exception log table
-      console.log(e);
+    } catch (exception) {
+      const exceptionLog = createExceptionFromRequest(req, exception);
+
+      this.kafkaProducerService.produce({
+        topic: KafkaTopics.EXCEPTION_LOGGER,
+        messages: [
+          {
+            value: JSON.stringify(exceptionLog),
+          },
+        ],
+      });
+
       return {
         message: CommonResponses.SERVER_ERROR,
       };
     }
   }
 
-  async findAllLov(): Promise<IApiResponse<Partial<CreditCardIssuer>[]>> {
+  async findAllLov(
+    req: IRequestForLogging
+  ): Promise<IApiResponse<Partial<CreditCardIssuer>[]>> {
     try {
       const creditCardIssuers = await this.prisma.creditCardIssuer.findMany({
         select: {
@@ -77,17 +95,28 @@ export class PrivateCreditCardIssuersService {
       return {
         data: creditCardIssuers,
       };
-    } catch (e) {
-      // TODO: Turn this into error response
-      // TODO: Save into exception log table
-      console.log(e);
+    } catch (exception) {
+      const exceptionLog = createExceptionFromRequest(req, exception);
+
+      this.kafkaProducerService.produce({
+        topic: KafkaTopics.EXCEPTION_LOGGER,
+        messages: [
+          {
+            value: JSON.stringify(exceptionLog),
+          },
+        ],
+      });
+
       return {
         message: CommonResponses.SERVER_ERROR,
       };
     }
   }
 
-  async findOne(id: string): Promise<IApiResponse<CreditCardIssuer>> {
+  async findOne(
+    req: IRequestForLogging,
+    id: string
+  ): Promise<IApiResponse<CreditCardIssuer>> {
     try {
       const creditCardIssuer = await this.prisma.creditCardIssuer.findFirst({
         where: {
@@ -99,10 +128,18 @@ export class PrivateCreditCardIssuersService {
       return {
         data: creditCardIssuer,
       };
-    } catch (e) {
-      // TODO: Turn this into error response
-      // TODO: Save into exception log table
-      console.log(e);
+    } catch (exception) {
+      const exceptionLog = createExceptionFromRequest(req, exception);
+
+      this.kafkaProducerService.produce({
+        topic: KafkaTopics.EXCEPTION_LOGGER,
+        messages: [
+          {
+            value: JSON.stringify(exceptionLog),
+          },
+        ],
+      });
+
       return {
         message: CommonResponses.SERVER_ERROR,
       };
