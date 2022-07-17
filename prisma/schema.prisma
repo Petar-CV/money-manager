@@ -15,6 +15,7 @@ model CreditCard {
   userId      String
   name        String  @db.VarChar(255)
   limit       Decimal @db.Decimal(10, 2)
+  // TODO: Add limitType (limit by month or altogether)
   billingDate Int
 
   createdAt DateTime  @default(now())
