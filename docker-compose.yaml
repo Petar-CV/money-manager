@@ -12,9 +12,9 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: keycloak
-      POSTGRES_USER: keycloak # TODO: Change to enviroment variable
-      POSTGRES_PASSWORD: password # TODO: Change to enviroment variable
+      POSTGRES_DB: ${KEYCLOAK_POSTGRES_DB}
+      POSTGRES_USER: ${KEYCLOAK_POSTGRES_USER}
+      POSTGRES_PASSWORD: ${KEYCLOAK_POSTGRES_PASSWORD}
     ports:
       - 5433:5432
   mm-postgres:
@@ -22,22 +22,22 @@ services:
     volumes:
       - mm-postgres:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: money-manager
-      POSTGRES_USER: money-manager # TODO: Change to enviroment variable
-      POSTGRES_PASSWORD: somepass123 # TODO: Change to enviroment variable
+      POSTGRES_DB: ${POSTGRES_DB}
+      POSTGRES_USER: ${POSTGRES_USER}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - 5434:5432
   keycloak:
     image: jboss/keycloak:16.1.1
     environment:
       DB_VENDOR: POSTGRES
-      DB_ADDR: keycloak-postgres # <<< This is the address, change it to your external db ip/domain
-      DB_DATABASE: keycloak
-      DB_USER: keycloak # TODO: Change to enviroment variable
-      DB_SCHEMA: public # TODO: Change to enviroment variable
-      DB_PASSWORD: password # TODO: Change to enviroment variable
-      KEYCLOAK_USER: admin # TODO: Change to enviroment variable
-      KEYCLOAK_PASSWORD: password # TODO: Change to enviroment variable
+      DB_ADDR: ${KEYCLOAK_DB_ADDR}
+      DB_DATABASE: ${KEYCLOAK_DB_DATABASE}
+      DB_USER: ${KEYCLOAK_DB_USER}
+      DB_SCHEMA: ${KEYCLOAK_DB_SCHEMA}
+      DB_PASSWORD: ${KEYCLOAK_DB_PASSWORD}
+      KEYCLOAK_USER: ${KEYCLOAK_USER}
+      KEYCLOAK_PASSWORD: ${KEYCLOAK_PASSWORD}
       # KEYCLOAK_LOGLEVEL: DEBUG
       # ROOT_LOGLEVEL: DEBUG
     ports:
