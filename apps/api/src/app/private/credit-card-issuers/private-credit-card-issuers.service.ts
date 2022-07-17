@@ -62,6 +62,31 @@ export class PrivateCreditCardIssuersService {
     }
   }
 
+  async findAllLov(): Promise<IApiResponse<Partial<CreditCardIssuer>[]>> {
+    try {
+      const creditCardIssuers = await this.prisma.creditCardIssuer.findMany({
+        select: {
+          id: true,
+          name: true,
+        },
+        where: {
+          deletedAt: null,
+        },
+      });
+
+      return {
+        data: creditCardIssuers,
+      };
+    } catch (e) {
+      // TODO: Turn this into error response
+      // TODO: Save into exception log table
+      console.log(e);
+      return {
+        message: CommonResponses.SERVER_ERROR,
+      };
+    }
+  }
+
   async findOne(id: string): Promise<IApiResponse<CreditCardIssuer>> {
     try {
       const creditCardIssuer = await this.prisma.creditCardIssuer.findFirst({

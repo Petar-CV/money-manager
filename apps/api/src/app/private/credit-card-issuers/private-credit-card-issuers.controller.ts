@@ -23,6 +23,11 @@ export class PrivateCreditCardIssuersController {
     return this.privateCreditCardIssuersService.findAll(paginatedSortAndSearch);
   }
 
+  @Get('lov')
+  findAllLov(): Promise<IApiResponse<Partial<CreditCardIssuer>[]>> {
+    return this.privateCreditCardIssuersService.findAllLov();
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string): Promise<IApiResponse<CreditCardIssuer>> {
     return this.privateCreditCardIssuersService.findOne(id);

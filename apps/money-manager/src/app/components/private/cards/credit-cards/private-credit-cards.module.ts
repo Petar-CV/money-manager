@@ -7,16 +7,17 @@ import { PrivateCreditCardsOutletComponent } from './private-credit-cards-outlet
 import { PrivateCreditCardsComponent } from './list/private-credit-cards.component';
 import { CreditCardCardComponent } from './list/card/credit-card-card.component';
 import { AddCreditCardCardComponent } from './list/add-card/add-credit-card-card.component';
+import { PrivateCreditCardCreateComponent } from './create/private-credit-card-create.component';
 
 const adminCreditCardsRoutes: Routes = [
   {
     path: '',
     component: PrivateCreditCardsOutletComponent,
     children: [
-      // {
-      //   path: 'create',
-      //   component: PrivateCreditCardCreateComponent,
-      // },
+      {
+        path: 'create',
+        component: PrivateCreditCardCreateComponent,
+      },
       // {
       //   path: ':id',
       //   component: PrivateCreditCardDetailsComponent,
@@ -36,6 +37,7 @@ const adminCreditCardsRoutes: Routes = [
     PrivateCreditCardsComponent,
     CreditCardCardComponent,
     AddCreditCardCardComponent,
+    PrivateCreditCardCreateComponent,
   ],
   imports: [
     SharedModule,
