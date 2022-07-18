@@ -8,11 +8,11 @@ import {
 } from '@petar-cv/api-interfaces';
 import { createGlobalFilter } from '@petar-cv/prisma-utils';
 
-import { PrismaService } from '../../../prisma/prisma.service';
-import { KafkaTopics } from '../../shared/constants/kafka-topics.constants';
-import { createExceptionFromRequest } from '../../shared/utils/exception-from-request.util';
+import { PrismaService } from '../../../../prisma/prisma.service';
+import { KafkaTopics } from '../../../shared/constants/kafka-topics.constants';
+import { createExceptionFromRequest } from '../../../shared/utils/exception-from-request.util';
 import { IRequestForLogging } from 'apps/api/src/models/errors/request-for-logging.model';
-import { KafkaProducerService } from '../../shared/modules/kafka/kafka-producer.service';
+import { KafkaProducerService } from '../../../shared/modules/kafka/kafka-producer.service';
 
 @Injectable()
 export class PrivateCreditCardIssuersService {

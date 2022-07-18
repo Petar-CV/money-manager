@@ -8,27 +8,25 @@ import {
 } from '@petar-cv/api-interfaces';
 import { createGlobalFilter } from '@petar-cv/prisma-utils';
 
-import { PrismaService } from '../../../prisma/prisma.service';
-import { IAuthenticatedUser } from '../../../models/keycloak/authenticated-user.model';
-import { PrivateCreditCardItemsResponses } from './responses/private-credit-card-items-responses';
-import { UpdatePrivateCreditCardItemDto } from './dto/update-private-credit-card-item.dto';
-import { CreatePrivateCreditCardItemDto } from './dto/create-private-credit-card-item.dto';
+import { PrismaService } from '../../../../prisma/prisma.service';
+import { AdminCreditCardItemsResponses } from './responses/admin-credit-card-items-responses';
+import { UpdateAdminCreditCardItemDto } from './dto/update-admin-credit-card-item.dto';
+import { CreateAdminCreditCardItemDto } from './dto/create-admin-credit-card-item.dto';
+import { createExceptionFromRequest } from '../../../shared/utils/exception-from-request.util';
+import { KafkaTopics } from '../../../shared/constants/kafka-topics.constants';
+import { KafkaProducerService } from '../../../shared/modules/kafka/kafka-producer.service';
 import { IRequestForLogging } from 'apps/api/src/models/errors/request-for-logging.model';
-import { createExceptionFromRequest } from '../../shared/utils/exception-from-request.util';
-import { KafkaTopics } from '../../shared/constants/kafka-topics.constants';
-import { KafkaProducerService } from '../../shared/modules/kafka/kafka-producer.service';
 
 @Injectable()
-export class PrivateCreditCardItemsService {
+export class AdminCreditCardItemsService {
   constructor(
     private readonly prisma: PrismaService,
     private readonly kafkaProducerService: KafkaProducerService
   ) {}
 
-  async findMyCreditCardItems(
+  async findAll(
     req: IRequestForLogging,
-    paginatedSortAndSearch: PaginatedSortAndSearch,
-    user: IAuthenticatedUser
+    paginatedSortAndSearch: PaginatedSortAndSearch
   ): Promise<IApiResponse<CreditCardItem[]>> {
     try {
       const { page, perPage, search } = paginatedSortAndSearch;
@@ -50,7 +48,6 @@ export class PrivateCreditCardItemsService {
           where: {
             OR: filter,
             deletedAt: null,
-            userId: user.user_id,
           },
           skip: perPage && page ? perPage * (page - 1) : undefined,
           take: perPage && page ? perPage : undefined,
@@ -59,7 +56,6 @@ export class PrivateCreditCardItemsService {
           where: {
             OR: filter,
             deletedAt: null,
-            userId: user.user_id,
           },
         }),
       ]);
@@ -86,17 +82,15 @@ export class PrivateCreditCardItemsService {
     }
   }
 
-  async findMyCreditCard(
+  async findOne(
     req: IRequestForLogging,
-    id: string,
-    user: IAuthenticatedUser
+    id: string
   ): Promise<IApiResponse<CreditCardItem>> {
     try {
       const creditCardItem = await this.prisma.creditCardItem.findFirst({
         where: {
           id: id,
           deletedAt: null,
-          userId: user.user_id,
         },
       });
 
@@ -123,8 +117,7 @@ export class PrivateCreditCardItemsService {
 
   async create(
     req: IRequestForLogging,
-    createCreditCardDto: CreatePrivateCreditCardItemDto,
-    user: IAuthenticatedUser
+    createCreditCardDto: CreateAdminCreditCardItemDto
   ): Promise<IApiResponse<CreditCardItem>> {
     try {
       const creditCardItem = await this.prisma.creditCardItem.create({
@@ -134,7 +127,7 @@ export class PrivateCreditCardItemsService {
           amount: createCreditCardDto.amount,
           instalments: createCreditCardDto.instalments,
           description: createCreditCardDto.description,
-          userId: user.user_id,
+          userId: createCreditCardDto.userId,
           card: {
             connect: {
               id: createCreditCardDto.cardId,
@@ -145,7 +138,7 @@ export class PrivateCreditCardItemsService {
 
       return {
         data: creditCardItem,
-        message: PrivateCreditCardItemsResponses.CREATED,
+        message: AdminCreditCardItemsResponses.CREATED,
         param: creditCardItem.id,
       };
     } catch (exception) {
@@ -169,8 +162,7 @@ export class PrivateCreditCardItemsService {
   async update(
     req: IRequestForLogging,
     id: string,
-    updateCreditCardDto: UpdatePrivateCreditCardItemDto,
-    user: IAuthenticatedUser
+    updateCreditCardDto: UpdateAdminCreditCardItemDto
   ): Promise<IApiResponse<CreditCardItem>> {
     try {
       const creditCardItem = await this.prisma.creditCardItem.update({
@@ -183,7 +175,7 @@ export class PrivateCreditCardItemsService {
           amount: updateCreditCardDto.amount,
           instalments: updateCreditCardDto.instalments,
           description: updateCreditCardDto.description,
-          userId: user.user_id,
+          userId: updateCreditCardDto.userId,
           card: {
             connect: {
               id: updateCreditCardDto.cardId,
@@ -194,7 +186,7 @@ export class PrivateCreditCardItemsService {
 
       return {
         data: creditCardItem,
-        message: PrivateCreditCardItemsResponses.UPDATED,
+        message: AdminCreditCardItemsResponses.UPDATED,
         param: creditCardItem.id,
       };
     } catch (exception) {
@@ -215,16 +207,11 @@ export class PrivateCreditCardItemsService {
     }
   }
 
-  async remove(
-    req: IRequestForLogging,
-    id: string,
-    user: IAuthenticatedUser
-  ): Promise<IApiResponse> {
+  async remove(req: IRequestForLogging, id: string): Promise<IApiResponse> {
     try {
       await this.prisma.creditCardItem.updateMany({
         where: {
           id: id,
-          userId: user.user_id,
         },
         data: {
           deletedAt: new Date(),
@@ -232,7 +219,7 @@ export class PrivateCreditCardItemsService {
       });
 
       return {
-        message: PrivateCreditCardItemsResponses.DELETED,
+        message: AdminCreditCardItemsResponses.DELETED,
         param: id,
       };
     } catch (exception) {

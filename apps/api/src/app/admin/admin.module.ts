@@ -1,14 +1,8 @@
 import { Module } from '@nestjs/common';
 
-import { AdminCreditCardIssuersModule } from './credit-card-issuers/admin-credit-card-issuers.module';
-import { AdminCreditCardItemsModule } from './credit-card-items/admin-credit-card-items.module';
-import { AdminCreditCardsModule } from './credit-cards/admin-credit-cards.module';
+import { AdminCreditCardsFullModule } from './credit-cards/admin-credit-cards-full.module';
 
-const adminModules = [
-  AdminCreditCardIssuersModule,
-  AdminCreditCardsModule,
-  AdminCreditCardItemsModule,
-];
+const adminModules = [AdminCreditCardsFullModule];
 
 @Module({
   imports: adminModules,

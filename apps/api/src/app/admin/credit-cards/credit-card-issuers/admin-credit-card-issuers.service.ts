@@ -10,12 +10,12 @@ import { createGlobalFilter } from '@petar-cv/prisma-utils';
 
 import { CreateAdminCreditCardIssuerDto } from './dto/create-admin-credit-card-issuer.dto';
 import { UpdateAdminCreditCardIssuerDto } from './dto/update-admin-credit-card-issuer.dto';
-import { PrismaService } from '../../../prisma/prisma.service';
+import { PrismaService } from '../../../../prisma/prisma.service';
 import { AdminCreditCardIssuersResponses } from './responses/admin-credit-card-issuers-responses';
-import { KafkaProducerService } from '../../shared/modules/kafka/kafka-producer.service';
+import { KafkaProducerService } from '../../../shared/modules/kafka/kafka-producer.service';
 import { IRequestForLogging } from 'apps/api/src/models/errors/request-for-logging.model';
-import { KafkaTopics } from '../../shared/constants/kafka-topics.constants';
-import { createExceptionFromRequest } from '../../shared/utils/exception-from-request.util';
+import { KafkaTopics } from '../../../shared/constants/kafka-topics.constants';
+import { createExceptionFromRequest } from '../../../shared/utils/exception-from-request.util';
 
 @Injectable()
 export class AdminCreditCardIssuersService {
