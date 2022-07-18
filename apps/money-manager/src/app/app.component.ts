@@ -9,6 +9,8 @@ import { Router, NavigationEnd, ActivatedRouteSnapshot } from '@angular/router';
 import { TranslateService } from '@ngx-translate/core';
 import { Subscription } from 'rxjs';
 
+import { CustomMessageService } from './shared/services/utility/custom-message/custom-message.service';
+
 @Component({
   selector: 'petar-cv-root',
   templateUrl: './app.component.html',
@@ -20,10 +22,11 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(
     private readonly router: Router,
     private readonly translateService: TranslateService,
-    private readonly titleService: Title
+    private readonly titleService: Title,
+    private readonly messageService: CustomMessageService
   ) {}
 
-  async ngOnInit(): Promise<void> {
+  public ngOnInit(): void {
     this.subscriptions.push(
       this.router.events.subscribe((event) => {
         if (event instanceof NavigationEnd) {
@@ -61,7 +64,7 @@ export class AppComponent implements OnInit, OnDestroy {
     });
   }
 
-  ngOnDestroy(): void {
+  public ngOnDestroy(): void {
     this.subscriptions.forEach((subscription) => subscription.unsubscribe());
   }
 }

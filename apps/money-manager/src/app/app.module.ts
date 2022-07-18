@@ -13,8 +13,16 @@ import { LocalStorageService, NgxWebstorageModule } from 'ngx-webstorage';
 import { KeycloakAngularModule, KeycloakService } from 'keycloak-angular';
 import localeHr from '@angular/common/locales/hr';
 import localeEn from '@angular/common/locales/en-GB';
+import { MessageService } from 'primeng/api';
 
 import { checkIfExYuCountry, isLangAvailable } from '@petar-cv/translate-utils';
+
+import { AppComponent } from './app.component';
+import { LayoutModule } from './components/layout/layout.module';
+import { AppRoutingModule } from './app-routing.module';
+import { AuthGuard } from './shared/guards/admin-guard/auth.guard';
+import { httpInterceptorProviders } from './shared/interceptors';
+import { SharedModule } from './shared/shared.module';
 
 declare const I18N_HASH: string; // This is imported from the custom Webpack config
 
@@ -39,13 +47,6 @@ function initializeKeycloak(keycloak: KeycloakService) {
     });
 }
 
-import { AppComponent } from './app.component';
-import { LayoutModule } from './components/layout/layout.module';
-import { AppRoutingModule } from './app-routing.module';
-import { AuthGuard } from './shared/guards/admin-guard/auth.guard';
-import { httpInterceptorProviders } from './shared/interceptors';
-import { MessageService } from 'primeng/api';
-
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -61,6 +62,7 @@ import { MessageService } from 'primeng/api';
         deps: [HttpClient],
       },
     }),
+    SharedModule,
     NgxWebstorageModule.forRoot({ prefix: '@MoneyManager' }),
     KeycloakAngularModule,
   ],

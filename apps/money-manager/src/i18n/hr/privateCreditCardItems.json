@@ -1,5 +1,5 @@
 {
-  "adminCreditCardItems": {
+  "privateCreditCardItems": {
     "create": "Kreirajte stavku kreditne kartice",
     "fields": {
       "instalments": "Broj rata",

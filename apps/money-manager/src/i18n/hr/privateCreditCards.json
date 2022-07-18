@@ -12,6 +12,11 @@
       "billingDate": "Dan računa u mjesecu",
       "issuer": "Izdavatelj kartice",
       "items": "Stavke kreditne kartice"
+    },
+    "responses": {
+      "created": "Kreditna kartica kreirana",
+      "deleted": "Kreditna kartica obrisana",
+      "updated": "Kreditna kartica ažurirana"
     }
   }
 }

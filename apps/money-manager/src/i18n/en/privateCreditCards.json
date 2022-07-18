@@ -12,6 +12,11 @@
       "billingDate": "Billing day of month",
       "issuer": "Card issuer",
       "items": "Credit card items"
+    },
+    "responses": {
+      "created": "Credit card created",
+      "deleted": "Credit card deleted",
+      "updated": "Credit card updated"
     }
   }
 }

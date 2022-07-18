@@ -1,5 +1,10 @@
 {
   "adminCreditCardIssuers": {
-    "create": "Create card issuer"
+    "create": "Create card issuer",
+    "responses": {
+      "created": "Card issuer created",
+      "deleted": "Card issuer deleted",
+      "updated": "Card issuer updated"
+    }
   }
 }

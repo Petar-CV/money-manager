@@ -1,5 +1,10 @@
 {
   "adminCreditCardIssuers": {
-    "create": "Kreirajte izdavača kartica"
+    "create": "Kreirajte izdavača kartica",
+    "responses": {
+      "created": "Izdavač kartica kreiran",
+      "deleted": "Izdavač kartica obrisan",
+      "updated": "Izdavač kartica ažuriran"
+    }
   }
 }
