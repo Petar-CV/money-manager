@@ -16,10 +16,10 @@ import { AuthenticatedUser, Roles } from 'nest-keycloak-connect';
 import { IApiResponse, PaginatedSortAndSearch } from '@petar-cv/api-interfaces';
 
 import { PrivateCreditCardsService } from './private-credit-cards.service';
-import { IAuthenticatedUser } from '../../../models/keycloak/authenticated-user.model';
 import { CreatePrivateCreditCardDto } from './dto/create-private-credit-card.dto';
 import { UpdatePrivateCreditCardDto } from './dto/update-private-credit-card.dto';
 import { IRequestForLogging } from 'apps/api/src/models/errors/request-for-logging.model';
+import { IAuthenticatedUser } from 'apps/api/src/models/keycloak/authenticated-user.model';
 
 @ApiTags('Private - Credit cards')
 @ApiBearerAuth()
