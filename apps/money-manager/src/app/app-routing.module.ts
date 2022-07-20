@@ -12,6 +12,8 @@ const routes: Routes = [
     children: [
       {
         path: 'private',
+        canActivate: [AuthGuard],
+        data: { roles: ['user'] as UserRole[] },
         loadChildren: () =>
           import('./components/private/private.module').then(
             (m) => m.PrivateModule
