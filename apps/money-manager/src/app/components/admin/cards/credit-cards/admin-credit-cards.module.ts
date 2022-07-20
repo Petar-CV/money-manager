@@ -12,6 +12,7 @@ const adminCreditCardsRoutes: Routes = [
     children: [
       {
         path: 'issuers',
+        data: { pageTitle: 'adminCreditCardIssuers.pageTitle' },
         loadChildren: () =>
           import('./credit-card-issuers/admin-credit-card-issuers.module').then(
             (m) => m.AdminCreditCardIssuersModule
@@ -19,6 +20,7 @@ const adminCreditCardsRoutes: Routes = [
       },
       {
         path: 'items',
+        data: { pageTitle: 'adminCreditCardItems.pageTitle' },
         loadChildren: () =>
           import('./credit-card-items/admin-credit-card-items.module').then(
             (m) => m.AdminCreditCardItemsModule
@@ -26,6 +28,7 @@ const adminCreditCardsRoutes: Routes = [
       },
       {
         path: 'cards',
+        data: { pageTitle: 'adminCreditCards.pageTitle' },
         loadChildren: () =>
           import('./credit-cards/admin-credit-cards.module').then(
             (m) => m.AdminCreditCardsModule
@@ -44,4 +47,4 @@ const adminCreditCardsRoutes: Routes = [
     TranslateModule.forChild(),
   ],
 })
-export class AdminCardsModule {}
+export class AdminCreditCardsModule {}

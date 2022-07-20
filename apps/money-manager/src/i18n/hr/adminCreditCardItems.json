@@ -1,5 +1,6 @@
 {
   "adminCreditCardItems": {
+    "pageTitle": "Stavke kreditnih kartica",
     "create": "Kreirajte stavku kreditne kartice",
     "fields": {
       "instalments": "Broj rata",

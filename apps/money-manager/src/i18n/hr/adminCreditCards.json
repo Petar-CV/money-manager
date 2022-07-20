@@ -1,5 +1,6 @@
 {
   "adminCreditCards": {
+    "pageTitle": "Kreditne kartice",
     "create": "Kreirajte kreditnu karticu",
     "fields": {
       "limit": "Limit",

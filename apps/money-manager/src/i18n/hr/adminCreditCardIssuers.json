@@ -1,5 +1,6 @@
 {
   "adminCreditCardIssuers": {
+    "pageTitle": "Izdavači kreditnih kartica",
     "create": "Kreirajte izdavača kartica",
     "responses": {
       "created": "Izdavač kartica kreiran",

@@ -12,6 +12,7 @@ const routes: Routes = [
     children: [
       {
         path: 'cards',
+        data: { pageTitle: 'privateCards.pageTitle' },
         loadChildren: () =>
           import('./cards/private-cards.module').then(
             (m) => m.PrivateCreditCardsModule
@@ -19,6 +20,7 @@ const routes: Routes = [
       },
       {
         path: 'profile',
+        data: { pageTitle: 'profile.pageTitle' },
         loadChildren: () =>
           import('./profile/profile.module').then((m) => m.ProfileModule),
       },

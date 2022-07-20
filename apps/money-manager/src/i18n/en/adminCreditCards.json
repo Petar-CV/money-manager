@@ -1,5 +1,6 @@
 {
   "adminCreditCards": {
+    "pageTitle": "Credit cards",
     "create": "Create credit card",
     "fields": {
       "limit": "Limit",

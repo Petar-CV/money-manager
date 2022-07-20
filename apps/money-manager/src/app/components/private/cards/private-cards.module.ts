@@ -12,6 +12,7 @@ const adminCreditCardsRoutes: Routes = [
     children: [
       {
         path: 'credit',
+        data: { pageTitle: 'privateCreditCards.pageTitle' },
         loadChildren: () =>
           import('./credit-cards/private-credit-cards.module').then(
             (m) => m.PrivateCreditCardsModule

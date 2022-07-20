@@ -1,5 +1,6 @@
 {
   "adminCreditCardItems": {
+    "pageTitle": "Credit card items",
     "create": "Create credit card item",
     "fields": {
       "instalments": "Number of instalments",

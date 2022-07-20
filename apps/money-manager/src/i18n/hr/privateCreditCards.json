@@ -1,5 +1,15 @@
 {
   "privateCreditCards": {
+    "pageTitle": "Moje kreditne kartice",
+    "create": {
+      "pageTitle": "Kreiranje kreditne kartice"
+    },
+    "details": {
+      "pageTitle": "Detalji kreditne kartice"
+    },
+    "edit": {
+      "pageTitle": "Uređivanje kreditne kartice"
+    },
     "addCreditCardCard": {
       "title": "Dodajte kreditnu karticu",
       "cardText": "Da biste započeli praćenje troškova vaše kreditne kartice, dodajte kreditnu karticu pritiskom na gumb ispod"

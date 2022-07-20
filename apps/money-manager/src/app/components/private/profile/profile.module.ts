@@ -8,6 +8,7 @@ import { ProfileSettingsComponent } from './profile-settings/profile-settings.co
 const routes: Routes = [
   {
     path: 'settings',
+    data: { pageTitle: 'profileSettings.pageTitle' },
     component: ProfileSettingsComponent,
   },
 ];

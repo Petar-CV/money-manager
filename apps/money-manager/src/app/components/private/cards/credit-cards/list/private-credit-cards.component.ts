@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
 import { finalize, map, Observable, tap } from 'rxjs';
 
 import { ICreditCard } from '@petar-cv/money-manager-models';
+
 import { CreditCardsService } from 'apps/money-manager/src/app/shared/services/entities/private/credit-cards/credit-cards.service';
 
 @Component({

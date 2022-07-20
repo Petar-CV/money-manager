@@ -13,6 +13,7 @@ const adminRoutes: Routes = [
     children: [
       {
         path: 'cards',
+        data: { pageTitle: 'adminCards.pageTitle' },
         loadChildren: () =>
           import('./cards/admin-cards.module').then((m) => m.AdminCardsModule),
       },

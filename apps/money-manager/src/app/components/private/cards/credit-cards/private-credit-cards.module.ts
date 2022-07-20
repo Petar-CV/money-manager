@@ -19,14 +19,17 @@ const adminCreditCardsRoutes: Routes = [
     children: [
       {
         path: 'create',
+        data: { pageTitle: 'privateCreditCards.create.pageTitle' },
         component: PrivateCreditCardCreateComponent,
       },
       {
         path: ':id',
+        data: { pageTitle: 'privateCreditCards.details.pageTitle' },
         component: PrivateCreditCardDetailsComponent,
       },
       {
         path: ':id/edit',
+        data: { pageTitle: 'privateCreditCards.edit.pageTitle' },
         component: PrivateCreditCardDetailsEditComponent,
       },
       {

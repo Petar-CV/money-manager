@@ -1,5 +1,6 @@
 {
   "adminCreditCardIssuers": {
+    "pageTitle": "Credit card issuers",
     "create": "Create card issuer",
     "responses": {
       "created": "Card issuer created",

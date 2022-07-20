@@ -1,5 +1,15 @@
 {
   "privateCreditCards": {
+    "pageTitle": "My credit cards",
+    "create": {
+      "pageTitle": "Create credit card"
+    },
+    "details": {
+      "pageTitle": "Credit card details"
+    },
+    "edit": {
+      "pageTitle": "Edit credit card"
+    },
     "addCreditCardCard": {
       "title": "Add credit card",
       "cardText": "To start tracking your credit card usage, add a credit card by pressing the button below"

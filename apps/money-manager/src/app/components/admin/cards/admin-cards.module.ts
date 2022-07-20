@@ -11,10 +11,11 @@ const adminCreditCardsRoutes: Routes = [
     component: AdminCreditCardsOutletComponent,
     children: [
       {
+        data: { pageTitle: 'adminCreditCards.pageTitle' },
         path: 'credit',
         loadChildren: () =>
           import('./credit-cards/admin-credit-cards.module').then(
-            (m) => m.AdminCardsModule
+            (m) => m.AdminCreditCardsModule
           ),
       },
       // TODO: Implement default component which lists all submodules
