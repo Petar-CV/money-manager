@@ -1,4 +1,39 @@
-export const languagesAvailable = ['en', 'hr'] as const;
+import { IUserProfile } from '@petar-cv/money-manager-models';
+
+export interface ILanguage {
+  code: string;
+  name: string;
+}
+
+export interface ICurrency {
+  code: string;
+  name: string;
+  symbol: string;
+}
+
+export const languagesAvailable: ILanguage[] = [
+  {
+    code: 'en',
+    name: 'English',
+  },
+  {
+    code: 'hr',
+    name: 'Hrvatski',
+  },
+];
+
+export const currenciesAvailable: ICurrency[] = [
+  {
+    code: 'EUR',
+    name: 'Euro',
+    symbol: '€',
+  },
+  {
+    code: 'USD',
+    name: 'US Dollar',
+    symbol: '$',
+  },
+];
 
 /**
  * Checks if the given language is supported
@@ -6,7 +41,7 @@ export const languagesAvailable = ['en', 'hr'] as const;
  * @returns true if the language is supported, otherwise false
  */
 export const isLangAvailable = (lang: string): boolean => {
-  const isAvailable = languagesAvailable.find((elem) => elem === lang);
+  const isAvailable = languagesAvailable.find((elem) => elem.code === lang);
 
   return isAvailable ? true : false;
 };
@@ -16,20 +51,25 @@ export const isLangAvailable = (lang: string): boolean => {
  * Otherwise returns 'en'
  * @param lang language code in the format 'en'
  */
-export const checkIfExYuCountry = (lang?: string): string => {
-  let newLang;
+export const loadDefaultProfileFromLang = (lang?: string): IUserProfile => {
+  const defaultUserProfile: IUserProfile = {
+    currency: 'USD',
+    language: 'en',
+  };
 
   switch (lang) {
     case 'hr':
     case 'bs':
     case 'sl':
     case 'sr':
-      newLang = 'hr';
+      defaultUserProfile.currency = 'EUR';
+      defaultUserProfile.language = 'hr';
       break;
     default:
-      newLang = 'en';
+      defaultUserProfile.currency = 'USD';
+      defaultUserProfile.language = 'en';
       break;
   }
 
-  return newLang;
+  return defaultUserProfile;
 };

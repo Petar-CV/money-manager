@@ -1,5 +1,12 @@
 {
   "profileSettings": {
-    "pageTitle": "Profile settings"
+    "pageTitle": "Profile settings",
+    "fields": {
+      "language": "Language",
+      "currency": "Currency"
+    },
+    "responses": {
+      "updated": "Profile settings updated"
+    }
   }
 }

@@ -75,3 +75,13 @@ model Exception {
 
   @@map("exceptions")
 }
+
+model ProfileSettings {
+  userId   String @unique
+  language String @db.VarChar(3)
+  currency String @db.VarChar(3)
+
+  createdAt DateTime @default(now())
+
+  @@map("user_profile_settings")
+}

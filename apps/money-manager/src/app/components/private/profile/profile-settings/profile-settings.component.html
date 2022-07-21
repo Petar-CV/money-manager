@@ -1,1 +1,74 @@
-<p>profile-settings works!</p>
+<div class="admin-form-wrapper">
+  <form
+    *ngIf="profileSettingsForm"
+    [formGroup]="profileSettingsForm"
+    (submit)="onFormSubmit()"
+    class="shadow-lg p-4 flex flex-col"
+  >
+    <!-- Fields -->
+    <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-6">
+      <div>
+        <label for="language" class="block">
+          {{ 'profileSettings.fields.language' | translate }} *
+        </label>
+        <p-dropdown
+          styleClass="w-full"
+          [options]="languagesAvailable"
+          formControlName="language"
+          [emptyMessage]="'commonActions.noResults' | translate"
+          optionLabel="name"
+          optionValue="code"
+          [placeholder]="'profileSettings.fields.language' | translate"
+          aria-describedby="language-help"
+        ></p-dropdown>
+        <small
+          id="language-help"
+          class="block"
+          [class.p-error]="
+            profileSettingsForm.controls.language.hasError('required') &&
+            profileSettingsForm.controls.language.touched
+          "
+          class="block"
+        >
+          {{ 'commonFields.validators.required' | translate }}
+        </small>
+      </div>
+
+      <div>
+        <label for="currency" class="block">
+          {{ 'profileSettings.fields.currency' | translate }} *
+        </label>
+        <p-dropdown
+          styleClass="w-full"
+          [options]="currenciesAvailable"
+          formControlName="currency"
+          [emptyMessage]="'commonActions.noResults' | translate"
+          optionLabel="name"
+          optionValue="code"
+          [placeholder]="'profileSettings.fields.currency' | translate"
+          aria-describedby="currency-help"
+        ></p-dropdown>
+        <small
+          id="currency-help"
+          class="block"
+          [class.p-error]="
+            profileSettingsForm.controls.currency.hasError('required') &&
+            profileSettingsForm.controls.currency.touched
+          "
+          class="block"
+        >
+          {{ 'commonFields.validators.required' | translate }}
+        </small>
+      </div>
+    </div>
+
+    <!-- Buttons -->
+    <div class="space-x-2">
+      <p-button
+        type="submit"
+        [label]="'commonActions.update' | translate"
+        [disabled]="profileSettingsForm.invalid || profileSettingsForm.pristine"
+      ></p-button>
+    </div>
+  </form>
+</div>

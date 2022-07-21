@@ -1,5 +1,12 @@
 {
   "profileSettings": {
-    "pageTitle": "Korisničke postavke"
+    "pageTitle": "Korisničke postavke",
+    "fields": {
+      "language": "Jezik",
+      "currency": "Valuta"
+    },
+    "responses": {
+      "updated": "Korisničke postavke ažurirane"
+    }
   }
 }
