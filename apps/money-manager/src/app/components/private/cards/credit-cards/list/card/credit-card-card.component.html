@@ -1,15 +1,15 @@
 <p-card
   *ngIf="creditCard"
   [header]="creditCard.name"
-  [subheader]="creditCard?.issuer?.name ?? ''"
+  [subheader]="creditCard.issuer?.name ?? ''"
   class="max-w-xs"
   styleClass="p-card-shadow  hover:shadow-2xl hover:bg-gray-50 transition-all duration-300 h-full"
 >
   <ng-template pTemplate="header">
     <img
       class="max-h-40 pb-4 pt-8 object-contain"
-      [alt]="creditCard?.issuer?.name ?? ''"
-      [src]="creditCard?.issuer?.logo ?? ''"
+      [alt]="creditCard.issuer?.name ?? ''"
+      [src]="creditCard.issuer?.logo ?? ''"
     />
     <!-- TODO: Implement default picture in case of an error -->
   </ng-template>
@@ -22,8 +22,7 @@
   <p>
     {{ 'privateCreditCards.fields.limit' | translate }} -
     <span class="font-semibold">
-      {{ creditCard.limit }}
-      <!-- TODO: Implement custom currency pipe which takes user settings into account -->
+      {{ creditCard.limit | customCurrency }}
     </span>
   </p>
   <ng-template pTemplate="footer">

@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
 
 import { SharedPipesModule } from '../../pipes/shared-pipes.module';
+import { CustomCurrencyPipe } from '../../pipes/utils/custom-currency.pipe';
 import { LocalizedDatePipe } from '../../pipes/utils/localized-date.pipe';
 import { NumberToBooleanPipe } from '../../pipes/utils/number-to-boolean.pipe';
 import { PrimengModule } from '../../primeng.module';
@@ -21,6 +22,7 @@ import { NestedValuePipe } from './pipes/nested-value.pipe';
   exports: [BaseTableComponent],
   providers: [
     CurrencyPipe,
+    CustomCurrencyPipe,
     LocalizedDatePipe,
     NumberToBooleanPipe,
     TranslatePipe,

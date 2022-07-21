@@ -36,7 +36,7 @@ export interface IBaseTableAction {
 export type BaseTableDataPipeToUse =
   | 'translate'
   | 'localizedDate'
-  | 'currency'
+  | 'customCurrency'
   | 'titlecase'
   | 'numberToBoolean';
 

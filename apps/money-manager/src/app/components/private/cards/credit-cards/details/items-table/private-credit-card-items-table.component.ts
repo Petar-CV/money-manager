@@ -55,6 +55,11 @@ export class PrivateCreditCardItemsTableComponent
     },
     {
       field: 'amount',
+      pipes: [
+        {
+          pipe: 'customCurrency',
+        },
+      ],
     },
     {
       field: 'instalments',

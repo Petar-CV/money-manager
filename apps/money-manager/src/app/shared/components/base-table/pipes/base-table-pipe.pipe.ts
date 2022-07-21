@@ -1,5 +1,5 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import { CurrencyPipe, TitleCasePipe } from '@angular/common';
+import { TitleCasePipe } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
 
 import {
@@ -8,13 +8,14 @@ import {
 } from '../models/data/base-table-data.model';
 import { LocalizedDatePipe } from '../../../pipes/utils/localized-date.pipe';
 import { NumberToBooleanPipe } from '../../../pipes/utils/number-to-boolean.pipe';
+import { CustomCurrencyPipe } from '../../../pipes/utils/custom-currency.pipe';
 
 @Pipe({
   name: 'baseTablePipe',
 })
 export class BaseTablePipe implements PipeTransform {
   constructor(
-    private readonly currencyPipe: CurrencyPipe,
+    private readonly currencyPipe: CustomCurrencyPipe,
     private readonly localizedDatePipe: LocalizedDatePipe,
     private readonly translatePipe: TranslatePipe,
     private readonly titleCasePipe: TitleCasePipe,
@@ -52,7 +53,7 @@ export class BaseTablePipe implements PipeTransform {
         const dateData = this.localizedDatePipe.transform(date, pipeParams);
         return dateData ? dateData : '';
       }
-      case 'currency': {
+      case 'customCurrency': {
         const currencyData = this.currencyPipe.transform(data, pipeParams);
         return currencyData ? currencyData : '';
       }
