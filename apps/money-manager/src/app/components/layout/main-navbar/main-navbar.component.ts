@@ -76,6 +76,7 @@ export class MainNavbarComponent implements OnInit, OnDestroy {
           {
             label: this.translateService.instant('navbar.creditCards'),
             icon: 'pi pi-fw pi-credit-card',
+            routerLinkActiveOptions: { exact: true },
             routerLink: [PrivateCreditCardsRoutes.PRIVATE_CREDIT_CARDS],
           },
           {

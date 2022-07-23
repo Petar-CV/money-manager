@@ -14,8 +14,8 @@ const adminCreditCardsRoutes: Routes = [
         path: 'credit',
         data: { pageTitle: 'privateCreditCards.pageTitle' },
         loadChildren: () =>
-          import('./credit-cards/private-credit-cards.module').then(
-            (m) => m.PrivateCreditCardsModule
+          import('./credit-cards/private-credit-cards-full.module').then(
+            (m) => m.PrivateCreditCardsFullModule
           ),
       },
       // TODO: Implement default component which lists all submodules

@@ -12,7 +12,7 @@ import { PrivateCreditCardDetailsComponent } from './details/private-credit-card
 import { PrivateCreditCardDetailsEditComponent } from './details-edit/private-credit-card-details-edit.component';
 import { PrivateCreditCardItemsTableComponent } from './details/items-table/private-credit-card-items-table.component';
 
-const adminCreditCardsRoutes: Routes = [
+const routes: Routes = [
   {
     path: '',
     component: PrivateCreditCardsOutletComponent,
@@ -54,8 +54,8 @@ const adminCreditCardsRoutes: Routes = [
   ],
   imports: [
     SharedModule,
-    RouterModule.forChild(adminCreditCardsRoutes),
+    RouterModule.forChild(routes),
     TranslateModule.forChild(),
   ],
 })
-export class PrivateCreditCardsModule {}
+export class PrivateCreditCardsFullModule {}

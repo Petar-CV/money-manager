@@ -1,6 +1,10 @@
 {
   "privateCreditCardItems": {
+    "pageTitle": "Moje stavke kartica",
     "create": "Kreirajte stavku kreditne kartice",
+    "list": {
+      "title": "Stavke mojih kreditnih kartica"
+    },
     "fields": {
       "instalments": "Broj rata",
       "boughtAt": "Kupljeno",

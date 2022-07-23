@@ -1,6 +1,10 @@
 {
   "privateCreditCardItems": {
+    "pageTitle": "My credit card items",
     "create": "Create credit card item",
+    "list": {
+      "title": "My credit card items"
+    },
     "fields": {
       "instalments": "Number of instalments",
       "boughtAt": "Bought at",

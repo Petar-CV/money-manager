@@ -1,8 +1,8 @@
 export enum PrivateRoutes {}
 
 export enum PrivateCreditCardsRoutes {
-  PRIVATE_CREDIT_CARDS = '/private/cards/credit',
-  PRIVATE_CREDIT_CARDS_CREATE = '/private/cards/credit/create',
+  PRIVATE_CREDIT_CARDS = '/private/cards/credit/cards',
+  PRIVATE_CREDIT_CARDS_CREATE = '/private/cards/credit/cards/create',
 }
 
 export enum PrivateCreditCardItemsRoutes {
