@@ -1,6 +1,6 @@
 import { Body, Controller, Get, Post, Put, Request } from '@nestjs/common';
 import { ApiBearerAuth, ApiTags } from '@nestjs/swagger';
-import { UserProfileSettings } from '@prisma/client';
+import { ProfileSettings } from '@prisma/client';
 import { AuthenticatedUser, Roles } from 'nest-keycloak-connect';
 
 import { IApiResponse } from '@petar-cv/api-interfaces';
@@ -24,7 +24,7 @@ export class ProfileSettingsController {
   findOne(
     @Request() req: IRequestForLogging,
     @AuthenticatedUser() user: IAuthenticatedUser
-  ): Promise<IApiResponse<UserProfileSettings>> {
+  ): Promise<IApiResponse<ProfileSettings>> {
     return this.userProfileSettingsService.findOne(req, user);
   }
 
@@ -33,7 +33,7 @@ export class ProfileSettingsController {
     @Request() req: IRequestForLogging,
     @Body() data: CreateProfileSettingsDto,
     @AuthenticatedUser() user: IAuthenticatedUser
-  ): Promise<IApiResponse<UserProfileSettings>> {
+  ): Promise<IApiResponse<ProfileSettings>> {
     return this.userProfileSettingsService.create(req, data, user);
   }
 
@@ -42,7 +42,7 @@ export class ProfileSettingsController {
     @Request() req: IRequestForLogging,
     @Body() data: UpdateProfileSettingsDto,
     @AuthenticatedUser() user: IAuthenticatedUser
-  ): Promise<IApiResponse<UserProfileSettings>> {
+  ): Promise<IApiResponse<ProfileSettings>> {
     return this.userProfileSettingsService.update(req, data, user);
   }
 }

@@ -1,5 +1,5 @@
 import { Injectable } from '@nestjs/common';
-import { UserProfileSettings } from '@prisma/client';
+import { ProfileSettings } from '@prisma/client';
 
 import { CommonResponses, IApiResponse } from '@petar-cv/api-interfaces';
 
@@ -23,17 +23,16 @@ export class ProfileSettingsService {
   async findOne(
     req: IRequestForLogging,
     user: IAuthenticatedUser
-  ): Promise<IApiResponse<UserProfileSettings>> {
+  ): Promise<IApiResponse<ProfileSettings>> {
     try {
-      const userProfileSettings =
-        await this.prisma.userProfileSettings.findFirst({
-          where: {
-            userId: user.user_id,
-          },
-        });
+      const profileSettings = await this.prisma.profileSettings.findFirst({
+        where: {
+          userId: user.user_id,
+        },
+      });
 
       return {
-        data: userProfileSettings,
+        data: profileSettings,
       };
     } catch (exception) {
       const exceptionLog = createExceptionFromRequest(req, exception);
@@ -57,9 +56,9 @@ export class ProfileSettingsService {
     req: IRequestForLogging,
     createProfileSettingsDto: CreateProfileSettingsDto,
     user: IAuthenticatedUser
-  ): Promise<IApiResponse<UserProfileSettings>> {
+  ): Promise<IApiResponse<ProfileSettings>> {
     try {
-      const userProfileSettings = await this.prisma.userProfileSettings.create({
+      const profileSettings = await this.prisma.profileSettings.create({
         data: {
           currency: createProfileSettingsDto.currency,
           language: createProfileSettingsDto.language,
@@ -68,7 +67,7 @@ export class ProfileSettingsService {
       });
 
       return {
-        data: userProfileSettings,
+        data: profileSettings,
       };
     } catch (exception) {
       const exceptionLog = createExceptionFromRequest(req, exception);
@@ -92,9 +91,9 @@ export class ProfileSettingsService {
     req: IRequestForLogging,
     updateProfileSettingsDto: UpdateProfileSettingsDto,
     user: IAuthenticatedUser
-  ): Promise<IApiResponse<UserProfileSettings>> {
+  ): Promise<IApiResponse<ProfileSettings>> {
     try {
-      const userProfileSettings = await this.prisma.userProfileSettings.update({
+      const profileSettings = await this.prisma.profileSettings.update({
         where: {
           userId: user.user_id,
         },
@@ -106,7 +105,7 @@ export class ProfileSettingsService {
       });
 
       return {
-        data: userProfileSettings,
+        data: profileSettings,
         message: ProfileSettingsResponses.UPDATED,
       };
     } catch (exception) {
