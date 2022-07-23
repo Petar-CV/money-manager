@@ -5,12 +5,19 @@
     "list": {
       "title": "My credit card items"
     },
+    "details": {
+      "pageTitle": "Credit card item details"
+    },
     "fields": {
       "instalments": "Number of instalments",
       "boughtAt": "Bought at",
       "amount": "Amount",
       "cardId": "Card ID",
-      "userId": "Card user ID"
+      "userId": "Card user ID",
+      "card": "Card"
+    },
+    "tooltips": {
+      "card": "Open card details"
     },
     "responses": {
       "created": "Card item created",

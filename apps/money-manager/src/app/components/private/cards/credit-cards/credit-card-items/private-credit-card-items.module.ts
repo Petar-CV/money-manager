@@ -3,6 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
 import { SharedModule } from 'apps/money-manager/src/app/shared/shared.module';
+import { PrivateCreditCardItemDetailsComponent } from './details/private-credit-card-item-details.component';
 import { PrivateCreditCardItemsComponent } from './list/private-credit-card-items.component';
 import { PrivateCreditCardItemsOutletComponent } from './private-credit-card-items-outlet.component';
 
@@ -16,16 +17,11 @@ const adminCreditCardsRoutes: Routes = [
       //   data: { pageTitle: 'privateCreditCards.create.pageTitle' },
       //   component: PrivateCreditCardCreateComponent,
       // },
-      // {
-      //   path: ':id',
-      //   data: { pageTitle: 'privateCreditCards.details.pageTitle' },
-      //   component: PrivateCreditCardDetailsComponent,
-      // },
-      // {
-      //   path: ':id/edit',
-      //   data: { pageTitle: 'privateCreditCards.edit.pageTitle' },
-      //   component: PrivateCreditCardDetailsEditComponent,
-      // },
+      {
+        path: ':id',
+        data: { pageTitle: 'privateCreditCardItems.details.pageTitle' },
+        component: PrivateCreditCardItemDetailsComponent,
+      },
       {
         path: '',
         pathMatch: 'full',
@@ -39,6 +35,7 @@ const adminCreditCardsRoutes: Routes = [
   declarations: [
     PrivateCreditCardItemsOutletComponent,
     PrivateCreditCardItemsComponent,
+    PrivateCreditCardItemDetailsComponent,
   ],
   imports: [
     SharedModule,

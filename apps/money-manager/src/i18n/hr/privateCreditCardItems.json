@@ -5,12 +5,19 @@
     "list": {
       "title": "Stavke mojih kreditnih kartica"
     },
+    "details": {
+      "pageTitle": "Detalji stavke kreditne kartice"
+    },
     "fields": {
       "instalments": "Broj rata",
       "boughtAt": "Kupljeno",
       "amount": "Iznos",
       "cardId": "ID kartice",
-      "userId": "ID korisnika kartice"
+      "userId": "ID korisnika kartice",
+      "card": "Kartica"
+    },
+    "tooltips": {
+      "card": "Otvorite detalje kartice"
     },
     "responses": {
       "created": "Stavka kartice kreirana",

@@ -98,6 +98,9 @@ export class PrivateCreditCardItemsService {
           deletedAt: null,
           userId: user.user_id,
         },
+        include: {
+          card: true,
+        },
       });
 
       return {

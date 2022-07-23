@@ -1,3 +1,5 @@
+import { ICreditCard } from './credit-card.model';
+
 export interface ICreditCardItem {
   id?: string;
   userId: string;
@@ -11,6 +13,7 @@ export interface ICreditCardItem {
   updatedAt?: Date;
   deletedAt?: Date;
 
+  card?: ICreditCard;
   cardId: string;
 }
 
@@ -27,6 +30,7 @@ export class CreditCardItem implements ICreditCardItem {
   updatedAt?: Date;
   deletedAt?: Date;
 
+  card?: ICreditCard;
   cardId: string;
 
   constructor(data: ICreditCardItem) {
@@ -43,5 +47,6 @@ export class CreditCardItem implements ICreditCardItem {
     this.deletedAt = data.deletedAt;
 
     this.cardId = data.cardId;
+    this.card = data.card;
   }
 }

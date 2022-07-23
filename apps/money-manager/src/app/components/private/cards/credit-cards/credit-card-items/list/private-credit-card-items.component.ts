@@ -70,7 +70,7 @@ export class PrivateCreditCardItemsComponent extends BasePaginationComponent {
     {
       action: {
         icon: 'pi pi-pencil',
-        route: PrivateCreditCardItemsRoutes.PRIVATE_CREDIT_CARD_ITEMS + '/:id',
+        route: PrivateCreditCardItemsRoutes.PRIVATE_CREDIT_CARD_ITEMS,
         type: 'navigate',
         tooltip: 'commonActions.edit',
       },
