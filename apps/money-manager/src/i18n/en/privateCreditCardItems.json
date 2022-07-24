@@ -1,7 +1,9 @@
 {
   "privateCreditCardItems": {
     "pageTitle": "My credit card items",
-    "create": "Create credit card item",
+    "create": {
+      "pageTitle": "Create credit card item"
+    },
     "list": {
       "title": "My credit card items"
     },

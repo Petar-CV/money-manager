@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 
 import { ICreditCardIssuer } from '@petar-cv/money-manager-models';
+
 import { CreditCardsService } from 'apps/money-manager/src/app/shared/services/entities/private/credit-cards/credit-cards.service';
 import { CreditCardIssuersService } from 'apps/money-manager/src/app/shared/services/entities/private/credit-card-issuers/credit-card-issuers.service';
 import { PrivateCreditCardsRoutes } from 'apps/money-manager/src/app/shared/constants/routing';

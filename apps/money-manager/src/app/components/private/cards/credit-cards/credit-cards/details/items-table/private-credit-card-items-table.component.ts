@@ -24,7 +24,7 @@ export class PrivateCreditCardItemsTableComponent
   public creditCardItems$?: Observable<Partial<ICreditCardItem>[]>;
   public itemsCreateRouterLink =
     PrivateCreditCardItemsRoutes.PRIVATE_CREDIT_CARD_ITEMS_CREATE;
-  private currentId?: string;
+  public currentId?: string;
 
   tableHeaders: IBaseTableColumn[] = [
     {

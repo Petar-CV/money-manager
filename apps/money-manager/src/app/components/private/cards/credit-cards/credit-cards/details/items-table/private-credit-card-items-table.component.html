@@ -6,7 +6,8 @@
   <div class="my-4">
     <p-button
       [routerLink]="itemsCreateRouterLink"
-      [label]="'adminCreditCardItems.create' | translate"
+      [queryParams]="{ cardId: currentId }"
+      [label]="'privateCreditCardItems.create.pageTitle' | translate"
       styleClass="p-button-sm"
       icon="pi pi-plus"
     ></p-button>
