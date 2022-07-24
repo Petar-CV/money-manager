@@ -9,7 +9,7 @@
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-6">
       <div>
         <label for="language" class="block">
-          {{ 'profileSettings.fields.language' | translate }} *
+          {{ 'profileSettings.fields.language' | translate }}
         </label>
         <p-dropdown
           styleClass="w-full"
@@ -21,22 +21,11 @@
           [placeholder]="'profileSettings.fields.language' | translate"
           aria-describedby="language-help"
         ></p-dropdown>
-        <small
-          id="language-help"
-          class="block"
-          [class.p-error]="
-            profileSettingsForm.controls.language.hasError('required') &&
-            profileSettingsForm.controls.language.touched
-          "
-          class="block"
-        >
-          {{ 'commonFields.validators.required' | translate }}
-        </small>
       </div>
 
       <div>
         <label for="currency" class="block">
-          {{ 'profileSettings.fields.currency' | translate }} *
+          {{ 'profileSettings.fields.currency' | translate }}
         </label>
         <p-dropdown
           styleClass="w-full"
@@ -48,17 +37,6 @@
           [placeholder]="'profileSettings.fields.currency' | translate"
           aria-describedby="currency-help"
         ></p-dropdown>
-        <small
-          id="currency-help"
-          class="block"
-          [class.p-error]="
-            profileSettingsForm.controls.currency.hasError('required') &&
-            profileSettingsForm.controls.currency.touched
-          "
-          class="block"
-        >
-          {{ 'commonFields.validators.required' | translate }}
-        </small>
       </div>
     </div>
 
