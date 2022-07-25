@@ -1,4 +1,4 @@
-import { Injectable } from '@nestjs/common';
+import { Injectable, Logger } from '@nestjs/common';
 import { CreditCardItem, Prisma } from '@prisma/client';
 
 import {
@@ -16,9 +16,12 @@ import { createExceptionFromRequest } from '../../../shared/utils/exception-from
 import { KafkaTopics } from '../../../shared/constants/kafka-topics.constants';
 import { KafkaProducerService } from '../../../shared/modules/kafka/kafka-producer.service';
 import { IRequestForLogging } from 'apps/api/src/models/errors/request-for-logging.model';
+import { createExceptionStringForLoggerFromRequest } from '../../../shared/utils/exception-log-from-request.util';
 
 @Injectable()
 export class AdminCreditCardItemsService {
+  private readonly logger = new Logger(AdminCreditCardItemsService.name);
+
   constructor(
     private readonly prisma: PrismaService,
     private readonly kafkaProducerService: KafkaProducerService
@@ -30,6 +33,10 @@ export class AdminCreditCardItemsService {
   ): Promise<IApiResponse<CreditCardItem[]>> {
     try {
       const { page, perPage, search } = paginatedSortAndSearch;
+
+      this.logger.log(
+        `Executing findAll with page: ${page}, perPage: ${perPage}, search: ${search}`
+      );
 
       const filter = createGlobalFilter<
         typeof Prisma.CreditCardItemScalarFieldEnum
@@ -67,6 +74,13 @@ export class AdminCreditCardItemsService {
     } catch (exception) {
       const exceptionLog = createExceptionFromRequest(req, exception);
 
+      this.logger.error(
+        createExceptionStringForLoggerFromRequest(
+          this.findAll.name,
+          exceptionLog
+        )
+      );
+
       this.kafkaProducerService.produce({
         topic: KafkaTopics.EXCEPTION_LOGGER,
         messages: [
@@ -87,6 +101,8 @@ export class AdminCreditCardItemsService {
     id: string
   ): Promise<IApiResponse<CreditCardItem>> {
     try {
+      this.logger.log(`Executing findOne with id: ${id}`);
+
       const creditCardItem = await this.prisma.creditCardItem.findFirst({
         where: {
           id: id,
@@ -99,6 +115,13 @@ export class AdminCreditCardItemsService {
       };
     } catch (exception) {
       const exceptionLog = createExceptionFromRequest(req, exception);
+
+      this.logger.error(
+        createExceptionStringForLoggerFromRequest(
+          this.findOne.name,
+          exceptionLog
+        )
+      );
 
       this.kafkaProducerService.produce({
         topic: KafkaTopics.EXCEPTION_LOGGER,
@@ -120,6 +143,8 @@ export class AdminCreditCardItemsService {
     createCreditCardDto: CreateAdminCreditCardItemDto
   ): Promise<IApiResponse<CreditCardItem>> {
     try {
+      this.logger.log(`Executing create`);
+
       const creditCardItem = await this.prisma.creditCardItem.create({
         data: {
           name: createCreditCardDto.name,
@@ -144,6 +169,13 @@ export class AdminCreditCardItemsService {
     } catch (exception) {
       const exceptionLog = createExceptionFromRequest(req, exception);
 
+      this.logger.error(
+        createExceptionStringForLoggerFromRequest(
+          this.create.name,
+          exceptionLog
+        )
+      );
+
       this.kafkaProducerService.produce({
         topic: KafkaTopics.EXCEPTION_LOGGER,
         messages: [
@@ -165,6 +197,8 @@ export class AdminCreditCardItemsService {
     updateCreditCardDto: UpdateAdminCreditCardItemDto
   ): Promise<IApiResponse<CreditCardItem>> {
     try {
+      this.logger.log(`Executing update for id: ${id}`);
+
       const creditCardItem = await this.prisma.creditCardItem.update({
         where: {
           id: id,
@@ -192,6 +226,13 @@ export class AdminCreditCardItemsService {
     } catch (exception) {
       const exceptionLog = createExceptionFromRequest(req, exception);
 
+      this.logger.error(
+        createExceptionStringForLoggerFromRequest(
+          this.update.name,
+          exceptionLog
+        )
+      );
+
       this.kafkaProducerService.produce({
         topic: KafkaTopics.EXCEPTION_LOGGER,
         messages: [
@@ -209,6 +250,8 @@ export class AdminCreditCardItemsService {
 
   async remove(req: IRequestForLogging, id: string): Promise<IApiResponse> {
     try {
+      this.logger.log(`Executing delete for id: ${id}`);
+
       await this.prisma.creditCardItem.updateMany({
         where: {
           id: id,
@@ -224,6 +267,13 @@ export class AdminCreditCardItemsService {
       };
     } catch (exception) {
       const exceptionLog = createExceptionFromRequest(req, exception);
+
+      this.logger.error(
+        createExceptionStringForLoggerFromRequest(
+          this.remove.name,
+          exceptionLog
+        )
+      );
 
       this.kafkaProducerService.produce({
         topic: KafkaTopics.EXCEPTION_LOGGER,
