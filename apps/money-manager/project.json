@@ -16,7 +16,8 @@
         "inlineStyleLanguage": "scss",
         "assets": [
           "apps/money-manager/src/favicon.ico",
-          "apps/money-manager/src/assets"
+          "apps/money-manager/src/assets",
+          "apps/money-manager/src/site.webmanifest"
         ],
         "styles": ["apps/money-manager/src/styles.scss"],
         "scripts": [],
