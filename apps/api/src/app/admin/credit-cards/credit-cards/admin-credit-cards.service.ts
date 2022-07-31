@@ -221,6 +221,7 @@ export class AdminCreditCardsService {
           billingDate: createAdminCreditCardDto.billingDate,
           limit: createAdminCreditCardDto.limit,
           userId: createAdminCreditCardDto.userId,
+          limitType: createAdminCreditCardDto.limitType,
           issuer: {
             connect: {
               id: createAdminCreditCardDto.issuerId,
@@ -276,6 +277,7 @@ export class AdminCreditCardsService {
           billingDate: updateAdminCreditCardDto.billingDate,
           limit: updateAdminCreditCardDto.limit,
           userId: updateAdminCreditCardDto.userId,
+          limitType: updateAdminCreditCardDto.limitType,
           updatedAt: new Date(),
           issuer: {
             connect: {

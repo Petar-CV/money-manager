@@ -237,6 +237,7 @@ export class PrivateCreditCardsService {
           billingDate: createCreditCardDto.billingDate,
           limit: createCreditCardDto.limit,
           userId: user.user_id,
+          limitType: createCreditCardDto.limitType,
           issuer: {
             connect: {
               id: createCreditCardDto.issuerId,
@@ -293,6 +294,7 @@ export class PrivateCreditCardsService {
           billingDate: updateCreditCardDto.billingDate,
           limit: updateCreditCardDto.limit,
           userId: user.user_id,
+          limitType: updateCreditCardDto.limitType,
           updatedAt: new Date(),
           issuer: {
             connect: {

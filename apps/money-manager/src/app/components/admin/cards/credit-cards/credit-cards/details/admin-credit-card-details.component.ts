@@ -4,11 +4,15 @@ import {
   Component,
   OnInit,
 } from '@angular/core';
-import { FormBuilder, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { CreditCardLimit } from '@prisma/client';
 
-import { ICreditCardIssuer } from '@petar-cv/money-manager-models';
+import {
+  CreditCardLimits,
+  ICreditCardIssuer,
+} from '@petar-cv/money-manager-models';
 
 import { AdminCreditCardIssuersService } from 'apps/money-manager/src/app/shared/services/entities/admin/credit-card-issuers/admin-credit-card-issuers.service';
 import { AdminCreditCardsService } from '../../../../../../shared/services/entities/admin/credit-cards/admin-credit-cards.service';
@@ -21,6 +25,7 @@ import { AdminCreditCardsRoutes } from 'apps/money-manager/src/app/shared/consta
 })
 export class AdminCreditCardDetailsComponent implements OnInit {
   public creditCardIssuers$: Observable<Partial<ICreditCardIssuer>[]>;
+  public creditCardLimits = CreditCardLimits;
   private currentId?: string;
 
   creditCardForm = this.formBuilder.nonNullable.group({
@@ -33,6 +38,9 @@ export class AdminCreditCardDetailsComponent implements OnInit {
     updatedAt: new Date(),
     deletedAt: new Date(),
     userId: ['', Validators.required],
+    limitType: new FormControl<CreditCardLimit>(CreditCardLimit.OVERALL, {
+      nonNullable: true,
+    }),
   });
 
   constructor(

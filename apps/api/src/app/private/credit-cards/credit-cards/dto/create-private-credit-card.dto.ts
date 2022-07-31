@@ -1,5 +1,13 @@
 import { ApiProperty } from '@nestjs/swagger';
-import { IsNotEmpty, IsNumber, IsString, Max, Min } from 'class-validator';
+import { CreditCardLimit } from '@prisma/client';
+import {
+  IsEnum,
+  IsNotEmpty,
+  IsNumber,
+  IsString,
+  Max,
+  Min,
+} from 'class-validator';
 
 export class CreatePrivateCreditCardDto {
   @ApiProperty({ description: 'Name of the credit card.' })
@@ -23,4 +31,8 @@ export class CreatePrivateCreditCardDto {
   @IsString()
   @IsNotEmpty()
   readonly issuerId: string;
+
+  @ApiProperty({ description: 'Credit card limit type.' })
+  @IsEnum(CreditCardLimit)
+  readonly limitType: CreditCardLimit;
 }

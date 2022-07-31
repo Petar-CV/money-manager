@@ -21,7 +21,14 @@
       "limit": "Limit",
       "billingDate": "Dan računa u mjesecu",
       "issuer": "Izdavatelj kartice",
-      "items": "Stavke kreditne kartice"
+      "items": "Stavke kreditne kartice",
+      "limitType": {
+        "title": "Tip limita",
+        "values": {
+          "MONTHLY": "Mjesečno",
+          "OVERALL": "Ukupno"
+        }
+      }
     },
     "responses": {
       "created": "Kreditna kartica kreirana",

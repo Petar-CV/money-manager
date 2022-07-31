@@ -6,8 +6,12 @@ import {
 import { FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
+import { CreditCardLimit } from '@prisma/client';
 
-import { ICreditCardIssuer } from '@petar-cv/money-manager-models';
+import {
+  CreditCardLimits,
+  ICreditCardIssuer,
+} from '@petar-cv/money-manager-models';
 
 import { AdminCreditCardIssuersService } from 'apps/money-manager/src/app/shared/services/entities/admin/credit-card-issuers/admin-credit-card-issuers.service';
 import { AdminCreditCardsService } from '../../../../../../shared/services/entities/admin/credit-cards/admin-credit-cards.service';
@@ -20,11 +24,13 @@ import { AdminCreditCardsRoutes } from 'apps/money-manager/src/app/shared/consta
 })
 export class AdminCreditCardCreateComponent {
   public creditCardIssuers$: Observable<Partial<ICreditCardIssuer>[]>;
+  public creditCardLimits = CreditCardLimits;
 
   creditCardForm = this.formBuilder.nonNullable.group({
     name: ['', Validators.required],
     limit: [0, Validators.required],
     billingDate: [1, Validators.required],
+    limitType: [CreditCardLimit.OVERALL, Validators.required],
     userId: ['', Validators.required],
     issuerId: ['', Validators.required],
   });

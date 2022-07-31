@@ -35,7 +35,7 @@
 
       <div>
         <label for="issuerId" class="block">
-          {{ 'adminCreditCards.fields.issuer' | translate }} *
+          {{ 'privateCreditCards.fields.issuer' | translate }} *
         </label>
         <p-dropdown
           styleClass="w-full"
@@ -44,7 +44,7 @@
           [emptyMessage]="'commonActions.noResults' | translate"
           optionLabel="name"
           optionValue="id"
-          [placeholder]="'adminCreditCards.fields.issuer' | translate"
+          [placeholder]="'privateCreditCards.fields.issuer' | translate"
           aria-describedby="issuerId-help"
         ></p-dropdown>
         <small
@@ -61,7 +61,7 @@
 
       <div>
         <label for="billingDate" class="block">
-          {{ 'adminCreditCards.fields.billingDate' | translate }} *
+          {{ 'privateCreditCards.fields.billingDate' | translate }} *
         </label>
         <p-inputNumber
           class="w-full"
@@ -73,7 +73,7 @@
           [step]="1"
           [min]="1"
           [max]="31"
-          [placeholder]="'adminCreditCards.fields.billingDate' | translate"
+          [placeholder]="'privateCreditCards.fields.billingDate' | translate"
         ></p-inputNumber>
         <small
           id="billingDate-help"
@@ -90,7 +90,7 @@
 
       <div>
         <label for="limit" class="block">
-          {{ 'adminCreditCards.fields.limit' | translate }} *
+          {{ 'privateCreditCards.fields.limit' | translate }} *
         </label>
         <p-inputNumber
           class="w-full"
@@ -100,7 +100,7 @@
           aria-describedby="limit-help"
           [min]="0"
           [maxFractionDigits]="2"
-          [placeholder]="'adminCreditCards.fields.limit' | translate"
+          [placeholder]="'privateCreditCards.fields.limit' | translate"
         ></p-inputNumber>
         <small
           id="limit-help"
@@ -110,6 +110,41 @@
             creditCardForm.controls.limit.touched
           "
           class="block"
+        >
+          {{ 'commonFields.validators.required' | translate }}
+        </small>
+      </div>
+
+      <div>
+        <label for="limitType" class="block">
+          {{ 'privateCreditCards.fields.limitType.title' | translate }} *
+        </label>
+        <p-dropdown
+          styleClass="w-full"
+          [options]="creditCardLimits"
+          formControlName="limitType"
+          [emptyMessage]="'commonActions.noResults' | translate"
+          optionLabel="name"
+          optionValue="value"
+          [placeholder]="
+            'privateCreditCards.fields.limitType.title' | translate
+          "
+          aria-describedby="limitType-help"
+        >
+          <ng-template pTemplate="item" let-item>
+            {{ item.name | translate }}
+          </ng-template>
+          <ng-template pTemplate="selectedItem" let-item>
+            {{ item.name | translate }}
+          </ng-template>
+        </p-dropdown>
+        <small
+          id="limitType-help"
+          class="block"
+          [class.p-error]="
+            creditCardForm.controls.limitType.hasError('required') &&
+            creditCardForm.controls.limitType.touched
+          "
         >
           {{ 'commonFields.validators.required' | translate }}
         </small>

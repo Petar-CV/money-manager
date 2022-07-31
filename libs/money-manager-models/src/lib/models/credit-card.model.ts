@@ -1,5 +1,6 @@
+import { CreditCardLimit } from '@prisma/client';
 import { ICreditCardIssuer } from './credit-card-issuer.model';
-import { CreditCardItem } from './credit-card-item.model';
+import { ICreditCardItem } from './credit-card-item.model';
 
 export interface ICreditCard {
   id?: string;
@@ -12,10 +13,12 @@ export interface ICreditCard {
   updatedAt?: Date;
   deletedAt?: Date;
 
+  limitType: CreditCardLimit;
+
   issuer?: Partial<ICreditCardIssuer>;
   issuerId: string;
 
-  items?: CreditCardItem[];
+  items?: ICreditCardItem[];
 }
 
 export class CreditCard implements ICreditCard {
@@ -29,10 +32,12 @@ export class CreditCard implements ICreditCard {
   updatedAt?: Date;
   deletedAt?: Date;
 
+  limitType: CreditCardLimit;
+
   issuerId: string;
   issuer?: Partial<ICreditCardIssuer>;
 
-  items?: CreditCardItem[];
+  items?: ICreditCardItem[];
 
   constructor(data: ICreditCard) {
     this.id = data.id;
@@ -44,6 +49,8 @@ export class CreditCard implements ICreditCard {
     this.createdAt = data.createdAt;
     this.updatedAt = data.updatedAt;
     this.deletedAt = data.deletedAt;
+
+    this.limitType = data.limitType;
 
     this.issuerId = data.issuerId;
     this.issuer = data.issuer;

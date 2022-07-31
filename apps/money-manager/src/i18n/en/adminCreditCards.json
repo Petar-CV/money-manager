@@ -6,7 +6,14 @@
       "limit": "Limit",
       "billingDate": "Billing day of month",
       "issuer": "Card issuer",
-      "user": "Card user ID"
+      "user": "Card user ID",
+      "limitType": {
+        "title": "Limit type",
+        "values": {
+          "MONTHLY": "Monthly",
+          "OVERALL": "Overall"
+        }
+      }
     },
     "responses": {
       "created": "Credit card created",

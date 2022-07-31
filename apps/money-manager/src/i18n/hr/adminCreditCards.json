@@ -6,7 +6,14 @@
       "limit": "Limit",
       "billingDate": "Dan računa u mjesecu",
       "issuer": "Izdavatelj kartice",
-      "user": "ID korisnika kartice"
+      "user": "ID korisnika kartice",
+      "limitType": {
+        "title": "Tip limita",
+        "values": {
+          "MONTHLY": "Mjesečno",
+          "OVERALL": "Ukupno"
+        }
+      }
     },
     "responses": {
       "created": "Kreditna kartica kreirana",

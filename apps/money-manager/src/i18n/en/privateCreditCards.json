@@ -21,7 +21,14 @@
       "limit": "Limit",
       "billingDate": "Billing day of month",
       "issuer": "Card issuer",
-      "items": "Credit card items"
+      "items": "Credit card items",
+      "limitType": {
+        "title": "Limit type",
+        "values": {
+          "MONTHLY": "Monthly",
+          "OVERALL": "Overall"
+        }
+      }
     },
     "responses": {
       "created": "Credit card created",

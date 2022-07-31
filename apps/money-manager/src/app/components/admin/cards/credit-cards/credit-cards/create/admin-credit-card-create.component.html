@@ -139,6 +139,39 @@
           {{ 'commonFields.validators.required' | translate }}
         </small>
       </div>
+
+      <div>
+        <label for="limitType" class="block">
+          {{ 'adminCreditCards.fields.limitType.title' | translate }} *
+        </label>
+        <p-dropdown
+          styleClass="w-full"
+          [options]="creditCardLimits"
+          formControlName="limitType"
+          [emptyMessage]="'commonActions.noResults' | translate"
+          optionLabel="name"
+          optionValue="value"
+          [placeholder]="'adminCreditCards.fields.limitType.title' | translate"
+          aria-describedby="limitType-help"
+        >
+          <ng-template pTemplate="item" let-item>
+            {{ item.name | translate }}
+          </ng-template>
+          <ng-template pTemplate="selectedItem" let-item>
+            {{ item.name | translate }}
+          </ng-template>
+        </p-dropdown>
+        <small
+          id="limitType-help"
+          class="block"
+          [class.p-error]="
+            creditCardForm.controls.limitType.hasError('required') &&
+            creditCardForm.controls.limitType.touched
+          "
+        >
+          {{ 'commonFields.validators.required' | translate }}
+        </small>
+      </div>
     </div>
 
     <!-- Buttons -->
