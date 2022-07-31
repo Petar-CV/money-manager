@@ -6,8 +6,8 @@ import {
 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { AdminCreditCardItemsRoutes } from 'apps/money-manager/src/app/shared/constants/routing';
 
+import { AdminCreditCardItemsRoutes } from 'apps/money-manager/src/app/shared/constants/routing';
 import { AdminCreditCardItemsService } from 'apps/money-manager/src/app/shared/services/entities/admin/credit-card-items/admin-credit-card-items.service';
 
 @Component({
@@ -25,6 +25,7 @@ export class AdminCreditCardItemDetailsComponent implements OnInit {
     instalments: [1, Validators.required],
     amount: [0, Validators.required],
     boughtAt: [new Date(), Validators.required],
+    firstInstalmentDate: [new Date(), Validators.required],
     userId: ['', Validators.required],
     cardId: ['', Validators.required],
     createdAt: [new Date()],
@@ -72,6 +73,9 @@ export class AdminCreditCardItemDetailsComponent implements OnInit {
                 : undefined,
               deletedAt: creditCardItem.deletedAt
                 ? new Date(creditCardItem.deletedAt)
+                : undefined,
+              firstInstalmentDate: creditCardItem.firstInstalmentDate
+                ? new Date(creditCardItem.firstInstalmentDate)
                 : undefined,
             });
 

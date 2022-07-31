@@ -16,7 +16,8 @@
       "amount": "Iznos",
       "cardId": "ID kartice",
       "userId": "ID korisnika kartice",
-      "card": "Kartica"
+      "card": "Kartica",
+      "firstInstalmentDate": "Datum prve rate"
     },
     "tooltips": {
       "card": "Otvorite detalje kartice"

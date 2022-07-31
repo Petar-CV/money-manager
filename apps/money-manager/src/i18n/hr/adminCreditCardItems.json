@@ -7,7 +7,8 @@
       "boughtAt": "Kupljeno",
       "amount": "Iznos",
       "cardId": "ID kartice",
-      "userId": "ID korisnika kartice"
+      "userId": "ID korisnika kartice",
+      "firstInstalmentDate": "Datum prve rate"
     },
     "responses": {
       "created": "Stavka kartice kreirana",

@@ -29,6 +29,7 @@ export class PrivateCreditCardItemDetailsComponent implements OnInit {
     amount: [0, Validators.required],
     instalments: [0, Validators.required],
     boughtAt: [new Date(), Validators.required],
+    firstInstalmentDate: [new Date(), Validators.required],
   });
 
   constructor(
@@ -58,6 +59,10 @@ export class PrivateCreditCardItemDetailsComponent implements OnInit {
 
             this.form.patchValue({
               ...creditCardItem,
+              boughtAt: new Date(creditCardItem.boughtAt),
+              firstInstalmentDate: creditCardItem.firstInstalmentDate
+                ? new Date(creditCardItem.firstInstalmentDate)
+                : undefined,
             });
 
             this.cdr.markForCheck();

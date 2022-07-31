@@ -7,7 +7,8 @@
       "boughtAt": "Bought at",
       "amount": "Amount",
       "cardId": "Card ID",
-      "userId": "Card user ID"
+      "userId": "Card user ID",
+      "firstInstalmentDate": "Date of the first instalment"
     },
     "responses": {
       "created": "Card item created",

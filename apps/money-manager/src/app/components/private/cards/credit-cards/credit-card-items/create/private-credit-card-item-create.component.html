@@ -146,6 +146,32 @@
           {{ 'commonFields.validators.required' | translate }}
         </small>
       </div>
+
+      <div>
+        <label for="firstInstalmentDate" class="block">
+          {{
+            'privateCreditCardItems.fields.firstInstalmentDate' | translate
+          }}
+          *
+        </label>
+        <p-calendar
+          id="firstInstalmentDate"
+          styleClass="w-full"
+          formControlName="firstInstalmentDate"
+          aria-describedby="firstInstalmentDate-help"
+        ></p-calendar>
+        <small
+          id="firstInstalmentDate-help"
+          class="block"
+          [class.p-error]="
+            form.controls.firstInstalmentDate.hasError('required') &&
+            form.controls.firstInstalmentDate.touched
+          "
+          class="block"
+        >
+          {{ 'commonFields.validators.required' | translate }}
+        </small>
+      </div>
     </div>
 
     <!-- Buttons -->

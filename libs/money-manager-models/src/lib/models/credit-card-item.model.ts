@@ -6,6 +6,7 @@ export interface ICreditCardItem {
   name: string;
   description?: string;
   boughtAt: Date;
+  firstInstalmentDate: Date;
   instalments: number;
   amount: number;
 
@@ -23,6 +24,7 @@ export class CreditCardItem implements ICreditCardItem {
   name: string;
   description?: string;
   boughtAt: Date;
+  firstInstalmentDate: Date;
   instalments: number;
   amount: number;
 
@@ -39,6 +41,7 @@ export class CreditCardItem implements ICreditCardItem {
     this.name = data.name;
     this.description = data.description;
     this.boughtAt = data.boughtAt;
+    this.firstInstalmentDate = data.firstInstalmentDate;
     this.instalments = data.instalments;
     this.amount = data.amount;
 

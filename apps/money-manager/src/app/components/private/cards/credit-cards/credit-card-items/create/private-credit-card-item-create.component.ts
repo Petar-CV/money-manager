@@ -34,6 +34,7 @@ export class PrivateCreditCardItemCreateComponent implements OnInit {
     amount: [0, Validators.required],
     instalments: [0, Validators.required],
     boughtAt: [new Date(), Validators.required],
+    firstInstalmentDate: [new Date(), Validators.required],
   });
 
   constructor(

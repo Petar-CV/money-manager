@@ -149,6 +149,7 @@ export class AdminCreditCardItemsService {
         data: {
           name: createCreditCardDto.name,
           boughtAt: createCreditCardDto.boughtAt,
+          firstInstalmentDate: createCreditCardDto.firstInstalmentDate,
           amount: createCreditCardDto.amount,
           instalments: createCreditCardDto.instalments,
           description: createCreditCardDto.description,
@@ -206,6 +207,7 @@ export class AdminCreditCardItemsService {
         data: {
           name: updateCreditCardDto.name,
           boughtAt: updateCreditCardDto.boughtAt,
+          firstInstalmentDate: updateCreditCardDto.firstInstalmentDate,
           amount: updateCreditCardDto.amount,
           instalments: updateCreditCardDto.instalments,
           description: updateCreditCardDto.description,

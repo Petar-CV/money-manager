@@ -26,9 +26,13 @@ export class CreateAdminCreditCardItemDto {
   @IsNumber()
   readonly amount: number;
 
-  @ApiProperty({ description: "Credit card's billing date." })
+  @ApiProperty({ description: 'Date of the item purchase.' })
   @IsDate()
   readonly boughtAt: Date;
+
+  @ApiProperty({ description: 'Date of the first instalment.' })
+  @IsDate()
+  readonly firstInstalmentDate: Date;
 
   @ApiProperty({ description: "ID of the item's credit card." })
   @IsString()

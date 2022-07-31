@@ -16,7 +16,8 @@
       "amount": "Amount",
       "cardId": "Card ID",
       "userId": "Card user ID",
-      "card": "Card"
+      "card": "Card",
+      "firstInstalmentDate": "Date of the first instalment"
     },
     "tooltips": {
       "card": "Open card details"
