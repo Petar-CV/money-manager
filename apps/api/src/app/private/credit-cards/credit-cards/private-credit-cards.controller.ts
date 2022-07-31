@@ -43,6 +43,14 @@ export class PrivateCreditCardsController {
     );
   }
 
+  @Get('lov')
+  findAllLov(
+    @Request() req: IRequestForLogging,
+    @AuthenticatedUser() user: IAuthenticatedUser
+  ): Promise<IApiResponse<Partial<CreditCard>[]>> {
+    return this.privateCreditCardsService.findAllLov(req, user);
+  }
+
   @Get(':id')
   findOne(
     @Request() req: IRequestForLogging,

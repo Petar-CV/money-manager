@@ -18,10 +18,6 @@ export class CreditCardsService extends BaseEntityService<ICreditCard> {
     super('credit-cards', 'private');
   }
 
-  override findAllLov(): Observable<Partial<ICreditCard>[]> {
-    throw new Error('Method not implemented for this entity.');
-  }
-
   /**
    * This function returns an observable of an HTTP response containing a modified API response of an
    * array of credit card items

@@ -6,6 +6,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { Observable } from 'rxjs';
 
 import { ICreditCard, ICreditCardItem } from '@petar-cv/money-manager-models';
 
@@ -22,6 +23,7 @@ import { CreditCardItemsService } from 'apps/money-manager/src/app/shared/servic
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PrivateCreditCardItemCreateComponent implements OnInit {
+  public creditCards$: Observable<Partial<ICreditCard>[]>;
   public currentCreditCardItem?: ICreditCardItem;
   public currentCreditCard?: ICreditCard;
   public cardDetailsRouterLink = PrivateCreditCardsRoutes.PRIVATE_CREDIT_CARDS;
@@ -44,7 +46,9 @@ export class PrivateCreditCardItemCreateComponent implements OnInit {
     private readonly cdr: ChangeDetectorRef,
     private readonly creditCardsService: CreditCardsService,
     private readonly creditCardItemsService: CreditCardItemsService
-  ) {}
+  ) {
+    this.creditCards$ = this.creditCardsService.findAllLov();
+  }
 
   public ngOnInit(): void {
     this.route.queryParams.forEach((queryParams) => {

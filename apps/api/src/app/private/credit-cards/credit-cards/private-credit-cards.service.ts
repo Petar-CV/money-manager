@@ -102,6 +102,52 @@ export class PrivateCreditCardsService {
     }
   }
 
+  async findAllLov(
+    req: IRequestForLogging,
+    user: IAuthenticatedUser
+  ): Promise<IApiResponse<Partial<CreditCard>[]>> {
+    try {
+      this.logger.log(`Executing findAllLov`);
+
+      const data = await this.prisma.creditCard.findMany({
+        select: {
+          id: true,
+          name: true,
+        },
+        where: {
+          deletedAt: null,
+          userId: user.user_id,
+        },
+      });
+
+      return {
+        data: data,
+      };
+    } catch (exception) {
+      const exceptionLog = createExceptionFromRequest(req, exception);
+
+      this.logger.error(
+        createExceptionStringForLoggerFromRequest(
+          this.findAllLov.name,
+          exceptionLog
+        )
+      );
+
+      this.kafkaProducerService.produce({
+        topic: KafkaTopics.EXCEPTION_LOGGER,
+        messages: [
+          {
+            value: JSON.stringify(exceptionLog),
+          },
+        ],
+      });
+
+      return {
+        message: CommonResponses.SERVER_ERROR,
+      };
+    }
+  }
+
   async findOne(
     req: IRequestForLogging,
     id: string,

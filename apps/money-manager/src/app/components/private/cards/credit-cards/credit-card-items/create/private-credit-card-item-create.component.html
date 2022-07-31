@@ -8,7 +8,7 @@
   >
     <!-- Fields -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-6">
-      <div>
+      <div *ngIf="creditCardId">
         <label for="card" class="block">
           {{ 'privateCreditCardItems.fields.card' | translate }} *
         </label>
@@ -25,6 +25,32 @@
           [pTooltip]="'privateCreditCardItems.tooltips.card' | translate"
           [placeholder]="'privateCreditCardItems.fields.card' | translate"
         />
+      </div>
+
+      <div *ngIf="!creditCardId">
+        <label for="cardId" class="block">
+          {{ 'privateCreditCardItems.fields.card' | translate }} *
+        </label>
+        <p-dropdown
+          styleClass="w-full"
+          [options]="(creditCards$ | async) ?? []"
+          formControlName="cardId"
+          [emptyMessage]="'commonActions.noResults' | translate"
+          optionLabel="name"
+          optionValue="id"
+          [placeholder]="'privateCreditCardItems.fields.card' | translate"
+          aria-describedby="cardId-help"
+        ></p-dropdown>
+        <small
+          id="cardId-help"
+          class="block"
+          [class.p-error]="
+            form.controls.cardId.hasError('required') &&
+            form.controls.cardId.touched
+          "
+        >
+          {{ 'commonFields.validators.required' | translate }}
+        </small>
       </div>
 
       <div>
@@ -149,9 +175,7 @@
 
       <div>
         <label for="firstInstalmentDate" class="block">
-          {{
-            'privateCreditCardItems.fields.firstInstalmentDate' | translate
-          }}
+          {{ 'privateCreditCardItems.fields.firstInstalmentDate' | translate }}
           *
         </label>
         <p-calendar
