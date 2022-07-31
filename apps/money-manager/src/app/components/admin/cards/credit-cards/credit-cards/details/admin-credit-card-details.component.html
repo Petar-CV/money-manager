@@ -83,8 +83,8 @@
           id="userId-help"
           class="block"
           [class.p-error]="
-            creditCardForm.controls.userId?.hasError('required') &&
-            creditCardForm.controls.userId?.touched
+            creditCardForm.controls.userId.hasError('required') &&
+            creditCardForm.controls.userId.touched
           "
           class="block"
         >
@@ -190,7 +190,7 @@
       <p-button
         [label]="'commonActions.update' | translate"
         type="submit"
-        [disabled]="!!creditCardForm?.invalid || !!creditCardForm?.pristine"
+        [disabled]="!!creditCardForm.invalid || !!creditCardForm.pristine"
       ></p-button>
     </div>
   </form>

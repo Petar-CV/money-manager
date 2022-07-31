@@ -24,8 +24,8 @@
           id="userId-help"
           class="block"
           [class.p-error]="
-            creditCardItemForm.controls.userId?.hasError('required') &&
-            creditCardItemForm.controls.userId?.touched
+            creditCardItemForm.controls.userId.hasError('required') &&
+            creditCardItemForm.controls.userId.touched
           "
           class="block"
         >
