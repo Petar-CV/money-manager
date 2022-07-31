@@ -50,6 +50,7 @@ model CreditCardItem {
   name        String   @db.VarChar(255)
   description String?  @db.Text()
   boughtAt    DateTime
+  // TODO: Add firstInstalmentmentDate (date of first installment)
   instalments Int
   amount      Decimal  @db.Decimal(10, 2)
 
