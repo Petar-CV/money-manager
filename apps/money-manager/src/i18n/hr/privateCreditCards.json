@@ -5,7 +5,10 @@
       "pageTitle": "Kreiranje kreditne kartice"
     },
     "details": {
-      "pageTitle": "Detalji kreditne kartice"
+      "pageTitle": "Detalji kreditne kartice",
+      "limitChart": {
+        "available": "Dostupno"
+      }
     },
     "edit": {
       "pageTitle": "Uređivanje kreditne kartice"

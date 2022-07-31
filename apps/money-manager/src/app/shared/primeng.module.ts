@@ -10,6 +10,7 @@ import { InputTextareaModule } from 'primeng/inputtextarea';
 import { InputNumberModule } from 'primeng/inputnumber';
 import { CardModule } from 'primeng/card';
 import { ToastModule } from 'primeng/toast';
+import { ChartModule } from 'primeng/chart';
 
 const modulesToExport = [
   ButtonModule,
@@ -23,6 +24,7 @@ const modulesToExport = [
   InputNumberModule,
   CardModule,
   ToastModule,
+  ChartModule,
 ];
 
 @NgModule({

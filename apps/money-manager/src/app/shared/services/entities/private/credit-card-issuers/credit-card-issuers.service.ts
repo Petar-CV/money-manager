@@ -15,7 +15,7 @@ export class CreditCardIssuersService extends BaseEntityService<ICreditCardIssue
     super('credit-card-issuers', 'private');
   }
 
-  override create(): Observable<ICreditCardIssuer | null> {
+  override create(): Observable<ICreditCardIssuer | undefined> {
     // This method doesn't exist in the API, so we need to override it
     throw new Error('Method not implemented for this entity.');
   }

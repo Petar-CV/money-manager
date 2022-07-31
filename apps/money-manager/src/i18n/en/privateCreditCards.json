@@ -5,7 +5,10 @@
       "pageTitle": "Create credit card"
     },
     "details": {
-      "pageTitle": "Credit card details"
+      "pageTitle": "Credit card details",
+      "limitChart": {
+        "available": "Available"
+      }
     },
     "edit": {
       "pageTitle": "Edit credit card"

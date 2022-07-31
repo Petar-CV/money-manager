@@ -56,14 +56,14 @@ export abstract class BaseEntityService<T> {
   }
 
   /**
-   * It returns an Observable of type T or null
+   * It returns an Observable of type T or undefined
    * @param {string} id - string - The id of the entity you want to get
-   * @returns Observable<T | null>
+   * @returns Observable<T | undefined>
    */
-  findOne(id: string): Observable<T | null> {
+  findOne(id: string): Observable<T | undefined> {
     return this.http
-      .get<IModifiedApiResponse<T | null>>(`${this.baseURL}/${id}`)
-      .pipe(map((res) => res.data ?? null));
+      .get<IModifiedApiResponse<T | undefined>>(`${this.baseURL}/${id}`)
+      .pipe(map((res) => res.data ?? undefined));
   }
 
   /**
@@ -73,18 +73,18 @@ export abstract class BaseEntityService<T> {
   findAllLov(): Observable<Partial<T>[]> {
     return this.http
       .get<IModifiedApiResponse<Partial<T>[]>>(`${this.baseURL}/lov`)
-      .pipe(map((res) => res.data ?? null));
+      .pipe(map((res) => res.data ?? undefined));
   }
 
   /**
-   * It takes an entity of type T, sends it to the server, and returns an observable of type T or null
+   * It takes an entity of type T, sends it to the server, and returns an observable of type T or undefined
    * @param {T} entity - T - The entity to create
-   * @returns Observable<T | null>
+   * @returns Observable<T | undefined>
    */
-  create(entity: Partial<T>): Observable<T | null> {
+  create(entity: Partial<T>): Observable<T | undefined> {
     return this.http
-      .post<IModifiedApiResponse<T | null>>(this.baseURL, entity)
-      .pipe(map((res) => res.data ?? null));
+      .post<IModifiedApiResponse<T | undefined>>(this.baseURL, entity)
+      .pipe(map((res) => res.data ?? undefined));
   }
 
   /**

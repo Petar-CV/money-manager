@@ -11,6 +11,7 @@ import { PrivateCreditCardCreateComponent } from './create/private-credit-card-c
 import { PrivateCreditCardDetailsComponent } from './details/private-credit-card-details.component';
 import { PrivateCreditCardDetailsEditComponent } from './details-edit/private-credit-card-details-edit.component';
 import { PrivateCreditCardItemsTableComponent } from './details/items-table/private-credit-card-items-table.component';
+import { PrivateCreditCardItemsLimitChartComponent } from './details/items-limit-chart/private-credit-card-items-limit-chart.component';
 
 const routes: Routes = [
   {
@@ -51,6 +52,7 @@ const routes: Routes = [
     PrivateCreditCardDetailsComponent,
     PrivateCreditCardDetailsEditComponent,
     PrivateCreditCardItemsTableComponent,
+    PrivateCreditCardItemsLimitChartComponent,
   ],
   imports: [
     SharedModule,
