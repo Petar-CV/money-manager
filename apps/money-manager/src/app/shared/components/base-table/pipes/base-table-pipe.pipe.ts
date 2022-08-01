@@ -2,6 +2,8 @@ import { Pipe, PipeTransform } from '@angular/core';
 import { TitleCasePipe } from '@angular/common';
 import { TranslatePipe } from '@ngx-translate/core';
 
+import { CreditCardItem } from '@petar-cv/money-manager-models';
+
 import {
   BaseTableDataPipeToUse,
   IBaseTableDataPipe,
@@ -9,6 +11,8 @@ import {
 import { LocalizedDatePipe } from '../../../pipes/utils/localized-date.pipe';
 import { NumberToBooleanPipe } from '../../../pipes/utils/number-to-boolean.pipe';
 import { CustomCurrencyPipe } from '../../../pipes/utils/custom-currency.pipe';
+import { AmountLeftPipe } from '../../../pipes/utils/credit-card-items/amount-left.pipe';
+import { InstalmentsLeftPipe } from '../../../pipes/utils/credit-card-items/instalments-left.pipe';
 
 @Pipe({
   name: 'baseTablePipe',
@@ -19,7 +23,9 @@ export class BaseTablePipe implements PipeTransform {
     private readonly localizedDatePipe: LocalizedDatePipe,
     private readonly translatePipe: TranslatePipe,
     private readonly titleCasePipe: TitleCasePipe,
-    private readonly numberToBooleanPipe: NumberToBooleanPipe
+    private readonly numberToBooleanPipe: NumberToBooleanPipe,
+    private readonly amountLeftPipe: AmountLeftPipe,
+    private readonly instalmentsLeftPipe: InstalmentsLeftPipe
   ) {}
 
   transform(data: string, pipes: IBaseTableDataPipe[]): string {
@@ -40,28 +46,51 @@ export class BaseTablePipe implements PipeTransform {
   }
 
   private applyPipe(
-    data: string,
+    data: unknown,
     pipe: BaseTableDataPipeToUse,
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     pipeParams?: any
   ): string {
     switch (pipe) {
-      case 'translate':
-        return this.translatePipe.transform(data);
+      case 'translate': {
+        return typeof data === 'string'
+          ? this.translatePipe.transform(data)
+          : '';
+      }
       case 'localizedDate': {
-        const date = new Date(data).toISOString();
-        const dateData = this.localizedDatePipe.transform(date, pipeParams);
-        return dateData ? dateData : '';
+        return typeof data === 'string'
+          ? this.localizedDatePipe.transform(
+              new Date(data).toISOString(),
+              pipeParams
+            ) ?? ''
+          : '';
       }
       case 'customCurrency': {
-        const currencyData = this.currencyPipe.transform(data, pipeParams);
-        return currencyData ? currencyData : '';
+        return typeof data === 'number' || typeof data === 'string'
+          ? this.currencyPipe.transform(data, pipeParams) ?? ''
+          : '';
       }
-      case 'titlecase':
-        return this.titleCasePipe.transform(data);
+      case 'titlecase': {
+        return typeof data === 'string'
+          ? this.titleCasePipe.transform(data)
+          : '';
+      }
       case 'numberToBoolean': {
-        const parsedData = parseInt(data);
-        return this.numberToBooleanPipe.transform(parsedData);
+        return typeof data === 'string'
+          ? this.numberToBooleanPipe.transform(parseInt(data)) ?? ''
+          : '';
+      }
+      case 'amountLeft': {
+        return (
+          this.amountLeftPipe.transform(data as CreditCardItem).toString() ?? ''
+        );
+      }
+      case 'instalmentsLeft': {
+        return (
+          this.instalmentsLeftPipe
+            .transform(data as CreditCardItem)
+            .toString() ?? ''
+        );
       }
       default:
         return '';

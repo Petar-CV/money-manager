@@ -22,6 +22,7 @@ export class BaseTableData implements IBaseTableData {
 
 export interface IBaseTableDataPipe {
   pipe: BaseTableDataPipeToUse;
+  wholeObjectToPipe?: boolean;
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   pipeParams?: any;
 }
@@ -38,6 +39,8 @@ export type BaseTableDataPipeToUse =
   | 'localizedDate'
   | 'customCurrency'
   | 'titlecase'
-  | 'numberToBoolean';
+  | 'numberToBoolean'
+  | 'amountLeft'
+  | 'instalmentsLeft';
 
 export type BaseTableActionType = 'navigate';

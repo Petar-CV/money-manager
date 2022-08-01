@@ -32,15 +32,27 @@ export class PrivateCreditCardItemsTableComponent
       translate: true,
     },
     {
-      text: 'adminCreditCardItems.fields.amount',
+      text: 'privateCreditCardItems.fields.amount',
       translate: true,
     },
     {
-      text: 'adminCreditCardItems.fields.instalments',
+      text: 'privateCreditCardItems.fields.amountLeft',
       translate: true,
     },
     {
-      text: 'adminCreditCardItems.fields.boughtAt',
+      text: 'privateCreditCardItems.fields.instalments',
+      translate: true,
+    },
+    {
+      text: 'privateCreditCardItems.fields.instalmentsLeft',
+      translate: true,
+    },
+    {
+      text: 'privateCreditCardItems.fields.boughtAt',
+      translate: true,
+    },
+    {
+      text: 'privateCreditCardItems.fields.firstInstalmentDate',
       translate: true,
     },
     {
@@ -62,10 +74,35 @@ export class PrivateCreditCardItemsTableComponent
       ],
     },
     {
+      pipes: [
+        {
+          pipe: 'amountLeft',
+        },
+        {
+          pipe: 'customCurrency',
+        },
+      ],
+    },
+    {
       field: 'instalments',
     },
     {
+      pipes: [
+        {
+          pipe: 'instalmentsLeft',
+        },
+      ],
+    },
+    {
       field: 'boughtAt',
+      pipes: [
+        {
+          pipe: 'localizedDate',
+        },
+      ],
+    },
+    {
+      field: 'firstInstalmentDate',
       pipes: [
         {
           pipe: 'localizedDate',

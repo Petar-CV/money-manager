@@ -87,6 +87,12 @@
           ></button>
         </ng-container>
 
+        <ng-container *ngIf="!row.field && !row.action">
+          <ng-container *ngIf="!row.nestedIn">
+            {{ element | baseTablePipe: row?.pipes ?? [] }}
+          </ng-container>
+        </ng-container>
+
         <!-- ROW SUFFIX -->
         <ng-container *ngIf="row.suffix">
           {{ row.suffix }}

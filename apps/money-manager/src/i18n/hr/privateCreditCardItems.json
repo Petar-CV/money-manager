@@ -12,8 +12,10 @@
     },
     "fields": {
       "instalments": "Broj rata",
+      "instalmentsLeft": "Preostali broj rata",
       "boughtAt": "Kupljeno",
       "amount": "Iznos",
+      "amountLeft": "Preostali iznos",
       "cardId": "ID kartice",
       "userId": "ID korisnika kartice",
       "card": "Kartica",

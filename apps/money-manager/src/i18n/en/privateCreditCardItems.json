@@ -12,8 +12,10 @@
     },
     "fields": {
       "instalments": "Number of instalments",
+      "instalmentsLeft": "Number of instalments left",
       "boughtAt": "Bought at",
       "amount": "Amount",
+      "amountLeft": "Amount left",
       "cardId": "Card ID",
       "userId": "Card user ID",
       "card": "Card",
