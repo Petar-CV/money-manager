@@ -71,7 +71,6 @@ export class PrivateCreditCardItemsLimitChartComponent implements OnInit {
         this.currentCreditCard
       );
       this.chartOptions = this.itemsLimitChartService.getChartOptions();
-      console.log(this.chartOptions);
       this.cdr.markForCheck();
     }
   }
