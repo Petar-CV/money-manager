@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 
 import { AmountLeftPipe } from './utils/credit-card-items/amount-left.pipe';
+import { InstalmentAmountPipe } from './utils/credit-card-items/instalment-amount.pipe';
 import { InstalmentsLeftPipe } from './utils/credit-card-items/instalments-left.pipe';
 import { CustomCurrencyPipe } from './utils/custom-currency.pipe';
 import { LocalizedDatePipe } from './utils/localized-date.pipe';
@@ -15,6 +16,7 @@ const sharedPipes = [
   CustomCurrencyPipe,
   AmountLeftPipe,
   InstalmentsLeftPipe,
+  InstalmentAmountPipe,
 ];
 
 @NgModule({

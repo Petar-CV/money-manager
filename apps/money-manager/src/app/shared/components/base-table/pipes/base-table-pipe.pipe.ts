@@ -13,6 +13,7 @@ import { NumberToBooleanPipe } from '../../../pipes/utils/number-to-boolean.pipe
 import { CustomCurrencyPipe } from '../../../pipes/utils/custom-currency.pipe';
 import { AmountLeftPipe } from '../../../pipes/utils/credit-card-items/amount-left.pipe';
 import { InstalmentsLeftPipe } from '../../../pipes/utils/credit-card-items/instalments-left.pipe';
+import { InstalmentAmountPipe } from '../../../pipes/utils/credit-card-items/instalment-amount.pipe';
 
 @Pipe({
   name: 'baseTablePipe',
@@ -25,7 +26,8 @@ export class BaseTablePipe implements PipeTransform {
     private readonly titleCasePipe: TitleCasePipe,
     private readonly numberToBooleanPipe: NumberToBooleanPipe,
     private readonly amountLeftPipe: AmountLeftPipe,
-    private readonly instalmentsLeftPipe: InstalmentsLeftPipe
+    private readonly instalmentsLeftPipe: InstalmentsLeftPipe,
+    private readonly instalmentAmountPipe: InstalmentAmountPipe
   ) {}
 
   transform(data: string, pipes: IBaseTableDataPipe[]): string {
@@ -88,6 +90,13 @@ export class BaseTablePipe implements PipeTransform {
       case 'instalmentsLeft': {
         return (
           this.instalmentsLeftPipe
+            .transform(data as CreditCardItem)
+            .toString() ?? ''
+        );
+      }
+      case 'instalmentAmount': {
+        return (
+          this.instalmentAmountPipe
             .transform(data as CreditCardItem)
             .toString() ?? ''
         );

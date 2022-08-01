@@ -4,6 +4,7 @@ import { TranslateModule, TranslatePipe } from '@ngx-translate/core';
 
 import { SharedPipesModule } from '../../pipes/shared-pipes.module';
 import { AmountLeftPipe } from '../../pipes/utils/credit-card-items/amount-left.pipe';
+import { InstalmentAmountPipe } from '../../pipes/utils/credit-card-items/instalment-amount.pipe';
 import { InstalmentsLeftPipe } from '../../pipes/utils/credit-card-items/instalments-left.pipe';
 import { CustomCurrencyPipe } from '../../pipes/utils/custom-currency.pipe';
 import { LocalizedDatePipe } from '../../pipes/utils/localized-date.pipe';
@@ -31,6 +32,7 @@ import { NestedValuePipe } from './pipes/nested-value.pipe';
     TitleCasePipe,
     AmountLeftPipe,
     InstalmentsLeftPipe,
+    InstalmentAmountPipe,
   ],
 })
 export class BaseTableModule {}

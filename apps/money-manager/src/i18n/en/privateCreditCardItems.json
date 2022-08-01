@@ -13,6 +13,7 @@
     "fields": {
       "instalments": "Number of instalments",
       "instalmentsLeft": "Number of instalments left",
+      "instalmentAmount": "Instalment amount",
       "boughtAt": "Bought at",
       "amount": "Amount",
       "amountLeft": "Amount left",

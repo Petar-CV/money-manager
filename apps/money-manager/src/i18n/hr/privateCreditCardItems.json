@@ -13,6 +13,7 @@
     "fields": {
       "instalments": "Broj rata",
       "instalmentsLeft": "Preostali broj rata",
+      "instalmentAmount": "Iznos rate",
       "boughtAt": "Kupljeno",
       "amount": "Iznos",
       "amountLeft": "Preostali iznos",

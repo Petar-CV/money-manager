@@ -41,6 +41,7 @@ export type BaseTableDataPipeToUse =
   | 'titlecase'
   | 'numberToBoolean'
   | 'amountLeft'
-  | 'instalmentsLeft';
+  | 'instalmentsLeft'
+  | 'instalmentAmount';
 
 export type BaseTableActionType = 'navigate';

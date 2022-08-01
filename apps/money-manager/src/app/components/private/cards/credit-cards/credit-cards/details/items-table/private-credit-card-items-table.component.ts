@@ -40,6 +40,10 @@ export class PrivateCreditCardItemsTableComponent
       translate: true,
     },
     {
+      text: 'privateCreditCardItems.fields.instalmentAmount',
+      translate: true,
+    },
+    {
       text: 'privateCreditCardItems.fields.instalments',
       translate: true,
     },
@@ -77,6 +81,16 @@ export class PrivateCreditCardItemsTableComponent
       pipes: [
         {
           pipe: 'amountLeft',
+        },
+        {
+          pipe: 'customCurrency',
+        },
+      ],
+    },
+    {
+      pipes: [
+        {
+          pipe: 'instalmentAmount',
         },
         {
           pipe: 'customCurrency',
