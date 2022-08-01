@@ -7,6 +7,9 @@ import {
   IItemsLimitChartData,
   IItemsLimitChartOptions,
 } from '../../../../models/charts/credit-card-items/items-limit-chart.model';
+import { calculateAreAllInstalmentsPaidForItem } from '../../../../utils/credit-card-items/all-instalments-paid.util';
+import { calculateAmountLeftForItem } from '../../../../utils/credit-card-items/amount-left.util';
+import { filterPaidCreditCardItems } from '../../../../utils/credit-card-items/filter-paid-items.util';
 
 @Injectable({
   providedIn: 'root',
@@ -30,7 +33,15 @@ export class ItemsLimitChartService {
     creditCardItems: ICreditCardItem[],
     creditCard: ICreditCard
   ): IItemsLimitChartData {
-    const itemsNames = creditCardItems.map((item) => item.name);
+    const itemsToBePaid = filterPaidCreditCardItems(creditCardItems);
+
+    const itemsNames = itemsToBePaid.map((item) => item.name);
+
+    const sumOfItems = itemsToBePaid.reduce(
+      (sum, item) => sum + calculateAmountLeftForItem(item),
+      0
+    );
+
     const labels = [
       this.translateService.instant(
         'privateCreditCards.details.limitChart.available'
@@ -38,21 +49,18 @@ export class ItemsLimitChartService {
       ...itemsNames,
     ];
 
-    const sumOfItems = creditCardItems.reduce(
-      (sum, item) => sum + +item.amount,
-      0
-    );
-
     const datasets: IItemsLimitChartData['datasets'] = [
       {
         data: [
           +(creditCard.limit - sumOfItems).toFixed(2),
-          ...creditCardItems.map((item) => +(+item.amount).toFixed(2)),
+          ...itemsToBePaid.map(
+            (item) => +calculateAmountLeftForItem(item).toFixed(2)
+          ),
         ],
-        backgroundColor: ['seagreen', ...creditCardItems.map(() => 'red')],
+        backgroundColor: ['seagreen', ...itemsToBePaid.map(() => 'red')],
         hoverBackgroundColor: [
           'darkgreen',
-          ...creditCardItems.map(() => 'darkred'),
+          ...itemsToBePaid.map(() => 'darkred'),
         ],
       },
     ];
@@ -64,7 +72,15 @@ export class ItemsLimitChartService {
     creditCardItems: ICreditCardItem[],
     creditCard: ICreditCard
   ): IItemsLimitChartData {
-    const itemsNames = creditCardItems.map((item) => item.name);
+    const itemsToBePaid = filterPaidCreditCardItems(creditCardItems);
+
+    const itemsNames = itemsToBePaid.map((item) => item.name);
+
+    const sumOfItemsDividedByInstalments = itemsToBePaid.reduce(
+      (sum, item) => sum + item.amount / item.instalments,
+      0
+    );
+
     const labels = [
       this.translateService.instant(
         'privateCreditCards.details.limitChart.available'
@@ -72,23 +88,18 @@ export class ItemsLimitChartService {
       ...itemsNames,
     ];
 
-    const sumOfItemsDividedByInstalments = creditCardItems.reduce(
-      (sum, item) => sum + item.amount / item.instalments,
-      0
-    );
-
     const datasets: IItemsLimitChartData['datasets'] = [
       {
         data: [
           +(creditCard.limit - sumOfItemsDividedByInstalments).toFixed(2),
-          ...creditCardItems.map(
+          ...itemsToBePaid.map(
             (item) => +(item.amount / item.instalments).toFixed(2)
           ),
         ],
-        backgroundColor: ['seagreen', ...creditCardItems.map(() => 'red')],
+        backgroundColor: ['seagreen', ...itemsToBePaid.map(() => 'red')],
         hoverBackgroundColor: [
           'darkgreen',
-          ...creditCardItems.map(() => 'darkred'),
+          ...itemsToBePaid.map(() => 'darkred'),
         ],
       },
     ];
