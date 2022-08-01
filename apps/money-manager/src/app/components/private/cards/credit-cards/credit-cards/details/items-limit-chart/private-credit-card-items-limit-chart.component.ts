@@ -11,12 +11,14 @@ import { ICreditCard, ICreditCardItem } from '@petar-cv/money-manager-models';
 
 import { CreditCardsService } from 'apps/money-manager/src/app/shared/services/entities/private/credit-cards/credit-cards.service';
 import { ItemsLimitChartService } from 'apps/money-manager/src/app/shared/services/entities/private/credit-card-items/items-limit-chart.service';
-import { IItemsLimitChartData } from 'apps/money-manager/src/app/shared/models/charts/credit-card-items/items-limit-chart.model';
+import {
+  IItemsLimitChartData,
+  IItemsLimitChartOptions,
+} from 'apps/money-manager/src/app/shared/models/charts/credit-card-items/items-limit-chart.model';
 
 @Component({
   selector: 'petar-cv-private-credit-card-items-limit-chart',
   templateUrl: './private-credit-card-items-limit-chart.component.html',
-  styles: [],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PrivateCreditCardItemsLimitChartComponent implements OnInit {
@@ -24,6 +26,7 @@ export class PrivateCreditCardItemsLimitChartComponent implements OnInit {
   public currentCreditCard?: ICreditCard;
   public chartData?: IItemsLimitChartData;
   public currentId?: string;
+  public chartOptions?: IItemsLimitChartOptions;
 
   constructor(
     private readonly route: ActivatedRoute,
@@ -67,6 +70,8 @@ export class PrivateCreditCardItemsLimitChartComponent implements OnInit {
         this.creditCardItems,
         this.currentCreditCard
       );
+      this.chartOptions = this.itemsLimitChartService.getChartOptions();
+      console.log(this.chartOptions);
       this.cdr.markForCheck();
     }
   }

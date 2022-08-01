@@ -1,3 +1,7 @@
-<div *ngIf="chartData" class="h-64 w-64">
-  <p-chart type="doughnut" [data]="chartData"></p-chart>
+<div *ngIf="chartData && chartOptions" class="h-64 w-64">
+  <p-chart
+    type="doughnut"
+    [data]="chartData"
+    [options]="chartOptions"
+  ></p-chart>
 </div>

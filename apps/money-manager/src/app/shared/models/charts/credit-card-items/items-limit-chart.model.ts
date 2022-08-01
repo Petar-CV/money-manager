@@ -8,3 +8,17 @@ export interface IItemsLimitChartData {
     }
   ];
 }
+
+export interface IItemsLimitChartOptions {
+  plugins: {
+    legend: {
+      title?: {
+        display?: boolean;
+        text?: string;
+        fontSize?: number;
+      };
+      position?: string;
+      align?: string;
+    };
+  };
+}
