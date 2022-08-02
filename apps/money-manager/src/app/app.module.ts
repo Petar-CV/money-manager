@@ -45,7 +45,7 @@ function initializeKeycloak(
         bearerExcludedUrls: ['/assets'],
       })
       .then(() => {
-        userProfileService.loadUserProfileDataFromLocalStorage();
+        userProfileService.initializeUserProfileData();
       });
 }
 

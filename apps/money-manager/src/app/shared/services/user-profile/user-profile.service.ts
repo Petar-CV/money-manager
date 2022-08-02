@@ -90,10 +90,37 @@ export class UserProfileService {
   }
 
   /**
-   * If the user profile data is not in local storage, check if the browser language is supported.
-   * If it is, load the default user profile data from the browser language
+   * If the user profile data is in local storage, load it from there.
+   * Otherwise, load it from the browser language
    */
   public determineUserProfileData(): void {
+    if (this.loadUserProfileDataFromLocalStorage()) return;
+
+    this.determineUserProfileDataFromBrowserLang();
+  }
+
+  /**
+   * It retrieves the user profile data from local storage and sets it to the user profile data in the store
+   * @returns A boolean value indicating whether the data was loaded from the local storage.
+   */
+  private loadUserProfileDataFromLocalStorage(): boolean {
+    const userProfile = this.localStorage.retrieve(
+      'userProfile'
+    ) as IUserProfile;
+
+    if (userProfile) {
+      this.setUserProfileData(userProfile);
+      return true;
+    }
+
+    return false;
+  }
+
+  /**
+   * If the user profile data is not in local storage, check if the browser language is supported.
+   * If it is, set the user profile data to the default user profile data for that language
+   */
+  private determineUserProfileDataFromBrowserLang(): void {
     // If not in local storage, check if browser language is supported
     const browserLang = this.translateService.getBrowserLang();
 
@@ -102,19 +129,7 @@ export class UserProfileService {
     this.setUserProfileData(defaultUserProfile);
   }
 
-  /**
-   * It loads the user profile data from local storage and sets it to the user profile data in the
-   * store
-   */
-  public loadUserProfileDataFromLocalStorage(): void {
-    const userProfile = this.localStorage.retrieve(
-      'userProfile'
-    ) as IUserProfile;
-
-    if (userProfile) {
-      this.setUserProfileData(userProfile);
-    }
-
+  public initializeUserProfileData(): void {
     this.fetchUserProfileData();
   }
 }
