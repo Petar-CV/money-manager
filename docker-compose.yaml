@@ -33,6 +33,8 @@ services:
       - 5434:5432
   keycloak:
     image: jboss/keycloak:16.1.1
+    volumes:
+      - ./keycloak-themes/custom:/opt/jboss/keycloak/themes/custom
     environment:
       DB_VENDOR: POSTGRES
       DB_ADDR: ${KEYCLOAK_DB_ADDR}
