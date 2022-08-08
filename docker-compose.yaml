@@ -34,8 +34,10 @@ services:
   keycloak:
     image: jboss/keycloak:16.1.1
     volumes:
-      - ./keycloak-themes/custom:/opt/jboss/keycloak/themes/custom
+      - ./keycloak/keycloak-themes/custom:/opt/jboss/keycloak/themes/custom
+      - ./keycloak/imports:/opt/jboss/keycloak/imports
     environment:
+      KEYCLOAK_IMPORT: /opt/jboss/keycloak/imports/realm-export.json -Dkeycloak.profile.feature.upload_scripts=enabled
       DB_VENDOR: POSTGRES
       DB_ADDR: ${KEYCLOAK_DB_ADDR}
       DB_DATABASE: ${KEYCLOAK_DB_DATABASE}
@@ -71,3 +73,27 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
     depends_on:
       - zookeeper
+  mm-api:
+    build:
+      context: .
+      dockerfile: ./apps/api/Dockerfile
+    ports:
+      - '3333:3333'
+    profiles:
+      - production
+    depends_on:
+      - kafka
+      - mm-postgres
+      - keycloak
+  mm-frontend:
+    build:
+      context: .
+      dockerfile: ./apps/money-manager/Dockerfile
+    ports:
+      - '4200:4200'
+    profiles:
+      - production
+    depends_on:
+      - kafka
+      - mm-postgres
+      - keycloak
