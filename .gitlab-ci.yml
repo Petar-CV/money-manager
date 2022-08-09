@@ -12,8 +12,6 @@ services:
 
 deploy:
   stage: deploy
-  tags:
-    - deployment
   script:
     - sudo apt-get install -y python-pip
     - pip install docker-compose
