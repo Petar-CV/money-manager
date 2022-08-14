@@ -7,7 +7,6 @@ import {
   IItemsLimitChartData,
   IItemsLimitChartOptions,
 } from '../../../../models/charts/credit-card-items/items-limit-chart.model';
-import { calculateAreAllInstalmentsPaidForItem } from '../../../../utils/credit-card-items/all-instalments-paid.util';
 import { calculateAmountLeftForItem } from '../../../../utils/credit-card-items/amount-left.util';
 import { filterPaidCreditCardItems } from '../../../../utils/credit-card-items/filter-paid-items.util';
 
@@ -25,6 +24,7 @@ export class ItemsLimitChartService {
       case 'OVERALL':
         return this.calculateForOverallLimit(creditCardItems, creditCard);
       case 'MONTHLY':
+      default:
         return this.calculateForMonthlyLimit(creditCardItems, creditCard);
     }
   }

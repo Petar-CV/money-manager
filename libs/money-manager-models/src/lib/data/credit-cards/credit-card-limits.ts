@@ -1,4 +1,4 @@
-import { CreditCardLimit } from '@prisma/client';
+import { CreditCardLimit } from '../../models/credit-cards/credit-card-limit.model';
 
 export const CreditCardLimits = [
   {
