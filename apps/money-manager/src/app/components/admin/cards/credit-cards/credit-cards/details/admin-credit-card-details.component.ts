@@ -7,11 +7,11 @@ import {
 import { FormBuilder, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs';
-import { CreditCardLimit } from '@prisma/client';
 
 import {
   CreditCardLimits,
   ICreditCardIssuer,
+  CreditCardLimit,
 } from '@petar-cv/money-manager-models';
 
 import { AdminCreditCardIssuersService } from 'apps/money-manager/src/app/shared/services/entities/admin/credit-card-issuers/admin-credit-card-issuers.service';

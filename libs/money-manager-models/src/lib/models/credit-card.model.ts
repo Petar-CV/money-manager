@@ -1,6 +1,6 @@
-import { CreditCardLimit } from '@prisma/client';
 import { ICreditCardIssuer } from './credit-card-issuer.model';
 import { ICreditCardItem } from './credit-card-item.model';
+import { CreditCardLimit } from './credit-cards/credit-card-limit.model';
 
 export interface ICreditCard {
   id?: string;
