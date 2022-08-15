@@ -1,5 +1,8 @@
 {
   "global": {
-    "title": "Money Manager"
+    "title": "Money Manager",
+    "responses": {
+      "server-error": "Greška na serveru!"
+    }
   }
 }
