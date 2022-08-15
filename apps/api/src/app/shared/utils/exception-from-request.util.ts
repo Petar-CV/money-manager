@@ -12,7 +12,7 @@ export const createExceptionFromRequest = (
 ): IExceptionLog => {
   return new ExceptionLog({
     endpoint: request.route.path,
-    userId: request.user.user_id,
+    userId: request.user.sub,
     query: request.query ? JSON.stringify(request.query) : '',
     params: request.params ? JSON.stringify(request.params) : '',
     message: exception?.message ? JSON.stringify(exception.message) : '',

@@ -57,7 +57,7 @@ export class PrivateCreditCardItemsService {
           where: {
             OR: filter,
             deletedAt: null,
-            userId: user.user_id,
+            userId: user.sub,
           },
           skip: perPage && page ? perPage * (page - 1) : undefined,
           take: perPage && page ? perPage : undefined,
@@ -66,7 +66,7 @@ export class PrivateCreditCardItemsService {
           where: {
             OR: filter,
             deletedAt: null,
-            userId: user.user_id,
+            userId: user.sub,
           },
         }),
       ]);
@@ -112,7 +112,7 @@ export class PrivateCreditCardItemsService {
         where: {
           id: id,
           deletedAt: null,
-          userId: user.user_id,
+          userId: user.sub,
         },
         include: {
           card: true,
@@ -163,7 +163,7 @@ export class PrivateCreditCardItemsService {
           amount: createCreditCardDto.amount,
           instalments: createCreditCardDto.instalments,
           description: createCreditCardDto.description,
-          userId: user.user_id,
+          userId: user.sub,
           card: {
             connect: {
               id: createCreditCardDto.cardId,
@@ -222,7 +222,7 @@ export class PrivateCreditCardItemsService {
           amount: updateCreditCardDto.amount,
           instalments: updateCreditCardDto.instalments,
           description: updateCreditCardDto.description,
-          userId: user.user_id,
+          userId: user.sub,
           card: {
             connect: {
               id: updateCreditCardDto.cardId,
@@ -272,7 +272,7 @@ export class PrivateCreditCardItemsService {
       await this.prisma.creditCardItem.updateMany({
         where: {
           id: id,
-          userId: user.user_id,
+          userId: user.sub,
         },
         data: {
           deletedAt: new Date(),

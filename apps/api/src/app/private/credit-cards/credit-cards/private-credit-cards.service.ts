@@ -56,7 +56,7 @@ export class PrivateCreditCardsService {
           where: {
             OR: filter,
             deletedAt: null,
-            userId: user.user_id,
+            userId: user.sub,
           },
           include: {
             issuer: true,
@@ -68,7 +68,7 @@ export class PrivateCreditCardsService {
           where: {
             OR: filter,
             deletedAt: null,
-            userId: user.user_id,
+            userId: user.sub,
           },
         }),
       ]);
@@ -116,7 +116,7 @@ export class PrivateCreditCardsService {
         },
         where: {
           deletedAt: null,
-          userId: user.user_id,
+          userId: user.sub,
         },
       });
 
@@ -160,7 +160,7 @@ export class PrivateCreditCardsService {
         where: {
           id: id,
           deletedAt: null,
-          userId: user.user_id,
+          userId: user.sub,
         },
         include: {
           issuer: true,
@@ -225,7 +225,7 @@ export class PrivateCreditCardsService {
             OR: filter,
             deletedAt: null,
             cardId: id,
-            userId: user.user_id,
+            userId: user.sub,
           },
           skip: perPage && page ? perPage * (page - 1) : undefined,
           take: perPage && page ? perPage : undefined,
@@ -235,7 +235,7 @@ export class PrivateCreditCardsService {
             OR: filter,
             deletedAt: null,
             cardId: id,
-            userId: user.user_id,
+            userId: user.sub,
           },
         }),
       ]);
@@ -282,7 +282,7 @@ export class PrivateCreditCardsService {
           name: createCreditCardDto.name,
           billingDate: createCreditCardDto.billingDate,
           limit: createCreditCardDto.limit,
-          userId: user.user_id,
+          userId: user.sub,
           limitType: createCreditCardDto.limitType,
           issuer: {
             connect: {
@@ -339,7 +339,7 @@ export class PrivateCreditCardsService {
           name: updateCreditCardDto.name,
           billingDate: updateCreditCardDto.billingDate,
           limit: updateCreditCardDto.limit,
-          userId: user.user_id,
+          userId: user.sub,
           limitType: updateCreditCardDto.limitType,
           updatedAt: new Date(),
           issuer: {
@@ -391,7 +391,7 @@ export class PrivateCreditCardsService {
       await this.prisma.creditCard.updateMany({
         where: {
           id: id,
-          userId: user.user_id,
+          userId: user.sub,
         },
         data: {
           deletedAt: new Date(),

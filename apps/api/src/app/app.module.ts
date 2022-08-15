@@ -19,7 +19,7 @@ import { ExceptionLoggerService } from './shared/services/exception-logger/excep
       authServerUrl: 'http://localhost:8080/auth', // TODO: Implement environment variable
       realm: 'Money-Manager', // TODO: Implement environment variable
       clientId: 'money-manager-api', // TODO: Implement environment variable
-      secret: 'egB3Ds59Ah1sMasVB4DzJJ6FElRLmjak', // TODO: Implement environment variable
+      secret: 'UCfxwla5rOFfuOy4w6Oycvz8vjqj0yWx', // TODO: Implement environment variable
     }),
     PrismaModule,
     KafkaModule,

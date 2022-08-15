@@ -3,7 +3,7 @@ export interface IRequestForLogging {
     path: string;
   };
   user: {
-    user_id: string;
+    sub: string;
   };
   query?: string;
   params?: string;

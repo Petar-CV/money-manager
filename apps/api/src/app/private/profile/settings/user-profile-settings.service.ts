@@ -32,7 +32,7 @@ export class ProfileSettingsService {
 
       const profileSettings = await this.prisma.profileSettings.findFirst({
         where: {
-          userId: user.user_id,
+          userId: user.sub,
         },
       });
 
@@ -70,13 +70,13 @@ export class ProfileSettingsService {
     user: IAuthenticatedUser
   ): Promise<IApiResponse<ProfileSettings>> {
     try {
-      this.logger.log(`Executing create for userId: ${user.user_id}`);
+      this.logger.log(`Executing create for userId: ${user.sub}`);
 
       const profileSettings = await this.prisma.profileSettings.create({
         data: {
           currency: createProfileSettingsDto.currency,
           language: createProfileSettingsDto.language,
-          userId: user.user_id,
+          userId: user.sub,
         },
       });
 
@@ -114,16 +114,16 @@ export class ProfileSettingsService {
     user: IAuthenticatedUser
   ): Promise<IApiResponse<ProfileSettings>> {
     try {
-      this.logger.log(`Executing update for userId: ${user.user_id}`);
+      this.logger.log(`Executing update for userId: ${user.sub}`);
 
       const profileSettings = await this.prisma.profileSettings.update({
         where: {
-          userId: user.user_id,
+          userId: user.sub,
         },
         data: {
           currency: updateProfileSettingsDto.currency,
           language: updateProfileSettingsDto.language,
-          userId: user.user_id,
+          userId: user.sub,
         },
       });
 
