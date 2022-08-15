@@ -32,12 +32,12 @@ services:
     ports:
       - 5434:5432
   keycloak:
+    container_name: keycloak
     image: jboss/keycloak:16.1.1
     volumes:
       - ./keycloak/keycloak-themes/custom:/opt/jboss/keycloak/themes/custom
-      - ./keycloak/imports:/opt/jboss/keycloak/imports
+      - ./keycloak/imports/realm-export.json:/tmp/realm-export.json
     environment:
-      KEYCLOAK_IMPORT: /opt/jboss/keycloak/imports/realm-export.json -Dkeycloak.profile.feature.upload_scripts=enabled
       DB_VENDOR: POSTGRES
       DB_ADDR: ${KEYCLOAK_DB_ADDR}
       DB_DATABASE: ${KEYCLOAK_DB_DATABASE}
@@ -48,6 +48,7 @@ services:
       KEYCLOAK_PASSWORD: ${KEYCLOAK_PASSWORD}
       # KEYCLOAK_LOGLEVEL: DEBUG
       # ROOT_LOGLEVEL: DEBUG
+      KEYCLOAK_IMPORT: '/tmp/realm-export.json'
       PROXY_ADDRESS_FORWARDING: 'true'
     ports:
       - 8080:8080
@@ -75,6 +76,7 @@ services:
     depends_on:
       - zookeeper
   mm-api:
+    container_name: mm-api
     build:
       context: .
       dockerfile: ./apps/api/Dockerfile

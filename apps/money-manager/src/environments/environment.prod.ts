@@ -2,7 +2,7 @@ import { KeycloakConfig } from 'keycloak-js';
 
 const keycloakConfig: KeycloakConfig = {
   url: 'https://money-manager.petar-cv.com/auth',
-  realm: 'master',
+  realm: 'Money-Manager',
   clientId: 'money-manager-front',
 };
 

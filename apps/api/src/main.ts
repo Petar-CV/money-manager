@@ -10,8 +10,7 @@ async function bootstrap() {
   const app = await NestFactory.create(AppModule, {
     logger: ['log', 'error', 'warn'],
     cors: {
-      // TODO: Change origin's values to load from .env so it can be changed in production
-      origin: ['http://localhost:4200'],
+      origin: ['http://localhost:4200', 'https://money-manager.petar-cv.com'],
       methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
       preflightContinue: false,
       optionsSuccessStatus: 204,

@@ -2,9 +2,9 @@ import { KeycloakConnectOptions } from 'nest-keycloak-connect';
 
 const keycloakConfig: KeycloakConnectOptions = {
   authServerUrl: 'https://money-manager.petar-cv.com/auth',
-  realm: 'master',
+  realm: 'Money-Manager',
   clientId: 'money-manager-api',
-  secret: 'dwX2nVMI7G2XxYijYKs0wp4x59A1zyxY',
+  secret: '5lLPwG5KzXpIkhJqfS3wTxQFx2txY9yO',
 };
 
 export const environment = {

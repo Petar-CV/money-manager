@@ -6,7 +6,7 @@ import { KeycloakConfig } from 'keycloak-js';
 
 const keycloakConfig: KeycloakConfig = {
   url: 'http://localhost:8080/auth',
-  realm: 'master',
+  realm: 'Money-Manager',
   clientId: 'money-manager-front',
 };
 
