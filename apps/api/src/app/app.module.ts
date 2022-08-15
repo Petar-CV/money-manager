@@ -12,14 +12,12 @@ import { AdminModule } from './admin/admin.module';
 import { PrivateModule } from './private/private.module';
 import { KafkaModule } from './shared/modules/kafka/kafka.module';
 import { ExceptionLoggerService } from './shared/services/exception-logger/exception-logger.service';
+import { environment } from '../environments/environment';
 
 @Module({
   imports: [
     KeycloakConnectModule.register({
-      authServerUrl: 'http://localhost:8080/auth', // TODO: Implement environment variable
-      realm: 'Money-Manager', // TODO: Implement environment variable
-      clientId: 'money-manager-api', // TODO: Implement environment variable
-      secret: 'UCfxwla5rOFfuOy4w6Oycvz8vjqj0yWx', // TODO: Implement environment variable
+      ...environment.keycloak,
     }),
     PrismaModule,
     KafkaModule,

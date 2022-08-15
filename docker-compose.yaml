@@ -16,9 +16,9 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     environment:
-      POSTGRES_DB: ${KEYCLOAK_POSTGRES_DB}
-      POSTGRES_USER: ${KEYCLOAK_POSTGRES_USER}
-      POSTGRES_PASSWORD: ${KEYCLOAK_POSTGRES_PASSWORD}
+      POSTGRES_DB: ${KEYCLOAK_DB_DATABASE}
+      POSTGRES_USER: ${KEYCLOAK_DB_USER}
+      POSTGRES_PASSWORD: ${KEYCLOAK_DB_PASSWORD}
     ports:
       - 5433:5432
   mm-postgres:
@@ -48,6 +48,7 @@ services:
       KEYCLOAK_PASSWORD: ${KEYCLOAK_PASSWORD}
       # KEYCLOAK_LOGLEVEL: DEBUG
       # ROOT_LOGLEVEL: DEBUG
+      PROXY_ADDRESS_FORWARDING: 'true'
     ports:
       - 8080:8080
       - 8443:8443

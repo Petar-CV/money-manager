@@ -30,10 +30,6 @@ build-backend:
     - touch .env
     # Main postgres database environment variables
     - echo "DATABASE_URL"=$DATABASE_URL >> ".env"
-    # Keycloak environment variables
-    - echo "KEYCLOAK_POSTGRES_DB"=$KEYCLOAK_POSTGRES_DB >> ".env"
-    - echo "KEYCLOAK_POSTGRES_USER"=$KEYCLOAK_POSTGRES_USER >> ".env"
-    - echo "KEYCLOAK_POSTGRES_PASSWORD"=$KEYCLOAK_POSTGRES_PASSWORD >> ".env"
     # Keycloak database environment variables
     - echo "KEYCLOAK_DB_ADDR"="$KEYCLOAK_DB_ADDR" >> ".env"
     - echo "KEYCLOAK_DB_DATABASE"="$KEYCLOAK_DB_DATABASE" >> ".env"
