@@ -8,7 +8,7 @@ const keycloakConfig: KeycloakConfig = {
 
 export const environment = {
   production: true,
-  private_api: 'http://money-manager.petar-cv.com/api/private',
-  admin_api: 'http://money-manager.petar-cv.com/api/admin',
+  private_api: 'https://money-manager.petar-cv.com/api/private',
+  admin_api: 'https://money-manager.petar-cv.com/api/admin',
   keycloak: keycloakConfig,
 };
