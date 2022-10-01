@@ -17,6 +17,8 @@ pipeline {
                 sh "echo 'KEYCLOAK_DB_PASSWORD'=$KEYCLOAK_DB_PASSWORD >> '.env'"
                 sh "echo 'KEYCLOAK_DB_SCHEMA'=$KEYCLOAK_DB_SCHEMA >> '.env'"
                 sh "echo 'KEYCLOAK_DB_USER'=$KEYCLOAK_DB_USER >> '.env'"
+                sh "echo 'KEYCLOAK_USER'=$KEYCLOAK_USER >> '.env'"
+                sh "echo 'KEYCLOAK_PASSWORD'=$KEYCLOAK_PASSWORD >> '.env'"
                 sh "echo 'POSTGRES_DB'=$POSTGRES_DB >> '.env'"
                 sh "echo 'POSTGRES_PASSWORD'=$POSTGRES_PASSWORD >> '.env'"
                 sh "echo 'POSTGRES_PORT'=$POSTGRES_PORT >> '.env'"
