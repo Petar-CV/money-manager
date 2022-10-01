@@ -9,6 +9,8 @@ pipeline {
         }
         stage("Create .env file") {
             steps {
+                sh "rm .env"
+                sh "touch .env"
                 sh "echo 'DATABASE_URL'=$DATABASE_URL >> '.env'"
                 sh "echo 'KEYCLOAK_DB_ADDR'=$KEYCLOAK_DB_ADDR >> '.env'"
                 sh "echo 'KEYCLOAK_DB_DATABASE'=$KEYCLOAK_DB_DATABASE >> '.env'"
