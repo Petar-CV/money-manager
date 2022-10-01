@@ -1,7 +1,7 @@
 import { KeycloakConnectOptions } from 'nest-keycloak-connect';
 
 const keycloakConfig: KeycloakConnectOptions = {
-  authServerUrl: 'http://localhost:8080/auth',
+  authServerUrl: 'http://localhost:8081/auth',
   realm: 'Money-Manager',
   clientId: 'money-manager-api',
   secret: '5lLPwG5KzXpIkhJqfS3wTxQFx2txY9yO',
