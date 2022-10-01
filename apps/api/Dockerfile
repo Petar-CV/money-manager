@@ -18,14 +18,12 @@ RUN npm install
 
 COPY . .
 
-RUN npx prisma migrate deploy
-
-RUN npx prisma generate
-
 # RUN npm run prebuild
 
 RUN npm run build
 
 EXPOSE 3333
+
+CMD npx prisma migrate deploy && npx prisma generate
 
 ENTRYPOINT ["npm", "run", "start:prod"]
