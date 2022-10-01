@@ -33,7 +33,7 @@ model CreditCard {
 
 model CreditCardIssuer {
   id   String @id @default(uuid())
-  name String @db.VarChar(255)
+  name String @unique @db.VarChar(255)
   logo String @db.Text() // Base64 string
 
   createdAt DateTime  @default(now())
