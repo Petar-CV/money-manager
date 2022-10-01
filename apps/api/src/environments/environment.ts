@@ -4,7 +4,7 @@ const keycloakConfig: KeycloakConnectOptions = {
   authServerUrl: 'http://localhost:8081/auth',
   realm: 'Money-Manager',
   clientId: 'money-manager-api',
-  secret: '5lLPwG5KzXpIkhJqfS3wTxQFx2txY9yO',
+  secret: 'hUUBmlhqp0Q6qKCzKQ5coedvwHvTPFIm',
 };
 
 export const environment = {
