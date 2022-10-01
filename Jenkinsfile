@@ -9,7 +9,7 @@ pipeline {
         }
         stage("Start Docker") {
             steps {
-                sh "docker-compose up -f docker-compose.prod.yml -d"
+                sh "docker-compose -f docker-compose.prod.yaml up -d"
                 sh "docker-compose ps"
             }
         }
