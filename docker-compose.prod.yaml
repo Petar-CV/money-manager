@@ -91,4 +91,4 @@ services:
       context: .
       dockerfile: ./apps/money-manager/Dockerfile
     ports:
-      - '4200:4200'
+      - '4200:80'

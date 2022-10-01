@@ -28,6 +28,7 @@ pipeline {
         }
         stage("Start Docker") {
             steps {
+                sh "docker-compose -f docker-compose.prod.yaml down"
                 sh "docker-compose -f docker-compose.prod.yaml up -d"
                 sh "docker-compose ps"
             }
