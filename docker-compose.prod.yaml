@@ -54,8 +54,7 @@ services:
       - 8081:8080
       - 8443:8443
     depends_on:
-      keycloak-postgres:
-        condition: service_completed_successfully
+      - keycloak-postgres
   zookeeper:
     image: bitnami/zookeeper:3.8
     ports:
@@ -75,8 +74,7 @@ services:
       - KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper:2181
       - ALLOW_PLAINTEXT_LISTENER=yes
     depends_on:
-      zookeeper:
-        condition: service_completed_successfully
+      - zookeeper
   mm-api:
     container_name: mm-api
     build:
@@ -85,22 +83,12 @@ services:
     ports:
       - '3333:3333'
     depends_on:
-      kafka:
-        condition: service_completed_successfully
-      mm-postgres:
-        condition: service_completed_successfully
-      keycloak:
-        condition: service_completed_successfully
+      - kafka
+      - mm-postgres
+      - keycloak
   mm-frontend:
     build:
       context: .
       dockerfile: ./apps/money-manager/Dockerfile
     ports:
       - '4200:4200'
-    depends_on:
-      kafka:
-        condition: service_completed_successfully
-      mm-postgres:
-        condition: service_completed_successfully
-      keycloak:
-        condition: service_completed_successfully
