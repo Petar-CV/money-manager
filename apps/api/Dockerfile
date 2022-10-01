@@ -16,6 +16,8 @@ COPY decorate-angular-cli.js ./
 
 RUN npm install
 
+RUN npm install -g pm2
+
 COPY . .
 
 # RUN npm run prebuild
@@ -26,4 +28,4 @@ EXPOSE 3333
 
 CMD npx prisma migrate deploy && npx prisma generate
 
-ENTRYPOINT ["npm", "run", "start:prod"]
+ENTRYPOINT ["pm2", "start", ".\dist\apps\api\main.js"]
