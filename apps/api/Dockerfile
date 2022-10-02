@@ -26,6 +26,5 @@ RUN npm run build
 
 EXPOSE 3333
 
-CMD npx prisma migrate deploy && npx prisma generate
+CMD npx prisma migrate deploy && npx prisma generate && pm2-runtime start ".\dist\apps\api\main.js"
 
-ENTRYPOINT ["pm2-runtime", ".\dist\apps\api\main.js"]
