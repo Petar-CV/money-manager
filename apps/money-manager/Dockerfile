@@ -13,7 +13,7 @@ RUN npm install
 
 COPY . .
 
-RUN npm run build:money-manager
+RUN npx nx build money-manager --configuration=production
 
 # Stage 2
 FROM nginx:1.23.1-alpine
