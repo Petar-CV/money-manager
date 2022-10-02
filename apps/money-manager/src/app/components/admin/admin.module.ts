@@ -2,7 +2,6 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { TranslateModule } from '@ngx-translate/core';
 
-import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.component';
 import { AdminComponent } from './admin.component';
 import { SharedModule } from '../../shared/shared.module';
 
@@ -20,14 +19,18 @@ const adminRoutes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        component: AdminDashboardComponent,
+        data: { pageTitle: 'admin.pageTitle' },
+        loadChildren: () =>
+          import('./admin-dashboard/admin-dashboard.module').then(
+            (m) => m.AdminDashboardModule
+          ),
       },
     ],
   },
 ];
 
 @NgModule({
-  declarations: [AdminComponent, AdminDashboardComponent],
+  declarations: [AdminComponent],
   imports: [
     SharedModule,
     RouterModule.forChild(adminRoutes),
