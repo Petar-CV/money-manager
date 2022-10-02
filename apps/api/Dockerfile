@@ -16,8 +16,8 @@ RUN npm install pm2 -g
 
 COPY . .
 
-RUN npx nx build api --configuration=production
+# RUN npx nx build api --configuration=production
 
 EXPOSE 3333
 
-CMD npx prisma migrate deploy && npx prisma generate && pm2-runtime start ".\dist\apps\api\main.js"
+CMD npx prisma migrate deploy && npx prisma generate && npx nx build api --configuration=production && pm2-runtime start ".\dist\apps\api\main.js"
