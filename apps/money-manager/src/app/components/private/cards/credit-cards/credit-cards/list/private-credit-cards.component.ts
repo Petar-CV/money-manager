@@ -1,5 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
-import { finalize, map, Observable, tap } from 'rxjs';
+import { finalize, map, Observable } from 'rxjs';
 
 import { ICreditCard } from '@petar-cv/money-manager-models';
 
@@ -21,9 +21,6 @@ export class PrivateCreditCardsComponent {
   private loadData(): void {
     this.loading = true;
     this.creditCards$ = this.creditCardsService.findAll().pipe(
-      tap((res) => {
-        // this.totalItems = Number(res.headers.get('x-total-items'));
-      }),
       map((res) => res.body?.data ?? []),
       finalize(() => {
         this.loading = false;

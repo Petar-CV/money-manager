@@ -9,9 +9,11 @@
     <img
       class="max-h-40 pb-4 pt-8 object-contain"
       [alt]="creditCard.issuer?.name ?? ''"
-      [src]="creditCard.issuer?.logo ?? ''"
+      [src]="
+        creditCard.issuer?.logo ??
+        'assets/credit-cards/credit-card-placeholder.png'
+      "
     />
-    <!-- TODO: Implement default picture in case of an error -->
   </ng-template>
   <p>
     {{ 'privateCreditCards.fields.billingDate' | translate }} -

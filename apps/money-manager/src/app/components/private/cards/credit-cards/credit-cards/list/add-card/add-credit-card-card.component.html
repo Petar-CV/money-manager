@@ -4,8 +4,11 @@
   styleClass="p-card-shadow text-center hover:shadow-2xl hover:bg-gray-50 transition-all duration-300 h-full"
 >
   <ng-template pTemplate="header">
-    <img alt="Card" src="assets/showcase/images/usercard.png" />
-    <!-- TODO: Add default empty card image -->
+    <img
+      class="max-h-40 pb-4 pt-8 object-contain"
+      [alt]="'privateCreditCards.addCreditCardCard.cardText' | translate"
+      src="assets/credit-cards/credit-card-placeholder.png"
+    />
   </ng-template>
   <div>
     <p>
