@@ -69,6 +69,7 @@ export class AdminCreditCardIssuersService {
       return {
         data: creditCardIssuers,
         totalItems: count,
+        success: true,
       };
     } catch (exception) {
       const exceptionLog = createExceptionFromRequest(req, exception);
@@ -91,6 +92,7 @@ export class AdminCreditCardIssuersService {
 
       return {
         message: CommonResponses.SERVER_ERROR,
+        success: false,
       };
     }
   }
@@ -113,6 +115,7 @@ export class AdminCreditCardIssuersService {
 
       return {
         data: creditCardIssuers,
+        success: true,
       };
     } catch (exception) {
       const exceptionLog = createExceptionFromRequest(req, exception);
@@ -135,6 +138,7 @@ export class AdminCreditCardIssuersService {
 
       return {
         message: CommonResponses.SERVER_ERROR,
+        success: false,
       };
     }
   }
@@ -155,6 +159,7 @@ export class AdminCreditCardIssuersService {
 
       return {
         data: creditCardIssuer,
+        success: true,
       };
     } catch (exception) {
       const exceptionLog = createExceptionFromRequest(req, exception);
@@ -177,6 +182,7 @@ export class AdminCreditCardIssuersService {
 
       return {
         message: CommonResponses.SERVER_ERROR,
+        success: false,
       };
     }
   }
@@ -199,6 +205,7 @@ export class AdminCreditCardIssuersService {
         data: creditCardIssuer,
         message: AdminCreditCardIssuersResponses.CREATED,
         param: creditCardIssuer.id,
+        success: true,
       };
     } catch (exception) {
       const exceptionLog = createExceptionFromRequest(req, exception);
@@ -221,6 +228,7 @@ export class AdminCreditCardIssuersService {
 
       return {
         message: CommonResponses.SERVER_ERROR,
+        success: false,
       };
     }
   }
@@ -248,6 +256,7 @@ export class AdminCreditCardIssuersService {
         data: creditCardIssuer,
         message: AdminCreditCardIssuersResponses.UPDATED,
         param: creditCardIssuer.id,
+        success: true,
       };
     } catch (exception) {
       const exceptionLog = createExceptionFromRequest(req, exception);
@@ -270,6 +279,7 @@ export class AdminCreditCardIssuersService {
 
       return {
         message: CommonResponses.SERVER_ERROR,
+        success: false,
       };
     }
   }
@@ -290,6 +300,7 @@ export class AdminCreditCardIssuersService {
       return {
         message: AdminCreditCardIssuersResponses.DELETED,
         param: id,
+        success: true,
       };
     } catch (exception) {
       const exceptionLog = createExceptionFromRequest(req, exception);
@@ -312,6 +323,7 @@ export class AdminCreditCardIssuersService {
 
       return {
         message: CommonResponses.SERVER_ERROR,
+        success: false,
       };
     }
   }

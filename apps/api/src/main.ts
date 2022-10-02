@@ -15,7 +15,7 @@ async function bootstrap() {
       preflightContinue: false,
       optionsSuccessStatus: 204,
       allowedHeaders: ['x-lang', 'content-type', 'Authorization'],
-      exposedHeaders: ['x-alert-message', 'x-alert-param', 'x-total-items'],
+      exposedHeaders: ['x-alert-success', 'x-alert-message', 'x-alert-param', 'x-total-items'],
     },
   });
 

@@ -21,6 +21,8 @@ export class TransformResponseInterceptor<T>
       tap((res: IApiResponse<T> | undefined) => {
         const response = context.switchToHttp().getResponse();
 
+        response.header('x-alert-success', res.success);
+
         if (res?.message) {
           response.header('x-alert-message', res.message);
         }

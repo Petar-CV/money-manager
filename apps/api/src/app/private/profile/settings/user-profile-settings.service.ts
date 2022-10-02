@@ -38,6 +38,7 @@ export class ProfileSettingsService {
 
       return {
         data: profileSettings,
+        success: true,
       };
     } catch (exception) {
       const exceptionLog = createExceptionFromRequest(req, exception);
@@ -60,6 +61,7 @@ export class ProfileSettingsService {
 
       return {
         message: CommonResponses.SERVER_ERROR,
+        success: false,
       };
     }
   }
@@ -82,6 +84,7 @@ export class ProfileSettingsService {
 
       return {
         data: profileSettings,
+        success: true,
       };
     } catch (exception) {
       const exceptionLog = createExceptionFromRequest(req, exception);
@@ -104,6 +107,7 @@ export class ProfileSettingsService {
 
       return {
         message: CommonResponses.SERVER_ERROR,
+        success: false,
       };
     }
   }
@@ -130,6 +134,7 @@ export class ProfileSettingsService {
       return {
         data: profileSettings,
         message: ProfileSettingsResponses.UPDATED,
+        success: true,
       };
     } catch (exception) {
       const exceptionLog = createExceptionFromRequest(req, exception);
@@ -152,6 +157,7 @@ export class ProfileSettingsService {
 
       return {
         message: CommonResponses.SERVER_ERROR,
+        success: false,
       };
     }
   }

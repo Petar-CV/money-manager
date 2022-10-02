@@ -28,10 +28,15 @@ export class NotificationInterceptor implements HttpInterceptor {
         if (event instanceof HttpResponse) {
           let alertMessage: string | null = null;
           let alertParam: string | null = null;
+          let alertSuccess = true;
 
           for (const headerKey of event.headers.keys()) {
             if (headerKey.toLowerCase().endsWith('x-alert-message')) {
               alertMessage = event.headers.get(headerKey);
+            }
+
+            if (headerKey.toLowerCase().endsWith('x-alert-success')) {
+              alertSuccess = event.headers.get(headerKey) === 'true';
             }
 
             if (headerKey.toLowerCase().endsWith('x-alert-param')) {
@@ -45,10 +50,9 @@ export class NotificationInterceptor implements HttpInterceptor {
             }
           }
 
-          // TODO: Add support for error messages
           if (alertMessage) {
             this.messageService.add({
-              severity: 'success',
+              severity: alertSuccess ? 'success' : 'error',
               detail: this.translateService.instant(
                 alertMessage,
                 { param: alertParam } ?? undefined

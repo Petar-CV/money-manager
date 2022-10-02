@@ -76,6 +76,7 @@ export class PrivateCreditCardsService {
       return {
         data: creditCards,
         totalItems: count,
+        success: true,
       };
     } catch (exception) {
       const exceptionLog = createExceptionFromRequest(req, exception);
@@ -98,6 +99,7 @@ export class PrivateCreditCardsService {
 
       return {
         message: CommonResponses.SERVER_ERROR,
+        success: false,
       };
     }
   }
@@ -122,6 +124,7 @@ export class PrivateCreditCardsService {
 
       return {
         data: data,
+        success: true,
       };
     } catch (exception) {
       const exceptionLog = createExceptionFromRequest(req, exception);
@@ -144,6 +147,7 @@ export class PrivateCreditCardsService {
 
       return {
         message: CommonResponses.SERVER_ERROR,
+        success: false,
       };
     }
   }
@@ -170,6 +174,7 @@ export class PrivateCreditCardsService {
 
       return {
         data: creditCard,
+        success: true,
       };
     } catch (exception) {
       const exceptionLog = createExceptionFromRequest(req, exception);
@@ -192,6 +197,7 @@ export class PrivateCreditCardsService {
 
       return {
         message: CommonResponses.SERVER_ERROR,
+        success: false,
       };
     }
   }
@@ -243,6 +249,7 @@ export class PrivateCreditCardsService {
       return {
         data: creditCardItems,
         totalItems: count,
+        success: true,
       };
     } catch (exception) {
       const exceptionLog = createExceptionFromRequest(req, exception);
@@ -265,6 +272,7 @@ export class PrivateCreditCardsService {
 
       return {
         message: CommonResponses.SERVER_ERROR,
+        success: false,
       };
     }
   }
@@ -296,6 +304,7 @@ export class PrivateCreditCardsService {
         data: creditCard,
         message: PrivateCreditCardsResponses.CREATED,
         param: creditCard.id,
+        success: true,
       };
     } catch (exception) {
       const exceptionLog = createExceptionFromRequest(req, exception);
@@ -318,6 +327,7 @@ export class PrivateCreditCardsService {
 
       return {
         message: CommonResponses.SERVER_ERROR,
+        success: false,
       };
     }
   }
@@ -354,6 +364,7 @@ export class PrivateCreditCardsService {
         data: creditCard,
         message: PrivateCreditCardsResponses.UPDATED,
         param: creditCard.id,
+        success: true,
       };
     } catch (exception) {
       const exceptionLog = createExceptionFromRequest(req, exception);
@@ -376,6 +387,7 @@ export class PrivateCreditCardsService {
 
       return {
         message: CommonResponses.SERVER_ERROR,
+        success: false,
       };
     }
   }
@@ -401,6 +413,7 @@ export class PrivateCreditCardsService {
       return {
         message: PrivateCreditCardsResponses.DELETED,
         param: id,
+        success: true,
       };
     } catch (exception) {
       const exceptionLog = createExceptionFromRequest(req, exception);
@@ -423,6 +436,7 @@ export class PrivateCreditCardsService {
 
       return {
         message: CommonResponses.SERVER_ERROR,
+        success: false,
       };
     }
   }
