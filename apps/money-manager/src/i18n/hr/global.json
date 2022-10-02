@@ -2,7 +2,11 @@
   "global": {
     "title": "Money Manager",
     "responses": {
-      "server-error": "Greška na serveru!"
+      "server-error": "Greška na serveru",
+      "not-implemented": "Metoda nije implementirana",
+      "image-deleted": "Slika je obrisana",
+      "image-not-found": "Slika nije pronađena",
+      "not-found": "Entitet nije pronađen"
     }
   }
 }
