@@ -5,7 +5,6 @@ import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
   template: `
     <div class="my-4 space-x-4">
       <p-button
-        styleClass="p-button-sm"
         icon="pi pi-angle-left"
         (click)="goBack()"
         [label]="label | translate"
