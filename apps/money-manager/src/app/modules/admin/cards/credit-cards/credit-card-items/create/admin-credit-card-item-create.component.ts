@@ -34,7 +34,7 @@ export class AdminCreditCardItemCreateComponent {
   ) {}
 
   onFormSubmit(addNew?: boolean): void {
-    const entityData = this.form.value;
+    const entityData = this.form.getRawValue();
 
     this.entityService.create(entityData).subscribe((newCreditCardItem) => {
       if (addNew) {

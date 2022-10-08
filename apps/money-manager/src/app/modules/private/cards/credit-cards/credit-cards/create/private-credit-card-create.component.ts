@@ -45,7 +45,7 @@ export class PrivateCreditCardCreateComponent {
   }
 
   onFormSubmit(addNew?: boolean): void {
-    const entityData = this.form.value;
+    const entityData = this.form.getRawValue();
 
     this.entityService.create(entityData).subscribe((newCreditCard) => {
       if (addNew) {

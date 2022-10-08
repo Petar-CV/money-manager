@@ -74,7 +74,7 @@ export class PrivateCreditCardItemCreateComponent implements OnInit {
   }
 
   public onFormSubmit(addNew?: boolean): void {
-    const entityData = this.form.value;
+    const entityData = this.form.getRawValue();
 
     this.creditCardItemsService
       .create(entityData)

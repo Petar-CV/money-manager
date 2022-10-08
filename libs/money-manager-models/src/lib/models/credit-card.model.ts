@@ -4,7 +4,7 @@ import { CreditCardLimit } from './credit-cards/credit-card-limit.model';
 
 export interface ICreditCard {
   id?: string;
-  userId: string;
+  userId?: string;
   name: string;
   limit: number;
   billingDate: number;
@@ -23,7 +23,7 @@ export interface ICreditCard {
 
 export class CreditCard implements ICreditCard {
   id?: string;
-  userId: string;
+  userId?: string;
   name: string;
   limit: number;
   billingDate: number;

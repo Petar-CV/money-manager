@@ -81,7 +81,7 @@ export abstract class BaseEntityService<T> {
    * @param {T} entity - T - The entity to create
    * @returns Observable<T | undefined>
    */
-  create(entity: Partial<T>): Observable<T | undefined> {
+  create(entity: T): Observable<T | undefined> {
     return this.http
       .post<IModifiedApiResponse<T | undefined>>(this.baseURL, entity)
       .pipe(map((res) => res.data ?? undefined));
@@ -94,7 +94,7 @@ export abstract class BaseEntityService<T> {
    * @param {string} id - The id of the entity to update
    * @returns An observable of type IModifiedApiResponse<T>
    */
-  update(entity: Partial<T>, id: string): Observable<IModifiedApiResponse<T>> {
+  update(entity: T, id: string): Observable<IModifiedApiResponse<T>> {
     return this.http.put<IModifiedApiResponse<T>>(
       `${this.baseURL}/${id}`,
       entity

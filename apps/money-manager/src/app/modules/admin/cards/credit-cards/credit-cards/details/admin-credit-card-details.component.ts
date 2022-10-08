@@ -96,7 +96,7 @@ export class AdminCreditCardDetailsComponent implements OnInit {
   }
 
   public onFormSubmit(): void {
-    const entityData = this.form.value;
+    const entityData = this.form.getRawValue();
 
     if (this.currentId) {
       this.entityService.update(entityData, this.currentId).subscribe();
