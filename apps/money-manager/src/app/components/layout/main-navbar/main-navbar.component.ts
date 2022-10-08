@@ -11,12 +11,12 @@ import { KeycloakProfile } from 'keycloak-js';
 import { MenuItem } from 'primeng/api';
 import { Subscription } from 'rxjs';
 
+import { AdminRoutes } from '../../../modules/admin/constants/routing';
 import {
-  AdminRoutes,
   PrivateCreditCardItemsRoutes,
   PrivateCreditCardsRoutes,
   ProfileSettingsRoutes,
-} from '../../../shared/constants/routing';
+} from '../../../modules/private/constants/routing';
 import { includesRole } from '../../../shared/utils/has-role.util';
 
 @Component({

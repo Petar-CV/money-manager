@@ -1,7 +1,7 @@
 import { CurrencyPipe } from '@angular/common';
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { UserProfileService } from '../../services/user-profile/user-profile.service';
+import { UserProfileService } from '../../services/user-info/user-profile.service';
 
 @Pipe({
   name: 'customCurrency',

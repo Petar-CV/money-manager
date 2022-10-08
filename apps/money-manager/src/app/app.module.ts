@@ -17,8 +17,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { AuthGuard } from './shared/guards/admin-guard/auth.guard';
 import { httpInterceptorProviders } from './shared/interceptors';
 import { SharedModule } from './shared/shared.module';
-import { UserProfileService } from './shared/services/user-profile/user-profile.service';
 import { environment } from '../environments/environment';
+import { UserProfileService } from './shared/services/user-info/user-profile.service';
 
 declare const I18N_HASH: string; // This is imported from the custom Webpack config
 

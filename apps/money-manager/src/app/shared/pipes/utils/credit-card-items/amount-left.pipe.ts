@@ -2,7 +2,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 import { ICreditCardItem } from '@petar-cv/money-manager-models';
 
-import { calculateAmountLeftForItem } from '../../../utils/credit-card-items/amount-left.util';
+import { calculateAmountLeftForItem } from '../../../../modules/private/cards/credit-cards/utils/credit-card-items/amount-left.util';
 
 @Pipe({
   name: 'amountLeft',
