@@ -1,0 +1,20 @@
+{
+  "adminCreditCardsDashboard": {
+    "pageTitle": "Credit cards",
+    "pageDescription": "Dashboard for credit cards",
+    "entities": {
+      "cardItems": {
+        "title": "Credit card items",
+        "count": "Card items count"
+      },
+      "issuers": {
+        "title": "Credit card issuers",
+        "count": "Issuers count"
+      },
+      "cards": {
+        "title": "Credit cards",
+        "count": "Credit cards count"
+      }
+    }
+  }
+}

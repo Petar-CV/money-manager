@@ -1,0 +1,22 @@
+<div class="w-11/12 md:w-4/5 m-auto max-w-7xl">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-6 p-4">
+    <p-card
+      *ngFor="let dashboard of dashboards"
+      [header]="dashboard.title | translate"
+      class="shadow-xl w-full sm:w-60"
+    >
+      <p>
+        {{ dashboard.description | translate }}
+      </p>
+
+      <ng-template pTemplate="footer">
+        <p-button
+          [label]="'commonActions.details' | translate"
+          icon="pi pi-credit-card"
+          iconPos="right"
+          [routerLink]="dashboard.route"
+        ></p-button>
+      </ng-template>
+    </p-card>
+  </div>
+</div>

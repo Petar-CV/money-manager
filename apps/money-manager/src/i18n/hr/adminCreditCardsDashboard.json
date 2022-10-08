@@ -1,0 +1,20 @@
+{
+  "adminCreditCardsDashboard": {
+    "pageTitle": "Kreditne kartice",
+    "pageDescription": "Nadzorna ploča za kreditne kartice",
+    "entities": {
+      "cardItems": {
+        "title": "Stavke kartica",
+        "count": "Broj stavki kartica"
+      },
+      "issuers": {
+        "title": "Izdavači kartica",
+        "count": "Broj izdavača kartica"
+      },
+      "cards": {
+        "title": "Kreditne kartice",
+        "count": "Broj kreditnih kartica"
+      }
+    }
+  }
+}

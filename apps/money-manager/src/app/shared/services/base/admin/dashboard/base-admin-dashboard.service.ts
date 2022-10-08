@@ -1,6 +1,6 @@
 import { HttpClient, HttpResponse } from '@angular/common/http';
 import { Inject, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { map, Observable } from 'rxjs';
 
 import { IModifiedApiResponse } from '@petar-cv/api-interfaces';
 
@@ -25,14 +25,9 @@ export abstract class BaseAdminDashboardService {
    * This method is used to get the count of all specified entities from the API.
    * @returns Returns an observable with the number of entities in the database
    */
-  countAll(
-    entity: string
-  ): Observable<HttpResponse<IModifiedApiResponse<number>>> {
-    return this.http.get<IModifiedApiResponse<number>>(
-      `${this.baseURL}/${entity}`,
-      {
-        observe: 'response',
-      }
-    );
+  protected countAll(entity: string): Observable<number> {
+    return this.http
+      .get<IModifiedApiResponse<number>>(`${this.baseURL}/${entity}`)
+      .pipe(map((response: IModifiedApiResponse<number>) => response.data));
   }
 }

@@ -57,12 +57,6 @@ export class AdminComponent implements OnInit, OnDestroy {
         routerLinkActiveOptions: { exact: true },
       },
       {
-        label: this.translateService.instant('navbar.admin'),
-        icon: 'pi pi-fw pi-shield',
-        routerLink: [AdminRoutes.ADMIN],
-        routerLinkActiveOptions: { exact: true },
-      },
-      {
         label: this.translateService.instant('navbar.account'),
         icon: 'pi pi-fw pi-user',
         items: [
@@ -85,6 +79,12 @@ export class AdminComponent implements OnInit, OnDestroy {
             icon: 'pi pi-fw pi-sign-in',
           },
         ],
+      },
+      {
+        label: this.translateService.instant('navbar.admin'),
+        icon: 'pi pi-fw pi-shield',
+        routerLink: [AdminRoutes.ADMIN],
+        routerLinkActiveOptions: { exact: true },
       },
       {
         label: this.translateService.instant('adminNavbar.entities.title'),

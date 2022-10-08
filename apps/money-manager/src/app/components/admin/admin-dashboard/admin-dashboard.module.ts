@@ -4,27 +4,32 @@ import { TranslateModule } from '@ngx-translate/core';
 
 import { SharedModule } from '../../../shared/shared.module';
 import { AdminDashboardOutletComponent } from './admin-dashboard-outlet.component';
+import { AdminDashboardComponent } from './list/admin-dashboard/admin-dashboard.component';
 
 const routes: Routes = [
   {
     path: '',
     component: AdminDashboardOutletComponent,
     children: [
-      // {
-      //   data: { pageTitle: 'adminDashboard.pageTitle' },
-      //   path: 'credit',
-      //   loadChildren: () =>
-      //     import('./credit-cards/admin-credit-cards.module').then(
-      //       (m) => m.AdminCreditCardsModule
-      //     ),
-      // },
-      // TODO: Implement default component which lists all submodules
+      {
+        data: { pageTitle: 'adminCreditCardsDashboard.pageTitle' },
+        path: 'credit-cards',
+        loadChildren: () =>
+          import('./credit-cards/admin-credit-cards-dashboard.module').then(
+            (m) => m.AdminCreditCardsDashboardModule
+          ),
+      },
+      {
+        path: '',
+        component: AdminDashboardComponent,
+        pathMatch: 'full',
+      },
     ],
   },
 ];
 
 @NgModule({
-  declarations: [AdminDashboardOutletComponent],
+  declarations: [AdminDashboardOutletComponent, AdminDashboardComponent],
   imports: [
     SharedModule,
     RouterModule.forChild(routes),

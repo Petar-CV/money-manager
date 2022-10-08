@@ -1,0 +1,47 @@
+<div class="w-11/12 md:w-4/5 m-auto max-w-7xl">
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-6 p-4">
+    <ng-container *ngIf="entityCounts$ | async as entityCounts">
+      <p-card
+        [header]="
+          'adminCreditCardsDashboard.entities.issuers.title' | translate
+        "
+        class="shadow-xl w-full sm:w-60"
+      >
+        <p>
+          {{ 'adminCreditCardsDashboard.entities.issuers.count' | translate }}:
+          <span class="font-semibold">
+            {{ entityCounts['issuers'] }}
+          </span>
+        </p>
+      </p-card>
+
+      <p-card
+        [header]="'adminCreditCardsDashboard.entities.cards.title' | translate"
+        class="shadow-xl w-full sm:w-60"
+      >
+        <p>
+          {{ 'adminCreditCardsDashboard.entities.cards.count' | translate }}:
+          <span class="font-semibold">
+            {{ entityCounts['cards'] }}
+          </span>
+        </p>
+      </p-card>
+
+      <p-card
+        [header]="
+          'adminCreditCardsDashboard.entities.cardItems.title' | translate
+        "
+        class="shadow-xl w-full sm:w-60"
+      >
+        <p>
+          {{
+            'adminCreditCardsDashboard.entities.cardItems.count' | translate
+          }}:
+          <span class="font-semibold">
+            {{ entityCounts['cardItems'] }}
+          </span>
+        </p>
+      </p-card>
+    </ng-container>
+  </div>
+</div>

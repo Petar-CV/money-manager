@@ -17,13 +17,17 @@ const adminRoutes: Routes = [
           import('./cards/admin-cards.module').then((m) => m.AdminCardsModule),
       },
       {
-        path: '',
-        pathMatch: 'full',
+        path: 'dashboard',
         data: { pageTitle: 'admin.pageTitle' },
         loadChildren: () =>
           import('./admin-dashboard/admin-dashboard.module').then(
             (m) => m.AdminDashboardModule
           ),
+      },
+      {
+        path: '',
+        redirectTo: 'dashboard',
+        pathMatch: 'full',
       },
     ],
   },

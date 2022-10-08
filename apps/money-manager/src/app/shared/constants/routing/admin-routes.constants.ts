@@ -1,5 +1,6 @@
 export enum AdminRoutes {
-  ADMIN = '/admin', // base path for admin routes (dashboard)
+  ADMIN = '/admin', // base path for admin routes (redirects to dashboard if empty)
+  ADMIN_DASHBOARD = '/admin/dashboard', // base path for admin admin dashboard routes
   ADMIN_CARDS = '/admin/cards', // base path for admin cards routes
   ADMIN_CREDIT_CARDS_BASE = '/admin/cards/credit', // base path for admin credit cards routes
 }
@@ -17,4 +18,8 @@ export enum AdminCreditCardsRoutes {
 export enum AdminCreditCardItemsRoutes {
   ADMIN_CREDIT_CARD_ITEMS = '/admin/cards/credit/items',
   ADMIN_CREDIT_CARD_ITEMS_CREATE = '/admin/cards/credit/items/create',
+}
+
+export enum AdminDashboardRoutes {
+  ADMIN_CREDIT_CARD_DASHBOARD = '/admin/dashboard/credit-cards',
 }

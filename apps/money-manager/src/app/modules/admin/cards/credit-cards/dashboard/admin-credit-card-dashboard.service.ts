@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { BaseAdminDashboardService } from 'apps/money-manager/src/app/shared/services/base/admin/dashboard/base-admin-dashboard.service';
 
@@ -8,18 +9,18 @@ import { BaseAdminDashboardService } from 'apps/money-manager/src/app/shared/ser
 })
 export class AdminCreditCardDashboardService extends BaseAdminDashboardService {
   constructor(protected readonly http: HttpClient) {
-    super('admin/dashboard/credit-cards');
+    super('dashboard/credit-cards');
   }
 
-  countAllIssuers() {
+  public countAllIssuers(): Observable<number> {
     return this.countAll('issuers');
   }
 
-  countAllCards() {
+  public countAllCards(): Observable<number> {
     return this.countAll('cards');
   }
 
-  countAllCardItems() {
+  public countAllCardItems(): Observable<number> {
     return this.countAll('card-items');
   }
 }
