@@ -28,7 +28,7 @@ export class PrivateCreditCardDetailsEditComponent implements OnInit {
   public creditCardLimits = CreditCardLimits;
   private currentId?: string;
 
-  creditCardForm = this.formBuilder.nonNullable.group({
+  form = this.formBuilder.nonNullable.group({
     name: ['', Validators.required],
     limit: [0, Validators.required],
     billingDate: [1, Validators.required],
@@ -43,7 +43,7 @@ export class PrivateCreditCardDetailsEditComponent implements OnInit {
     private readonly route: ActivatedRoute,
     private readonly router: Router,
     private readonly cdr: ChangeDetectorRef,
-    private readonly creditCardsService: CreditCardsService,
+    private readonly entityService: CreditCardsService,
     private readonly creditCardIssuersService: CreditCardIssuersService
   ) {
     this.creditCardIssuers$ = this.creditCardIssuersService.findAllLov();
@@ -60,29 +60,25 @@ export class PrivateCreditCardDetailsEditComponent implements OnInit {
 
   private fetchEntityDetailsAndLoadIntoForm(): void {
     if (this.currentId) {
-      this.creditCardsService
-        .findOne(this.currentId)
-        .subscribe((creditCard) => {
-          if (creditCard) {
-            this.creditCardForm.patchValue({
-              ...creditCard,
-            });
+      this.entityService.findOne(this.currentId).subscribe((creditCard) => {
+        if (creditCard) {
+          this.form.patchValue({
+            ...creditCard,
+          });
 
-            this.cdr.markForCheck();
-          } else {
-            this.router.navigate([
-              PrivateCreditCardsRoutes.PRIVATE_CREDIT_CARDS,
-            ]);
-          }
-        });
+          this.cdr.markForCheck();
+        } else {
+          this.router.navigate([PrivateCreditCardsRoutes.PRIVATE_CREDIT_CARDS]);
+        }
+      });
     }
   }
 
   public onFormSubmit(): void {
-    const entityData = this.creditCardForm.value;
+    const entityData = this.form.value;
 
     if (this.currentId) {
-      this.creditCardsService.update(entityData, this.currentId).subscribe();
+      this.entityService.update(entityData, this.currentId).subscribe();
     }
   }
 }

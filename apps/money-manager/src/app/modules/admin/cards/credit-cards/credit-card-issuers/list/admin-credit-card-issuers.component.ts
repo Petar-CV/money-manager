@@ -17,7 +17,7 @@ import { AdminCreditCardIssuersService } from '../services/admin-credit-card-iss
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminCreditCardIssuersComponent extends BasePaginationComponent {
-  creditCardIssuers$?: Observable<ICreditCardIssuer[]>;
+  data$?: Observable<ICreditCardIssuer[]>;
 
   tableHeaders: IBaseTableColumn[] = [
     {
@@ -51,9 +51,7 @@ export class AdminCreditCardIssuersComponent extends BasePaginationComponent {
     },
   ];
 
-  constructor(
-    private readonly creditCardIssuersService: AdminCreditCardIssuersService
-  ) {
+  constructor(private readonly entityService: AdminCreditCardIssuersService) {
     super();
     this.loadData();
   }
@@ -72,16 +70,14 @@ export class AdminCreditCardIssuersComponent extends BasePaginationComponent {
       sortField: this.sortField,
       search: this.search,
     };
-    this.creditCardIssuers$ = this.creditCardIssuersService
-      .findAll(queryParams)
-      .pipe(
-        tap((res) => {
-          this.totalItems = Number(res.headers.get('x-total-items'));
-        }),
-        map((res) => res.body?.data ?? []),
-        finalize(() => {
-          this.loading = false;
-        })
-      );
+    this.data$ = this.entityService.findAll(queryParams).pipe(
+      tap((res) => {
+        this.totalItems = Number(res.headers.get('x-total-items'));
+      }),
+      map((res) => res.body?.data ?? []),
+      finalize(() => {
+        this.loading = false;
+      })
+    );
   }
 }

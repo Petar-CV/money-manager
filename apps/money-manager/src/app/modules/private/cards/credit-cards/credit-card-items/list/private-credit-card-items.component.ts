@@ -17,7 +17,7 @@ import { CreditCardItemsService } from '../services/credit-card-items.service';
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class PrivateCreditCardItemsComponent extends BasePaginationComponent {
-  public creditCardItems$?: Observable<Partial<ICreditCardItem>[]>;
+  public data$?: Observable<Partial<ICreditCardItem>[]>;
   public itemsCreateRouterLink =
     PrivateCreditCardItemsRoutes.PRIVATE_CREDIT_CARD_ITEMS_CREATE;
 
@@ -77,7 +77,7 @@ export class PrivateCreditCardItemsComponent extends BasePaginationComponent {
     },
   ];
 
-  constructor(private readonly creditCardItemsService: CreditCardItemsService) {
+  constructor(private readonly entityService: CreditCardItemsService) {
     super();
     this.loadData();
   }
@@ -96,16 +96,14 @@ export class PrivateCreditCardItemsComponent extends BasePaginationComponent {
       sortField: this.sortField,
       search: this.search,
     };
-    this.creditCardItems$ = this.creditCardItemsService
-      .findAll(queryParams)
-      .pipe(
-        tap((res) => {
-          this.totalItems = Number(res.headers.get('x-total-items'));
-        }),
-        map((res) => res.body?.data ?? []),
-        finalize(() => {
-          this.loading = false;
-        })
-      );
+    this.data$ = this.entityService.findAll(queryParams).pipe(
+      tap((res) => {
+        this.totalItems = Number(res.headers.get('x-total-items'));
+      }),
+      map((res) => res.body?.data ?? []),
+      finalize(() => {
+        this.loading = false;
+      })
+    );
   }
 }

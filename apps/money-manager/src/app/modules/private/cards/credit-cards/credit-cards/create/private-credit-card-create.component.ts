@@ -26,7 +26,7 @@ export class PrivateCreditCardCreateComponent {
   public creditCardIssuers$: Observable<Partial<ICreditCardIssuer>[]>;
   public creditCardLimits = CreditCardLimits;
 
-  creditCardForm = this.formBuilder.nonNullable.group({
+  form = this.formBuilder.nonNullable.group({
     name: ['', Validators.required],
     limit: [0, Validators.required],
     billingDate: [1, Validators.required],
@@ -38,16 +38,16 @@ export class PrivateCreditCardCreateComponent {
     private readonly formBuilder: FormBuilder,
     private readonly router: Router,
     private readonly cdr: ChangeDetectorRef,
-    private readonly creditCardsService: CreditCardsService,
+    private readonly entityService: CreditCardsService,
     private readonly creditCardIssuersService: CreditCardIssuersService
   ) {
     this.creditCardIssuers$ = this.creditCardIssuersService.findAllLov();
   }
 
   onFormSubmit(addNew?: boolean): void {
-    const entityData = this.creditCardForm.value;
+    const entityData = this.form.value;
 
-    this.creditCardsService.create(entityData).subscribe((newCreditCard) => {
+    this.entityService.create(entityData).subscribe((newCreditCard) => {
       if (addNew) {
         this.clearForm();
         return;
@@ -61,7 +61,7 @@ export class PrivateCreditCardCreateComponent {
   }
 
   private clearForm(): void {
-    this.creditCardForm.reset();
+    this.form.reset();
 
     this.cdr.markForCheck();
   }

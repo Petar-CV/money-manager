@@ -37,7 +37,7 @@ export class PrivateCreditCardItemDetailsComponent implements OnInit {
     private readonly route: ActivatedRoute,
     private readonly router: Router,
     private readonly cdr: ChangeDetectorRef,
-    private readonly creditCardItemsService: CreditCardItemsService
+    private readonly entityService: CreditCardItemsService
   ) {}
 
   public ngOnInit(): void {
@@ -51,27 +51,23 @@ export class PrivateCreditCardItemDetailsComponent implements OnInit {
 
   private fetchEntityDetailsAndLoadIntoForm(): void {
     if (this.currentId) {
-      this.creditCardItemsService
-        .findOne(this.currentId)
-        .subscribe((creditCardItem) => {
-          if (creditCardItem) {
-            this.currentCreditCardItem = creditCardItem;
+      this.entityService.findOne(this.currentId).subscribe((creditCardItem) => {
+        if (creditCardItem) {
+          this.currentCreditCardItem = creditCardItem;
 
-            this.form.patchValue({
-              ...creditCardItem,
-              boughtAt: new Date(creditCardItem.boughtAt),
-              firstInstalmentDate: creditCardItem.firstInstalmentDate
-                ? new Date(creditCardItem.firstInstalmentDate)
-                : undefined,
-            });
+          this.form.patchValue({
+            ...creditCardItem,
+            boughtAt: new Date(creditCardItem.boughtAt),
+            firstInstalmentDate: creditCardItem.firstInstalmentDate
+              ? new Date(creditCardItem.firstInstalmentDate)
+              : undefined,
+          });
 
-            this.cdr.markForCheck();
-          } else {
-            this.router.navigate([
-              PrivateCreditCardsRoutes.PRIVATE_CREDIT_CARDS,
-            ]);
-          }
-        });
+          this.cdr.markForCheck();
+        } else {
+          this.router.navigate([PrivateCreditCardsRoutes.PRIVATE_CREDIT_CARDS]);
+        }
+      });
     }
   }
 
@@ -79,9 +75,7 @@ export class PrivateCreditCardItemDetailsComponent implements OnInit {
     const entityData = this.form.value;
 
     if (this.currentId) {
-      this.creditCardItemsService
-        .update(entityData, this.currentId)
-        .subscribe();
+      this.entityService.update(entityData, this.currentId).subscribe();
     }
   }
 }

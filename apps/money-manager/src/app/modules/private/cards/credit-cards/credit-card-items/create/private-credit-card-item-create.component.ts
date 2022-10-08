@@ -44,10 +44,10 @@ export class PrivateCreditCardItemCreateComponent implements OnInit {
     private readonly router: Router,
     private readonly route: ActivatedRoute,
     private readonly cdr: ChangeDetectorRef,
-    private readonly creditCardsService: CreditCardsService,
+    private readonly entityService: CreditCardsService,
     private readonly creditCardItemsService: CreditCardItemsService
   ) {
-    this.creditCards$ = this.creditCardsService.findAllLov();
+    this.creditCards$ = this.entityService.findAllLov();
   }
 
   public ngOnInit(): void {
@@ -64,14 +64,12 @@ export class PrivateCreditCardItemCreateComponent implements OnInit {
 
   private loadCardDetails(): void {
     if (this.creditCardId) {
-      this.creditCardsService
-        .findOne(this.creditCardId)
-        .subscribe((creditCard) => {
-          if (creditCard) {
-            this.currentCreditCard = creditCard;
-            this.cdr.markForCheck();
-          }
-        });
+      this.entityService.findOne(this.creditCardId).subscribe((creditCard) => {
+        if (creditCard) {
+          this.currentCreditCard = creditCard;
+          this.cdr.markForCheck();
+        }
+      });
     }
   }
 

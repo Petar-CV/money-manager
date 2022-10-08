@@ -15,7 +15,7 @@ import { AdminCreditCardItemsService } from '../services/admin-credit-card-items
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminCreditCardItemCreateComponent {
-  creditCardItemForm = this.formBuilder.nonNullable.group({
+  form = this.formBuilder.nonNullable.group({
     name: ['', Validators.required],
     description: [''],
     instalments: [1, Validators.required],
@@ -30,29 +30,27 @@ export class AdminCreditCardItemCreateComponent {
     private readonly formBuilder: FormBuilder,
     private readonly router: Router,
     private readonly cdr: ChangeDetectorRef,
-    private readonly adminCreditCardsItemsService: AdminCreditCardItemsService
+    private readonly entityService: AdminCreditCardItemsService
   ) {}
 
   onFormSubmit(addNew?: boolean): void {
-    const entityData = this.creditCardItemForm.value;
+    const entityData = this.form.value;
 
-    this.adminCreditCardsItemsService
-      .create(entityData)
-      .subscribe((newCreditCardItem) => {
-        if (addNew) {
-          this.clearForm();
-          return;
-        }
+    this.entityService.create(entityData).subscribe((newCreditCardItem) => {
+      if (addNew) {
+        this.clearForm();
+        return;
+      }
 
-        this.router.navigate([
-          AdminCreditCardItemsRoutes.ADMIN_CREDIT_CARD_ITEMS,
-          newCreditCardItem?.id,
-        ]);
-      });
+      this.router.navigate([
+        AdminCreditCardItemsRoutes.ADMIN_CREDIT_CARD_ITEMS,
+        newCreditCardItem?.id,
+      ]);
+    });
   }
 
   private clearForm(): void {
-    this.creditCardItemForm.reset();
+    this.form.reset();
 
     this.cdr.markForCheck();
   }

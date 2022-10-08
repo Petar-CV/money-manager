@@ -2,7 +2,7 @@
   <petar-cv-base-back-button></petar-cv-base-back-button>
 
   <form
-    [formGroup]="creditCardIssuerForm"
+    [formGroup]="form"
     (submit)="onFormSubmit()"
     class="shadow-lg p-4 flex flex-col"
   >
@@ -31,8 +31,7 @@
           id="name-help"
           class="block"
           [class.p-error]="
-            creditCardIssuerForm.get('name')?.hasError('required') &&
-            creditCardIssuerForm.get('name')?.touched
+            form.get('name')?.hasError('required') && form.get('name')?.touched
           "
           class="block"
         >
@@ -61,8 +60,7 @@
         id="logo-help"
         class="block"
         [class.p-error]="
-          creditCardIssuerForm.get('logo')?.hasError('required') &&
-          creditCardIssuerForm.get('logo')?.touched
+          form.get('logo')?.hasError('required') && form.get('logo')?.touched
         "
         class="block"
       >
@@ -75,9 +73,7 @@
       <p-button
         [label]="'commonActions.update' | translate"
         type="submit"
-        [disabled]="
-          creditCardIssuerForm.invalid || creditCardIssuerForm.pristine
-        "
+        [disabled]="form.invalid || form.pristine"
       ></p-button>
     </div>
   </form>

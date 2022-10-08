@@ -28,7 +28,7 @@ export class AdminCreditCardDetailsComponent implements OnInit {
   public creditCardLimits = CreditCardLimits;
   private currentId?: string;
 
-  creditCardForm = this.formBuilder.nonNullable.group({
+  form = this.formBuilder.nonNullable.group({
     id: '',
     name: ['', Validators.required],
     issuerId: ['', Validators.required],
@@ -48,7 +48,7 @@ export class AdminCreditCardDetailsComponent implements OnInit {
     private readonly route: ActivatedRoute,
     private readonly router: Router,
     private readonly cdr: ChangeDetectorRef,
-    private readonly adminCreditCardsService: AdminCreditCardsService,
+    private readonly entityService: AdminCreditCardsService,
     private readonly adminCreditCardIssuersService: AdminCreditCardIssuersService
   ) {
     this.creditCardIssuers$ = this.adminCreditCardIssuersService.findAllLov();
@@ -63,47 +63,43 @@ export class AdminCreditCardDetailsComponent implements OnInit {
     }
 
     // TODO: Extract to utility function
-    this.creditCardForm.controls.id?.disable({ onlySelf: true });
-    this.creditCardForm.controls.createdAt?.disable({ onlySelf: true });
-    this.creditCardForm.controls.updatedAt?.disable({ onlySelf: true });
-    this.creditCardForm.controls.deletedAt?.disable({ onlySelf: true });
+    this.form.controls.id?.disable({ onlySelf: true });
+    this.form.controls.createdAt?.disable({ onlySelf: true });
+    this.form.controls.updatedAt?.disable({ onlySelf: true });
+    this.form.controls.deletedAt?.disable({ onlySelf: true });
   }
 
   private fetchEntityDetailsAndLoadIntoForm(): void {
     if (this.currentId) {
-      this.adminCreditCardsService
-        .findOne(this.currentId)
-        .subscribe((creditCard) => {
-          if (creditCard) {
-            this.creditCardForm.patchValue({
-              ...creditCard,
-              issuerId: creditCard.issuerId,
-              updatedAt: creditCard.updatedAt
-                ? new Date(creditCard.updatedAt)
-                : undefined,
-              createdAt: creditCard.createdAt
-                ? new Date(creditCard.createdAt)
-                : undefined,
-              deletedAt: creditCard.deletedAt
-                ? new Date(creditCard.deletedAt)
-                : undefined,
-            });
+      this.entityService.findOne(this.currentId).subscribe((creditCard) => {
+        if (creditCard) {
+          this.form.patchValue({
+            ...creditCard,
+            issuerId: creditCard.issuerId,
+            updatedAt: creditCard.updatedAt
+              ? new Date(creditCard.updatedAt)
+              : undefined,
+            createdAt: creditCard.createdAt
+              ? new Date(creditCard.createdAt)
+              : undefined,
+            deletedAt: creditCard.deletedAt
+              ? new Date(creditCard.deletedAt)
+              : undefined,
+          });
 
-            this.cdr.markForCheck();
-          } else {
-            this.router.navigate([AdminCreditCardsRoutes.ADMIN_CREDIT_CARDS]);
-          }
-        });
+          this.cdr.markForCheck();
+        } else {
+          this.router.navigate([AdminCreditCardsRoutes.ADMIN_CREDIT_CARDS]);
+        }
+      });
     }
   }
 
   public onFormSubmit(): void {
-    const entityData = this.creditCardForm.value;
+    const entityData = this.form.value;
 
     if (this.currentId) {
-      this.adminCreditCardsService
-        .update(entityData, this.currentId)
-        .subscribe();
+      this.entityService.update(entityData, this.currentId).subscribe();
     }
   }
 }

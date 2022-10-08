@@ -12,7 +12,6 @@ import { UserProfileService } from '../../../../shared/services/user-info/user-p
 @Component({
   selector: 'petar-cv-profile-settings',
   templateUrl: './profile-settings.component.html',
-  styleUrls: ['./profile-settings.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ProfileSettingsComponent implements OnDestroy {
@@ -20,7 +19,7 @@ export class ProfileSettingsComponent implements OnDestroy {
   public languagesAvailable = languagesAvailable;
   public currenciesAvailable = currenciesAvailable;
 
-  public profileSettingsForm = this.formBuilder.nonNullable.group({
+  public form = this.formBuilder.nonNullable.group({
     language: ['', Validators.required],
     currency: ['', Validators.required],
   });
@@ -31,15 +30,13 @@ export class ProfileSettingsComponent implements OnDestroy {
   ) {
     this.userProfileService.getUserProfileData$().subscribe((userProfile) => {
       if (userProfile) {
-        this.profileSettingsForm.patchValue(userProfile);
+        this.form.patchValue(userProfile);
       }
     });
   }
 
   public onFormSubmit(): void {
-    this.userProfileService.updateUserProfile(
-      this.profileSettingsForm.getRawValue()
-    );
+    this.userProfileService.updateUserProfile(this.form.getRawValue());
   }
 
   public ngOnDestroy(): void {

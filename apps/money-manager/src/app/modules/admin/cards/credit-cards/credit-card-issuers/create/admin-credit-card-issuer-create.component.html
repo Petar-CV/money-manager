@@ -1,7 +1,7 @@
 <div class="admin-form-wrapper">
   <petar-cv-base-back-button></petar-cv-base-back-button>
 
-  <form [formGroup]="creditCardIssuerForm" class="shadow-lg p-4 flex flex-col">
+  <form [formGroup]="form" class="shadow-lg p-4 flex flex-col">
     <!-- Fields -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-6">
       <div>
@@ -20,8 +20,7 @@
           id="name-help"
           class="block"
           [class.p-error]="
-            creditCardIssuerForm.get('name')?.hasError('required') &&
-            creditCardIssuerForm.get('name')?.touched
+            form.get('name')?.hasError('required') && form.get('name')?.touched
           "
           class="block"
         >
@@ -50,8 +49,7 @@
         id="logo-help"
         class="block"
         [class.p-error]="
-          creditCardIssuerForm.get('logo')?.hasError('required') &&
-          creditCardIssuerForm.get('logo')?.touched
+          form.get('logo')?.hasError('required') && form.get('logo')?.touched
         "
         class="block"
       >
@@ -64,27 +62,15 @@
       <p-button
         type="button"
         [label]="'commonActions.submit' | translate"
-        (click)="
-          !creditCardIssuerForm.invalid &&
-            !creditCardIssuerForm.pristine &&
-            onFormSubmit()
-        "
-        [disabled]="
-          creditCardIssuerForm.invalid || creditCardIssuerForm.pristine
-        "
+        (click)="!form.invalid && !form.pristine && onFormSubmit()"
+        [disabled]="form.invalid || form.pristine"
       ></p-button>
       <p-button
         type="button"
         styleClass="p-button-secondary "
         [label]="'commonActions.submitAndAddNew' | translate"
-        (click)="
-          !creditCardIssuerForm.invalid &&
-            !creditCardIssuerForm.pristine &&
-            onFormSubmit(true)
-        "
-        [disabled]="
-          creditCardIssuerForm.invalid || creditCardIssuerForm.pristine
-        "
+        (click)="!form.invalid && !form.pristine && onFormSubmit(true)"
+        [disabled]="form.invalid || form.pristine"
       ></p-button>
     </div>
   </form>

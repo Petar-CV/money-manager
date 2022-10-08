@@ -2,7 +2,7 @@
   <petar-cv-base-back-button></petar-cv-base-back-button>
 
   <form
-    [formGroup]="creditCardForm"
+    [formGroup]="form"
     (submit)="onFormSubmit()"
     class="shadow-lg p-4 flex flex-col"
   >
@@ -24,8 +24,8 @@
           id="name-help"
           class="block"
           [class.p-error]="
-            creditCardForm.controls.name.hasError('required') &&
-            creditCardForm.controls.name.touched
+            form.controls.name.hasError('required') &&
+            form.controls.name.touched
           "
           class="block"
         >
@@ -51,8 +51,8 @@
           id="issuerId-help"
           class="block"
           [class.p-error]="
-            creditCardForm.controls.issuerId.hasError('required') &&
-            creditCardForm.controls.issuerId.touched
+            form.controls.issuerId.hasError('required') &&
+            form.controls.issuerId.touched
           "
         >
           {{ 'commonFields.validators.required' | translate }}
@@ -79,8 +79,8 @@
           id="billingDate-help"
           class="block"
           [class.p-error]="
-            creditCardForm.controls.billingDate.hasError('required') &&
-            creditCardForm.controls.billingDate.touched
+            form.controls.billingDate.hasError('required') &&
+            form.controls.billingDate.touched
           "
           class="block"
         >
@@ -106,8 +106,8 @@
           id="limit-help"
           class="block"
           [class.p-error]="
-            creditCardForm.controls.limit.hasError('required') &&
-            creditCardForm.controls.limit.touched
+            form.controls.limit.hasError('required') &&
+            form.controls.limit.touched
           "
           class="block"
         >
@@ -142,8 +142,8 @@
           id="limitType-help"
           class="block"
           [class.p-error]="
-            creditCardForm.controls.limitType.hasError('required') &&
-            creditCardForm.controls.limitType.touched
+            form.controls.limitType.hasError('required') &&
+            form.controls.limitType.touched
           "
         >
           {{ 'commonFields.validators.required' | translate }}
@@ -156,7 +156,7 @@
       <p-button
         type="submit"
         [label]="'commonActions.submit' | translate"
-        [disabled]="creditCardForm.invalid || creditCardForm.pristine"
+        [disabled]="form.invalid || form.pristine"
       ></p-button>
     </div>
   </form>

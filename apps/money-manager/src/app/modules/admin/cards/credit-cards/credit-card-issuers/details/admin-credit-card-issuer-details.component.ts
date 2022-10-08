@@ -18,7 +18,7 @@ import { AdminCreditCardIssuersService } from '../services/admin-credit-card-iss
 export class AdminCreditCardIssuerDetailsComponent implements OnInit {
   private currentId?: string;
 
-  creditCardIssuerForm = this.formBuilder.nonNullable.group({
+  form = this.formBuilder.nonNullable.group({
     id: [''],
     name: ['', Validators.required],
     logo: ['', Validators.required],
@@ -29,7 +29,7 @@ export class AdminCreditCardIssuerDetailsComponent implements OnInit {
     private readonly route: ActivatedRoute,
     private readonly router: Router,
     private readonly cdr: ChangeDetectorRef,
-    private readonly adminCreditCardIssuersService: AdminCreditCardIssuersService
+    private readonly entityService: AdminCreditCardIssuersService
   ) {}
 
   public ngOnInit(): void {
@@ -40,16 +40,16 @@ export class AdminCreditCardIssuerDetailsComponent implements OnInit {
       this.fetchEntityDetailsAndLoadIntoForm();
     }
 
-    this.creditCardIssuerForm.get('id')?.disable({ onlySelf: true });
+    this.form.get('id')?.disable({ onlySelf: true });
   }
 
   private fetchEntityDetailsAndLoadIntoForm(): void {
     if (this.currentId) {
-      this.adminCreditCardIssuersService
+      this.entityService
         .findOne(this.currentId)
         .subscribe((creditCardIssuer) => {
           if (creditCardIssuer) {
-            this.creditCardIssuerForm.patchValue(creditCardIssuer);
+            this.form.patchValue(creditCardIssuer);
             this.loadLogoIntoForm();
 
             this.cdr.markForCheck();
@@ -64,7 +64,7 @@ export class AdminCreditCardIssuerDetailsComponent implements OnInit {
 
   // TODO: IMPLEMENT
   private loadLogoIntoForm(): void {
-    // const logo = this.creditCardIssuerForm.value.logo;
+    // const logo = this.form.value.logo;
     // if (logo) {
     //   const file = new File([new Blob([logo])], 'logo.png');
     //   if (this.fileUpload) {
@@ -79,12 +79,10 @@ export class AdminCreditCardIssuerDetailsComponent implements OnInit {
   }
 
   public onFormSubmit(): void {
-    const entityData = this.creditCardIssuerForm.value;
+    const entityData = this.form.value;
 
     if (this.currentId) {
-      this.adminCreditCardIssuersService
-        .update(entityData, this.currentId)
-        .subscribe();
+      this.entityService.update(entityData, this.currentId).subscribe();
     }
   }
 
@@ -97,7 +95,7 @@ export class AdminCreditCardIssuerDetailsComponent implements OnInit {
 
       fileReader.onload = () => {
         if (typeof fileReader.result === 'string') {
-          this.creditCardIssuerForm.patchValue({
+          this.form.patchValue({
             logo: fileReader.result,
           });
 
@@ -108,7 +106,7 @@ export class AdminCreditCardIssuerDetailsComponent implements OnInit {
   }
 
   public onFileRemove(): void {
-    this.creditCardIssuerForm.patchValue({
+    this.form.patchValue({
       logo: '',
     });
 

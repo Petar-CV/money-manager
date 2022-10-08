@@ -21,7 +21,7 @@ export class PrivateCreditCardItemsTableComponent
   extends BasePaginationComponent
   implements OnInit
 {
-  public creditCardItems$?: Observable<ICreditCardItem[]>;
+  public data$?: Observable<ICreditCardItem[]>;
   public itemsCreateRouterLink =
     PrivateCreditCardItemsRoutes.PRIVATE_CREDIT_CARD_ITEMS_CREATE;
   public currentId?: string;
@@ -135,7 +135,7 @@ export class PrivateCreditCardItemsTableComponent
 
   constructor(
     private readonly route: ActivatedRoute,
-    private readonly creditCardsService: CreditCardsService
+    private readonly entityService: CreditCardsService
   ) {
     super();
   }
@@ -167,7 +167,7 @@ export class PrivateCreditCardItemsTableComponent
       sortField: this.sortField,
       search: this.search,
     };
-    this.creditCardItems$ = this.creditCardsService
+    this.data$ = this.entityService
       .findAllItemsForMyCreditCard(this.currentId, queryParams)
       .pipe(
         tap((res) => {

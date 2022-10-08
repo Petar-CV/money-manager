@@ -1,7 +1,6 @@
 <div class="admin-form-wrapper">
   <form
-    *ngIf="profileSettingsForm"
-    [formGroup]="profileSettingsForm"
+    [formGroup]="form"
     (submit)="onFormSubmit()"
     class="shadow-lg p-4 flex flex-col"
   >
@@ -45,7 +44,7 @@
       <p-button
         type="submit"
         [label]="'commonActions.update' | translate"
-        [disabled]="profileSettingsForm.invalid || profileSettingsForm.pristine"
+        [disabled]="form.invalid || form.pristine"
       ></p-button>
     </div>
   </form>

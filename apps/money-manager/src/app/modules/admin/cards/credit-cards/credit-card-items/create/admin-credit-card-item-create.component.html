@@ -1,11 +1,7 @@
 <div class="admin-form-wrapper">
   <petar-cv-base-back-button></petar-cv-base-back-button>
 
-  <form
-    *ngIf="creditCardItemForm"
-    [formGroup]="creditCardItemForm"
-    class="shadow-lg p-4 flex flex-col"
-  >
+  <form [formGroup]="form" class="shadow-lg p-4 flex flex-col">
     <!-- Fields -->
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 mb-6">
       <div>
@@ -24,8 +20,8 @@
           id="userId-help"
           class="block"
           [class.p-error]="
-            creditCardItemForm.controls.userId.hasError('required') &&
-            creditCardItemForm.controls.userId.touched
+            form.controls.userId.hasError('required') &&
+            form.controls.userId.touched
           "
           class="block"
         >
@@ -49,8 +45,8 @@
           id="cardId-help"
           class="block"
           [class.p-error]="
-            creditCardItemForm.controls.cardId.hasError('required') &&
-            creditCardItemForm.controls.cardId.touched
+            form.controls.cardId.hasError('required') &&
+            form.controls.cardId.touched
           "
           class="block"
         >
@@ -74,8 +70,8 @@
           id="name-help"
           class="block"
           [class.p-error]="
-            creditCardItemForm.controls.name.hasError('required') &&
-            creditCardItemForm.controls.name.touched
+            form.controls.name.hasError('required') &&
+            form.controls.name.touched
           "
           class="block"
         >
@@ -116,8 +112,8 @@
           id="amount-help"
           class="block"
           [class.p-error]="
-            creditCardItemForm.controls.amount.hasError('required') &&
-            creditCardItemForm.controls.amount.touched
+            form.controls.amount.hasError('required') &&
+            form.controls.amount.touched
           "
           class="block"
         >
@@ -144,8 +140,8 @@
           id="instalments-help"
           class="block"
           [class.p-error]="
-            creditCardItemForm.controls.instalments.hasError('required') &&
-            creditCardItemForm.controls.instalments.touched
+            form.controls.instalments.hasError('required') &&
+            form.controls.instalments.touched
           "
           class="block"
         >
@@ -167,8 +163,8 @@
           id="boughtAt-help"
           class="block"
           [class.p-error]="
-            creditCardItemForm.controls.boughtAt.hasError('required') &&
-            creditCardItemForm.controls.boughtAt.touched
+            form.controls.boughtAt.hasError('required') &&
+            form.controls.boughtAt.touched
           "
           class="block"
         >
@@ -190,9 +186,8 @@
           id="firstInstalmentDate-help"
           class="block"
           [class.p-error]="
-            creditCardItemForm.controls.firstInstalmentDate.hasError(
-              'required'
-            ) && creditCardItemForm.controls.firstInstalmentDate.touched
+            form.controls.firstInstalmentDate.hasError('required') &&
+            form.controls.firstInstalmentDate.touched
           "
           class="block"
         >
@@ -206,23 +201,15 @@
       <p-button
         type="button"
         [label]="'commonActions.submit' | translate"
-        (click)="
-          !creditCardItemForm.invalid &&
-            !creditCardItemForm.pristine &&
-            onFormSubmit()
-        "
-        [disabled]="creditCardItemForm.invalid || creditCardItemForm.pristine"
+        (click)="!form.invalid && !form.pristine && onFormSubmit()"
+        [disabled]="form.invalid || form.pristine"
       ></p-button>
       <p-button
         type="button"
         styleClass="p-button-secondary "
         [label]="'commonActions.submitAndAddNew' | translate"
-        (click)="
-          !creditCardItemForm.invalid &&
-            !creditCardItemForm.pristine &&
-            onFormSubmit(true)
-        "
-        [disabled]="creditCardItemForm.invalid || creditCardItemForm.pristine"
+        (click)="!form.invalid && !form.pristine && onFormSubmit(true)"
+        [disabled]="form.invalid || form.pristine"
       ></p-button>
     </div>
   </form>

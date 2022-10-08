@@ -31,7 +31,7 @@ export class PrivateCreditCardItemsLimitChartComponent implements OnInit {
   constructor(
     private readonly route: ActivatedRoute,
     private readonly cdr: ChangeDetectorRef,
-    private readonly creditCardsService: CreditCardsService,
+    private readonly entityService: CreditCardsService,
     private readonly itemsLimitChartService: ItemsLimitChartService
   ) {}
 
@@ -47,14 +47,12 @@ export class PrivateCreditCardItemsLimitChartComponent implements OnInit {
   private loadData(): void {
     if (this.currentId) {
       zip(
-        this.creditCardsService
-          .findAllItemsForMyCreditCard(this.currentId)
-          .pipe(
-            map((items) => {
-              return items.body?.data ?? [];
-            })
-          ),
-        this.creditCardsService.findOne(this.currentId)
+        this.entityService.findAllItemsForMyCreditCard(this.currentId).pipe(
+          map((items) => {
+            return items.body?.data ?? [];
+          })
+        ),
+        this.entityService.findOne(this.currentId)
       ).subscribe(([creditCardItems, creditCard]) => {
         this.creditCardItems = creditCardItems;
         this.currentCreditCard = creditCard;

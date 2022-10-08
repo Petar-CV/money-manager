@@ -26,7 +26,7 @@ export class AdminCreditCardCreateComponent {
   public creditCardIssuers$: Observable<Partial<ICreditCardIssuer>[]>;
   public creditCardLimits = CreditCardLimits;
 
-  creditCardForm = this.formBuilder.nonNullable.group({
+  form = this.formBuilder.nonNullable.group({
     name: ['', Validators.required],
     limit: [0, Validators.required],
     billingDate: [1, Validators.required],
@@ -39,32 +39,30 @@ export class AdminCreditCardCreateComponent {
     private readonly formBuilder: FormBuilder,
     private readonly router: Router,
     private readonly cdr: ChangeDetectorRef,
-    private readonly adminCreditCardsService: AdminCreditCardsService,
+    private readonly entityService: AdminCreditCardsService,
     private readonly adminCreditCardIssuersService: AdminCreditCardIssuersService
   ) {
     this.creditCardIssuers$ = this.adminCreditCardIssuersService.findAllLov();
   }
 
   onFormSubmit(addNew?: boolean): void {
-    const entityData = this.creditCardForm.value;
+    const entityData = this.form.value;
 
-    this.adminCreditCardsService
-      .create(entityData)
-      .subscribe((newCreditCard) => {
-        if (addNew) {
-          this.clearForm();
-          return;
-        }
+    this.entityService.create(entityData).subscribe((newCreditCard) => {
+      if (addNew) {
+        this.clearForm();
+        return;
+      }
 
-        this.router.navigate([
-          AdminCreditCardsRoutes.ADMIN_CREDIT_CARDS,
-          newCreditCard?.id,
-        ]);
-      });
+      this.router.navigate([
+        AdminCreditCardsRoutes.ADMIN_CREDIT_CARDS,
+        newCreditCard?.id,
+      ]);
+    });
   }
 
   private clearForm(): void {
-    this.creditCardForm.reset();
+    this.form.reset();
 
     this.cdr.markForCheck();
   }

@@ -17,7 +17,7 @@ import { AdminCreditCardItemsService } from '../services/admin-credit-card-items
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminCreditCardItemsComponent extends BasePaginationComponent {
-  creditCardItems$?: Observable<ICreditCardItem[]>;
+  data$?: Observable<ICreditCardItem[]>;
 
   tableHeaders: IBaseTableColumn[] = [
     {
@@ -70,9 +70,7 @@ export class AdminCreditCardItemsComponent extends BasePaginationComponent {
     },
   ];
 
-  constructor(
-    private readonly creditCardItemsService: AdminCreditCardItemsService
-  ) {
+  constructor(private readonly entityService: AdminCreditCardItemsService) {
     super();
     this.loadData();
   }
@@ -91,16 +89,14 @@ export class AdminCreditCardItemsComponent extends BasePaginationComponent {
       sortField: this.sortField,
       search: this.search,
     };
-    this.creditCardItems$ = this.creditCardItemsService
-      .findAll(queryParams)
-      .pipe(
-        tap((res) => {
-          this.totalItems = Number(res.headers.get('x-total-items'));
-        }),
-        map((res) => res.body?.data ?? []),
-        finalize(() => {
-          this.loading = false;
-        })
-      );
+    this.data$ = this.entityService.findAll(queryParams).pipe(
+      tap((res) => {
+        this.totalItems = Number(res.headers.get('x-total-items'));
+      }),
+      map((res) => res.body?.data ?? []),
+      finalize(() => {
+        this.loading = false;
+      })
+    );
   }
 }

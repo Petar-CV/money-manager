@@ -15,7 +15,7 @@ import { AdminCreditCardIssuersService } from '../services/admin-credit-card-iss
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class AdminCreditCardIssuerCreateComponent {
-  creditCardIssuerForm = this.formBuilder.nonNullable.group({
+  form = this.formBuilder.nonNullable.group({
     name: ['', Validators.required],
     logo: ['', Validators.required],
   });
@@ -24,29 +24,27 @@ export class AdminCreditCardIssuerCreateComponent {
     private readonly formBuilder: FormBuilder,
     private readonly router: Router,
     private readonly cdr: ChangeDetectorRef,
-    private readonly adminCreditCardIssuersService: AdminCreditCardIssuersService
+    private readonly entityService: AdminCreditCardIssuersService
   ) {}
 
   onFormSubmit(addNew?: boolean): void {
-    const entityData = this.creditCardIssuerForm.value;
+    const entityData = this.form.value;
 
-    this.adminCreditCardIssuersService
-      .create(entityData)
-      .subscribe((newCreditCardIssuer) => {
-        if (addNew) {
-          this.clearForm();
-          return;
-        }
+    this.entityService.create(entityData).subscribe((newCreditCardIssuer) => {
+      if (addNew) {
+        this.clearForm();
+        return;
+      }
 
-        this.router.navigate([
-          AdminCreditCardIssuersRoutes.ADMIN_CREDIT_CARD_ISSUERS,
-          newCreditCardIssuer?.id,
-        ]);
-      });
+      this.router.navigate([
+        AdminCreditCardIssuersRoutes.ADMIN_CREDIT_CARD_ISSUERS,
+        newCreditCardIssuer?.id,
+      ]);
+    });
   }
 
   private clearForm(): void {
-    this.creditCardIssuerForm.reset();
+    this.form.reset();
 
     this.cdr.markForCheck();
   }
@@ -60,7 +58,7 @@ export class AdminCreditCardIssuerCreateComponent {
 
       fileReader.onload = () => {
         if (typeof fileReader.result === 'string') {
-          this.creditCardIssuerForm.patchValue({
+          this.form.patchValue({
             logo: fileReader.result,
           });
 
@@ -71,7 +69,7 @@ export class AdminCreditCardIssuerCreateComponent {
   }
 
   onFileRemove(): void {
-    this.creditCardIssuerForm.patchValue({
+    this.form.patchValue({
       logo: '',
     });
 
