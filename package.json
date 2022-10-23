@@ -6,6 +6,7 @@
     "ng": "nx",
     "postinstall": "node ./decorate-angular-cli.js && ngcc --properties es2020 browser module main",
     "start": "nx serve",
+    "start:prod": "npx prisma migrate deploy && npx prisma generate && npx nx build api --configuration=production && pm2-runtime start './dist/apps/api/main.js'",
     "build": "nx build",
     "build:api": "nx build --project=api --skip-nx-cache",
     "build:money-manager": "nx build --project=money-manager --skip-nx-cache",
