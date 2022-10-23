@@ -1,9 +1,9 @@
 version: '3'
 
 volumes:
-  postgres_data:
+  keycloak_postgres_data:
     driver: local
-  mm-postgres:
+  postgres_data:
     driver: local
   zookeeper_data:
     driver: local
@@ -14,7 +14,7 @@ services:
   keycloak-postgres:
     image: postgres:14.4
     volumes:
-      - postgres_data:/var/lib/postgresql/data
+      - keycloak_postgres_data:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: ${KEYCLOAK_DB_DATABASE}
       POSTGRES_USER: ${KEYCLOAK_DB_USER}
@@ -24,7 +24,7 @@ services:
   mm-postgres:
     image: postgres:14.4
     volumes:
-      - mm-postgres:/var/lib/postgresql/data
+      - postgres_data:/var/lib/postgresql/data
     environment:
       POSTGRES_DB: ${POSTGRES_DB}
       POSTGRES_USER: ${POSTGRES_USER}
