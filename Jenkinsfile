@@ -2,9 +2,9 @@ pipeline {
     agent any
 
     stages {
-        stage("Prune Docker data") {
+        stage("Prune Docker images older than 30 days") {
             steps {
-                sh "docker system prune -a -f"
+                sh "docker image prune --all --filter 'until=720h'"
             }
         }
         stage("Create .env file") {
