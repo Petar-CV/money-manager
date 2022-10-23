@@ -62,7 +62,7 @@ services:
       - mm-network
   kafka:
     image: bitnami/kafka:3.2
-    hostname: localhost
+    hostname: kafka
     ports:
       - '9092:9092'
     volumes:

@@ -9,6 +9,6 @@ const keycloakConfig: KeycloakConnectOptions = {
 
 export const environment = {
   production: true,
-  kafka_url: 'localhost:9092', // TODO: Change to production URL
+  kafka_url: 'kafka:9092',
   keycloak: keycloakConfig,
 };
