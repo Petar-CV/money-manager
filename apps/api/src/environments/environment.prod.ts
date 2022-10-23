@@ -4,7 +4,7 @@ const keycloakConfig: KeycloakConnectOptions = {
   authServerUrl: 'https://money-manager.petar-cv.com/auth',
   realm: 'Money-Manager',
   clientId: 'money-manager-api',
-  secret: 'hUUBmlhqp0Q6qKCzKQ5coedvwHvTPFIm',
+  secret: 'BOG1z0eKGYH6ezoY3xA38sCjTVCwo00w',
 };
 
 export const environment = {
