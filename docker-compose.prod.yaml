@@ -1,14 +1,4 @@
-version: '3'
-
-volumes:
-  keycloak_postgres_data:
-    driver: local
-  postgres_data:
-    driver: local
-  zookeeper_data:
-    driver: local
-  kafka_data:
-    driver: local
+version: '3.9'
 
 services:
   keycloak-postgres:
@@ -21,6 +11,8 @@ services:
       POSTGRES_PASSWORD: ${KEYCLOAK_DB_PASSWORD}
     ports:
       - 5433:5432
+    networks:
+      - mm-network
   mm-postgres:
     image: postgres:14.4
     volumes:
@@ -31,8 +23,9 @@ services:
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
     ports:
       - 5434:5432
+    networks:
+      - mm-network
   keycloak:
-    container_name: keycloak
     image: jboss/keycloak:16.1.1
     volumes:
       - ./keycloak/keycloak-themes/custom:/opt/jboss/keycloak/themes/custom
@@ -55,6 +48,8 @@ services:
       - 8443:8443
     depends_on:
       - keycloak-postgres
+    networks:
+      - mm-network
   zookeeper:
     image: bitnami/zookeeper:3.8
     ports:
@@ -63,6 +58,8 @@ services:
       - 'zookeeper_data:/bitnami'
     environment:
       - ALLOW_ANONYMOUS_LOGIN=yes
+    networks:
+      - mm-network
   kafka:
     image: bitnami/kafka:3.2
     hostname: localhost
@@ -75,8 +72,9 @@ services:
       - ALLOW_PLAINTEXT_LISTENER=yes
     depends_on:
       - zookeeper
+    networks:
+      - mm-network
   mm-api:
-    container_name: mm-api
     build:
       context: .
       dockerfile: ./apps/api/Dockerfile
@@ -86,9 +84,27 @@ services:
       - kafka
       - mm-postgres
       - keycloak
+    networks:
+      - mm-network
   mm-frontend:
     build:
       context: .
       dockerfile: ./apps/money-manager/Dockerfile
     ports:
       - '4200:80'
+    networks:
+      - mm-network
+
+networks:
+  mm-network:
+    driver: bridge
+
+volumes:
+  keycloak_postgres_data:
+    driver: local
+  postgres_data:
+    driver: local
+  zookeeper_data:
+    driver: local
+  kafka_data:
+    driver: local
