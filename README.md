@@ -1,4 +1,4 @@
-<h1 align="center">Personal portfolio by Petar Cvetko Voćanec</h1>
+<h1 align="center">Money manager by Petar Cvetko Voćanec</h1>
 
 <div align="center">
     <p align="center">Project status</p>
