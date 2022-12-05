@@ -1,6 +1,41 @@
+<h1 align="center">Personal portfolio by Petar Cvetko Voćanec</h1>
 
+<div align="center">
+    <p align="center">Project status</p>
 
-# PetarCv
+[![CodeFactor](https://www.codefactor.io/repository/github/petar-cv/money-manager/badge)](https://www.codefactor.io/repository/github/petar-cv/money-manager)
+
+</div>
+
+<hr>
+
+<div align="center">
+    <p align="center">Technology stack</p>
+    <img src="https://img.shields.io/badge/Angular-DD0031?style=for-the-badge&logo=angular&logoColor=white" alt="Angular"/>
+    &nbsp;
+    <img src="https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white" alt="Tailwind CSS"/>
+    &nbsp;
+    <img src="https://img.shields.io/badge/nestjs-E0234E?style=for-the-badge&logo=nestjs&logoColor=white" alt="NestJS"/>
+    &nbsp;
+    <img src="https://img.shields.io/badge/Prisma-3982CE?style=for-the-badge&logo=Prisma&logoColor=white" alt="Prisma"/>
+    &nbsp;
+    <img src="https://img.shields.io/badge/Docker-2CA5E0?style=for-the-badge&logo=docker&logoColor=white" alt="Docker"/>
+    &nbsp;
+    <img src="https://img.shields.io/badge/Apache_Kafka-231F20?style=for-the-badge&logo=apache-kafka&logoColor=white" alt="Apache Kafka"/>
+    &nbsp;
+    <img src="https://img.shields.io/badge/Nginx-009639?style=for-the-badge&logo=nginx&logoColor=white" alt="NGINX"/>
+    &nbsp;
+    <img src="https://img.shields.io/badge/Jenkins-D24939?style=for-the-badge&logo=Jenkins&logoColor=white" alt="Jenkins"/>
+    &nbsp;
+</div>
+
+<hr>
+
+<!-- Warning -->
+
+**_NOTE:_** &nbsp;Environment variables in this repository are obsolete and serve as an example. New production environment variables are safely stored outside the code.
+
+<hr>
 
 This project was generated using [Nx](https://nx.dev).
 
@@ -86,11 +121,6 @@ Run `nx graph` to see a diagram of the dependencies of your projects.
 ## Further help
 
 Visit the [Nx Documentation](https://nx.dev/angular) to learn more.
-
-
-
-
-
 
 ## ☁ Nx Cloud
 
